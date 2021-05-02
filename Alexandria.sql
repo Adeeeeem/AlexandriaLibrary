@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Library`
+-- Database: `Alexandria`
 --
-CREATE DATABASE IF NOT EXISTS `Library` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `Library`;
+CREATE DATABASE IF NOT EXISTS `Alexandria` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `Alexandria`;
 
 -- --------------------------------------------------------
 
