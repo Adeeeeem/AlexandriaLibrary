@@ -1,0 +1,12 @@
+body{background: url("../img/background.jpg") no-repeat center center fixed; background-size: cover;}
+div#body{width: 95%; height: 90%; border-radius: 15px; margin: auto; margin-top: 2.5%; background-color: rgba(255, 255, 255, 0.95); padding: 20px;}
+div#body div.uk-card-header,
+div#body div.uk-card-body,
+div#body div.uk-card-footer{padding: 20px !important;}
+div#body div.uk-card-header h3{font-weight: 700; color: var(--Antique-Brass-color) !important; padding-top: 10px;}
+div#body div.uk-card-header h3 span{color: var(--Desert-Sand-color) !important;}
+div#body div.uk-card-body{height: 70%; overflow: auto;}
+div#body div.uk-card-body img{border-radius: 5px;}
+div#body div.uk-card-body div.uk-child-width-1-2{width: 100%;}
+div#body div.uk-card-body div.media{padding: 20px !important;}
+div#body div.uk-card-body div.media h3{color: var(--Artichoke-color) !important; font-size: 35px;}

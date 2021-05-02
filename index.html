@@ -18,8 +18,10 @@
 	<link rel="shortcut icon" type="image/png" href="img/icon.png">
 	<!-- Reset CSS 2.0 -->
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<!-- Semantic CSS 2.4.1 -->
-	<link rel="stylesheet" type="text/css" href="css/semantic/semantic.min.css">
+	<!-- UIkit CSS 3.6.20 -->
+	<link rel="stylesheet" type="text/css" href="css/uikit/uikit.min.css">
+	<!-- UIkit RTL CSS 3.6.20 -->
+	<link rel="stylesheet" type="text/css" href="css/uikit/uikit-rtl.min.css">
 	<!-- Main CSS -->
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<!-- Custom CSS -->
@@ -38,18 +40,53 @@
 		</div>
 	</div>
 
-	
+	<div id="body" class="uk-card">
 
-	<!-- Semantic JavaScript 2.4.1 -->
-	<script type="text/javascript" src="js/semantic/semantic.min.js"></script>
+		<div class="uk-card-header">
+			<nav class="uk-navbar-container uk-navbar-transparent uk-margin" uk-navbar>
+				<div class="uk-navbar-left">
+					<a class="uk-navbar-item uk-logo" href="./">
+						<div class="uk-grid-small uk-flex-middle" uk-grid>
+							<div class="uk-width-auto">
+								<img class="uk-border-circle" width="60" height="60" src="img/logo.png">
+							</div>
+							<div class="uk-width-expand">
+								<h3 class="uk-card-title uk-margin-remove-bottom">Alexandria <span>Library</span></h3>
+							</div>
+						</div>
+					</a>
+				</div>
+				<div class="uk-navbar-right">
+					
+				</div>
+			</nav>
+		</div>
+
+		<div class="uk-card-body">
+			<div class="uk-child-width-1-2" uk-grid uk-height-match="target: > div > .media">
+				<div class="media">
+					<img class="uk-box-shadow-xlarge" width="389" height="248" src="img/image1.jpg">
+				</div>
+				<div class="media">
+					<h3>Alexandria Library</h3>
+				</div>
+			</div>
+		</div>
+
+		<div class="uk-card-footer">
+			
+		</div>
+	</div>
+
+	<!-- UIkit JavaScript 3.6.20 -->
+	<script type="text/javascript" src="js/uikit/uikit.min.js"></script>
+	<!-- UIkit Icons JavaScript 3.6.20 -->
+	<script type="text/javascript" src="js/uikit/uikit-icons.min.js"></script>
 	<!-- Notiflix CSS 2.7.0 -->
 	<link rel="stylesheet" type="text/css" href="css/notiflix/notiflix-2.7.0.min.css">
 	<!-- Notiflix JavaScript 2.7.0 -->
 	<script type="text/javascript" src="js/notiflix/notiflix-2.7.0.min.js"></script>
 	<!-- Custom JavaScript -->
 	<script type="text/javascript" src="js/script.js"></script>
-	<script type="text/javascript">
-
-	</script>
 </body>
 </html>
