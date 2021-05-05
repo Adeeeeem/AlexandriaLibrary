@@ -40,8 +40,7 @@
 		</div>
 	</div>
 
-	<div id="body" class="uk-card">
-
+	<div id="home" class="uk-card uk-box-shadow-xlarge">
 		<div class="uk-card-header">
 			<nav class="uk-navbar-container uk-navbar-transparent uk-margin" uk-navbar>
 				<div class="uk-navbar-left">
@@ -57,11 +56,19 @@
 					</a>
 				</div>
 				<div class="uk-navbar-right">
-					
+					<div class="uk-navbar-item">
+						<ul class="uk-navbar-nav">
+							<li><a id="home-nav-btn" class="active" href="./">Home</a></li>
+							<li><a id="browse-nav-btn" href="javascript:void(0);">Browse</a></li>
+							<li><a id="borrow-nav-btn" href="javascript:void(0);">Borrow</a></li>
+							<li><a id="seats-nav-btn" href="javascript:void(0);">Seats</a></li>
+							<li><a id="login-nav-btn" href="javascript:void(0);">Log In</a></li>
+						</ul>
+						<button id="signup-nav-btn" class="alexandria-btn uk-button">Sign Up</button>
+					</div>
 				</div>
 			</nav>
 		</div>
-
 		<div class="uk-card-body">
 			<div class="uk-child-width-1-2" uk-grid uk-height-match="target: > div > .media">
 				<div class="media">
@@ -69,12 +76,54 @@
 				</div>
 				<div class="media">
 					<h3>Alexandria Library</h3>
+						<div class="uk-margin-large-top" uk-slider="autoplay: true; velocity: 1; pause-on-hover: true; velocity: 0.5">
+							<div class="uk-position-relative" tabindex="-1">
+								<ul class="uk-slider-items uk-child-width-1-1 uk-grid">
+									<li>
+										<blockquote cite="#">
+											<p class="uk-margin-small-bottom">Many people, myself among them, feel better at the mere sight of a book.</p>
+											<footer>Jane Smiley, <cite><a target="_blank" href="https://www.amazon.com/13-Ways-Looking-at-Novel/dp/1400033187">Thirteen Ways of Looking at a Novel</a></cite></footer>
+										</blockquote>
+									</li>
+									<li>
+										<blockquote cite="#">
+											<p class="uk-margin-small-bottom">It is is better to know one book intimately than a hundred superficially.</p>
+											<footer>Donna Tartt, <cite><a target="_blank" href="https://www.amazon.com/Secret-History-Donna-Tartt/dp/1400031702">The Secret History</a></cite></footer>
+										</blockquote>
+									</li>
+									<li>
+										<blockquote cite="#">
+											<p class="uk-margin-small-bottom">There is more treasure in books than in all the pirate’s loot on Treasure Island.</p>
+											<footer>Walt Disney</footer>
+										</blockquote>
+									</li>
+									<li>
+										<blockquote cite="#">
+											<p class="uk-margin-small-bottom">Books are the quietest and most constant of friends; they are the most accessible and wisest of counselors, and the most patient of teachers.</p>
+											<footer>Charles W. Eliot</footer>
+										</blockquote>
+									</li>
+									<li>
+										<blockquote cite="#">
+											<p class="uk-margin-small-bottom">If you don’t like to read, you haven’t found the right book.</p>
+											<footer>J.K. Rowling</footer>
+										</blockquote>
+									</li>
+								</ul>
+							</div>
+						</div>
+					<div class="uk-margin uk-text-center uk-margin-large-top uk-margin-large-right">
+						<div class="uk-inline">
+							<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: search"></span>
+							<input class="uk-input" type="search" placeholder="Find your book here">
+						</div>
+						<button id="search-book-btn" class="uk-button">Search</button>
+					</div>
 				</div>
 			</div>
 		</div>
-
 		<div class="uk-card-footer">
-			
+
 		</div>
 	</div>
 

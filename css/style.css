@@ -1,12 +1,30 @@
 body{background: url("../img/background.jpg") no-repeat center center fixed; background-size: cover;}
-div#body{width: 95%; height: 90%; border-radius: 15px; margin: auto; margin-top: 2.5%; background-color: rgba(255, 255, 255, 0.95); padding: 20px;}
-div#body div.uk-card-header,
-div#body div.uk-card-body,
-div#body div.uk-card-footer{padding: 20px !important;}
-div#body div.uk-card-header h3{font-weight: 700; color: var(--Antique-Brass-color) !important; padding-top: 10px;}
-div#body div.uk-card-header h3 span{color: var(--Desert-Sand-color) !important;}
-div#body div.uk-card-body{height: 70%; overflow: auto;}
-div#body div.uk-card-body img{border-radius: 5px;}
-div#body div.uk-card-body div.uk-child-width-1-2{width: 100%;}
-div#body div.uk-card-body div.media{padding: 20px !important;}
-div#body div.uk-card-body div.media h3{color: var(--Artichoke-color) !important; font-size: 35px;}
+/*==================================================
+				Home Section
+==================================================*/
+div#home{width: 95%; height: 90%; border-radius: 15px; margin: auto; margin-top: 2.5%; background-color: rgba(255, 255, 255, 0.95); padding: 20px; padding-top: 10px;}
+div#home div.uk-card-body,
+div#home div.uk-card-footer{padding: 20px !important;}
+div#home div.uk-card-header{padding: 0 !important;}
+div#home div.uk-card-header h3{font-weight: 700; color: var(--Antique-Brass-color) !important;}
+div#home div.uk-card-header h3 span{color: var(--Desert-Sand-color) !important;}
+div#home div.uk-card-header div.uk-navbar-left:first-child{margin-right: 0;}
+div#home div.uk-card-body img{border-radius: 5px;}
+div#home div.uk-card-body div.uk-child-width-1-2{width: 100%;}
+div#home div.uk-card-body div.media{padding: 20px !important;}
+div#home div.uk-card-body div.media:first-child{width: 40%;}
+div#home div.uk-card-body div.media:last-child{width: 60%;}
+div#home div.uk-card-header nav a,
+div#home div.uk-card-header nav button#signup-nav-btn{font-family: "Raleway", sans serif !important; font-size: 17px; letter-spacing: 1px; text-transform: capitalize;}
+div#home div.uk-card-header nav a{color: var(--Artichoke-color);}
+div#home div.uk-card-header nav a:focus,
+div#home div.uk-card-header nav a:hover,
+div#home div.uk-card-header nav a.active{color: var(--Ebony-color);}
+div#home div.uk-card-header nav a#seats-nav-btn{margin-right: 40px;}
+div#home div.uk-card-body div.media h3{color: var(--Ash-Gray-color) !important; font-size: 55px; font-weight: 600;}
+div#home div.uk-card-body div.media input,
+div#home div.uk-card-body div.media button{height: 40px !important; margin: 0;}
+div#home div.uk-card-body div.media input{width: 500px;}
+div#home div.uk-card-body div.media button{background-color: var(--Ash-Gray-color); color: #FFFFFF;}
+div#home div.uk-card-body div.media button:hover,
+div#home div.uk-card-body div.media button:focus{background-color: var(--Artichoke-color);}
