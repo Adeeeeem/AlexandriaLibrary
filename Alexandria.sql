@@ -168,15 +168,21 @@ TRUNCATE TABLE `Categories`;
 --
 
 INSERT INTO `Categories` (`CATEGORY_ID`, `CATEGORY_NAME`) VALUES
-(1, 'Business Industry And Finance'),
-(2, 'Education'),
-(3, 'Health And Medicine'),
-(4, 'History'),
-(5, 'Humanities And Social Sciences'),
-(6, 'Interests And Hobbies'),
-(7, 'Legal Studies'),
-(8, 'Literature'),
-(9, 'Science And Technology');
+(1, 'Art'),
+(2, 'Science Fiction'),
+(3, 'Fantasy'),
+(4, 'Biographies'),
+(5, 'Recipes'),
+(6, 'Romance'),
+(7, 'Textbooks'),
+(8, 'Children'),
+(9, 'History'),
+(10, 'Medicine'),
+(11, 'Religion'),
+(12, 'Mystery'),
+(13, 'Plays'),
+(14, 'Music'),
+(15, 'Science');
 
 -- --------------------------------------------------------
 
@@ -189,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `Documents` (
   `DOCUMENT_ID` INT(10) NOT NULL AUTO_INCREMENT,
   `DOCUMENT_TITLE` VARCHAR(255) NOT NULL,
   `DOCUMENT_COVER` MEDIUMBLOB DEFAULT NULL,
-  `DOCUMENT_PLACEMENT` ENUM'L','O','T') NOT NULL,
+  `DOCUMENT_PLACEMENT` ENUM ('L','O','T') NOT NULL,
   `DOCUMENT_DATA` MEDIUMBLOB DEFAULT NULL,
   `DOCUMENT_COPIES` INT(2) NOT NULL DEFAULT 0,
   `DOCUMENT_AUTHOR` INT(6) NOT NULL,
@@ -232,7 +238,7 @@ CREATE TABLE IF NOT EXISTS `History` (
   `HISTORY_ID` INT(100) NOT NULL AUTO_INCREMENT,
   `HISTORY_ACTION` INT(2) NOT NULL,
   `HISTORY_USER` INT(6) DEFAULT NULL,
-  `HISTORY_USER_TYPE` ENUM'A','L','U') NOT NULL,
+  `HISTORY_USER_TYPE` ENUM ('A','L','U') NOT NULL,
   `HISTORY_DATE` DATETIME NOT NULL,
   `HISTORY_DETAILS` VARCHAR(255) DEFAULT NULL,
   PRIMARY KEY (`HISTORY_ID`)
@@ -347,86 +353,6 @@ CREATE TABLE IF NOT EXISTS `Subjects` (
 --
 
 TRUNCATE TABLE `Subjects`;
---
--- Dumping data for table `Subjects`
---
-
-INSERT INTO `Subjects` (`SUBJECT_ID`, `SUBJECT_NAME`, `SUBJECT_CATEGORY`) VALUES
-(1, 'Business', 1),
-(2, 'Careers And Occupations', 1),
-(3, 'Economics', 1),
-(4, 'Finance', 1),
-(5, 'Industries And Companies', 1),
-(6, 'Management', 1),
-(7, 'Marketing', 1),
-(8, 'Educational Methods And I', 2),
-(9, 'Higher Education', 2),
-(10, 'Instructional Content', 2),
-(11, 'Library And Information S', 2),
-(12, 'Health Care', 3),
-(13, 'Health Issues', 3),
-(14, 'Human Anatomy', 3),
-(15, 'Medical Conditions, Diagn', 3),
-(16, 'Medical Science And Resea', 3),
-(17, 'Nursing And Allied Health', 3),
-(18, 'Wellness', 3),
-(19, 'Biography', 4),
-(20, 'Legal History', 4),
-(21, 'Military History', 4),
-(22, 'Women\'s History', 4),
-(23, 'World History ', 4),
-(24, 'Art And Music', 5),
-(25, 'Communication Studies', 5),
-(26, 'Criminal Justice', 5),
-(27, 'Current Issues', 5),
-(28, 'Demographics', 5),
-(29, 'Environmental Studies', 5),
-(30, 'Gender And Women\'s Studie', 5),
-(31, 'Geography', 5),
-(32, 'International Relations', 5),
-(33, 'Language', 5),
-(34, 'Multicultural And Regiona', 5),
-(35, 'Philosophy', 5),
-(36, 'Politics And Government', 5),
-(37, 'Popular Culture', 5),
-(38, 'Religion And Mythology', 5),
-(39, 'Social Sciences', 5),
-(40, 'Antiques', 6),
-(41, 'Arts & Crafts', 6),
-(42, 'Automotive Repair', 6),
-(43, 'Culinary Arts', 6),
-(44, 'Family', 6),
-(45, 'Gardening & Horticulture', 6),
-(46, 'Genealogy', 6),
-(47, 'Home Improvement', 6),
-(48, 'Photography', 6),
-(49, 'Sports & Recreation', 6),
-(50, 'Teen Interest & Issues', 6),
-(51, 'Travel Guides ', 6),
-(52, 'Criminal Justice', 7),
-(53, 'Law', 7),
-(54, 'Legal Issues', 7),
-(55, 'Authors', 8),
-(56, 'Bibliography', 8),
-(57, 'British Literature', 8),
-(58, 'Children\'s And Young Adul', 8),
-(59, 'Fiction Works', 8),
-(60, 'Literature Criticism', 8),
-(61, 'World Literature', 8),
-(62, 'Agriculture', 9),
-(63, 'Astronomy', 9),
-(64, 'Chemistry', 9),
-(65, 'Computing And Information', 9),
-(66, 'Earth Science', 9),
-(67, 'Engineering', 9),
-(68, 'Forensics', 9),
-(69, 'General Science', 9),
-(70, 'History Of Science And Te', 9),
-(71, 'Life Sciences', 9),
-(72, 'Mathematics', 9),
-(73, 'Nanotechnology', 9),
-(74, 'Physics', 9);
-
 -- --------------------------------------------------------
 
 --
@@ -467,7 +393,7 @@ INSERT INTO `Types` (`TYPE_ID`, `TYPE_NAME`) VALUES
 DROP TABLE IF EXISTS `Users`;
 CREATE TABLE IF NOT EXISTS `Users` (
   `USER_ID` INT(6) NOT NULL AUTO_INCREMENT,
-  `USER_STATUS` ENUM'USER','PENDING','BLOCKED') NOT NULL DEFAULT 'PENDING',
+  `USER_STATUS` ENUM ('USER','PENDING','BLOCKED') NOT NULL DEFAULT 'PENDING',
   `USER_LOGIN` VARCHAR(25) NOT NULL,
   `USER_PASSWORD` VARCHAR(255) NOT NULL,
   `USER_FNAME` VARCHAR(50) DEFAULT NULL,
