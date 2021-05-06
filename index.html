@@ -59,13 +59,13 @@
 				<div class="uk-navbar-right">
 					<div class="uk-navbar-item">
 						<ul class="uk-navbar-nav">
-							<li><a id="home-nav-btn" class="active" href="./">Home</a></li>
-							<li><a id="browse-nav-btn" href="javascript:void(0);">Browse</a></li>
-							<li><a id="borrow-nav-btn" href="javascript:void(0);">Borrow</a></li>
-							<li><a id="seats-nav-btn" href="javascript:void(0);">Seats</a></li>
-							<li><a id="login-nav-btn" href="javascript:void(0);">Log In</a></li>
+							<li><a id="home_nav_btn" class="active" href="./">Home</a></li>
+							<li><a id="browse_nav_btn" href="javascript:void(0);">Browse</a></li>
+							<li><a id="borrow_nav_btn" href="javascript:void(0);">Borrow</a></li>
+							<li><a id="seats_nav_btn" href="javascript:void(0);">Seats</a></li>
+							<li><a id="login_nav_btn" href="javascript:void(0);">Log In</a></li>
 						</ul>
-						<button id="signup-nav-btn" class="alexandria-btn uk-button" uk-toggle="target: #signup">Sign Up</button>
+						<button id="signup_nav_btn" class="alexandria-btn uk-button" uk-toggle="target: #signup">Sign Up</button>
 					</div>
 				</div>
 			</nav>
@@ -125,7 +125,7 @@
 							<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: search"></span>
 							<input class="uk-input" type="search" placeholder="Find your book here">
 						</div>
-						<button id="search-book-btn" class="uk-button">Search</button>
+						<button id="search_book_btn" class="uk-button">Search</button>
 					</div>
 				</div>
 			</div>
@@ -154,135 +154,135 @@
 	</div>
 
 	<!-- Sign Up Section -->
-<div id="signup" class="uk-flex-top" uk-modal>
-	<div class="uk-modal-dialog">
-		<div class="uk-modal-header">
-			<h2 class="uk-modal-title uk-text-center">Sign Up</h2>
-		</div>
-		<div class="uk-modal-body" uk-overflow-auto>
-			<small class="uk-article-meta">Complete the form below to create a new Internet Archive account.</small>
-			<hr>
-			<form id="signup-form" class="uk-grid-small" uk-grid>
-				<!-- Sign Up First Name -->
-				<div class="uk-width-1-2">
-					<label class="uk-form-label" for="signup-first-name">First Name</label>
-					<div class="uk-inline uk-margin-small-top uk-width-1-1">
-						<input id="signup-first-name" class="uk-input" type="text" placeholder="First Name" required>
-					</div>
-					<div class="uk-animation-toggle uk-text-left">
-						<div class="uk-animation-shake">
-							<small id="signup-first-name-empty" class="error">Please Enter your First Name !</small>
-							<small id="signup-first-name-format" class="error">Bad Format First Name !</small>
+	<div id="signup" class="uk-flex-top" uk-modal>
+		<div class="uk-modal-dialog">
+			<div class="uk-modal-header">
+				<h2 class="uk-modal-title uk-text-center">Sign Up</h2>
+			</div>
+			<div class="uk-modal-body" uk-overflow-auto>
+				<small class="uk-article-meta">Complete the form below to create a new Internet Archive account.</small>
+				<hr>
+				<form id="signup_form" class="uk-grid-small" uk-grid>
+					<!-- Sign Up First Name -->
+					<div class="uk-width-1-2">
+						<label class="uk-form-label" for="signup_first_name">First Name</label>
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<input id="signup_first_name" name="signup_first_name" class="uk-input" type="text" placeholder="First Name" required>
+						</div>
+						<div class="uk-animation-toggle uk-text-left">
+							<div class="uk-animation-shake">
+								<small id="signup_first_name_empty" class="error">Please Enter your First Name !</small>
+								<small id="signup_first_name_format" class="error">Bad Format First Name !</small>
+							</div>
 						</div>
 					</div>
-				</div>
-				<!-- Sign Up Last Name -->
-				<div class="uk-width-1-2">
-					<label class="uk-form-label" for="signup-last-name">Last Name</label>
-					<div class="uk-inline uk-margin-small-top uk-width-1-1">
-						<input id="signup-last-name" class="uk-input" type="text" placeholder="Last Name" required>
-					</div>
-					<div class="uk-animation-toggle uk-text-left">
-						<div class="uk-animation-shake">
-							<small id="signup-first-name-empty" class="error">Please Enter your Last Name !</small>
-							<small id="signup-first-name-format" class="error">Bad Format Last Name !</small>
+					<!-- Sign Up Last Name -->
+					<div class="uk-width-1-2">
+						<label class="uk-form-label" for="signup_last_name">Last Name</label>
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<input id="signup_last_name" name="signup_last_name" class="uk-input" type="text" placeholder="Last Name" required>
+						</div>
+						<div class="uk-animation-toggle uk-text-left">
+							<div class="uk-animation-shake">
+								<small id="signup_first_name_empty" class="error">Please Enter your Last Name !</small>
+								<small id="signup_first_name_format" class="error">Bad Format Last Name !</small>
+							</div>
 						</div>
 					</div>
-				</div>
-				<!-- Sign Up User Card -->
-				<div class="uk-width-1-2">
-					<label class="uk-form-label" for="signup-user-card">Student Card / National Identity Card</label>
-					<div class="uk-inline uk-margin-small-top uk-width-1-1">
-						<span class="uk-form-icon" uk-icon="icon: credit-card"></span>
-						<input id="signup-user-card" class="uk-input" type="text" placeholder="User Card" required>
-					</div>
-					<div class="uk-animation-toggle uk-text-left">
-						<div class="uk-animation-shake">
-							<small id="signup-user-card-empty" class="error">Please Enter your Card Number !</small>
-							<small id="signup-user-card-format" class="error">Bad Format Card !</small>
-							<small id="signup-user-card-exists" class="error">Card Already Exists !</small>
+					<!-- Sign Up User Card -->
+					<div class="uk-width-1-2">
+						<label class="uk-form-label" for="signup_user_card">Student Card / National Identity Card</label>
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<span class="uk-form-icon" uk-icon="icon: credit-card"></span>
+							<input id="signup_user_card" name="signup_user_card" class="uk-input" type="text" placeholder="User Card" required>
+						</div>
+						<div class="uk-animation-toggle uk-text-left">
+							<div class="uk-animation-shake">
+								<small id="signup_user_card_empty" class="error">Please Enter your Card Number !</small>
+								<small id="signup_user_card_format" class="error">Bad Format Card !</small>
+								<small id="signup_user_card_exists" class="error">Card Already Exists !</small>
+							</div>
 						</div>
 					</div>
-				</div>
-				<!-- Sign Up Login -->
-				<div class="uk-width-1-2">
-					<label class="uk-form-label" for="signup-login">Username</label>
-					<div class="uk-inline uk-margin-small-top uk-width-1-1">
-						<span class="uk-form-icon" uk-icon="icon: user"></span>
-						<input id="signup-login" class="uk-input" type="text" placeholder="Username" required>
-					</div>
-					<div class="uk-animation-toggle uk-text-left">
-						<div class="uk-animation-shake">
-							<small id="signup-user-login-empty" class="error">Please Choose a Username !</small>
-							<small id="signup-user-login-format" class="error">Bad Format Username !</small>
-							<small id="signup-user-login-exists" class="error">Username Already Exists !</small>
+					<!-- Sign Up Login -->
+					<div class="uk-width-1-2">
+						<label class="uk-form-label" for="signup_login">Username</label>
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<span class="uk-form-icon" uk-icon="icon: user"></span>
+							<input id="signup_login" name="signup_login" class="uk-input" type="text" placeholder="Username" required>
+						</div>
+						<div class="uk-animation-toggle uk-text-left">
+							<div class="uk-animation-shake">
+								<small id="signup_user_login_empty" class="error">Please Choose a Username !</small>
+								<small id="signup_user_login_format" class="error">Bad Format Username !</small>
+								<small id="signup_user_login_exists" class="error">Username Already Exists !</small>
+							</div>
 						</div>
 					</div>
-				</div>
-				<!-- Sign Up Password -->
-				<div class="uk-width-1-2">
-					<label class="uk-form-label" for="signup-password">Password</label>
-					<div class="uk-inline uk-margin-small-top uk-width-1-1">
-						<span class="uk-form-icon" uk-icon="icon: lock"></span>
-						<input id="signup-password" class="uk-input" type="password" placeholder="P@ssword" required>
-					</div>
-					<div class="uk-animation-toggle uk-text-left">
-						<div class="uk-animation-shake">
-							<small id="signup-password-empty" class="error">Please Enter a Password !</small>
-							<small id="signup-password-format" class="error">Bad Format Password !</small>
+					<!-- Sign Up Password -->
+					<div class="uk-width-1-2">
+						<label class="uk-form-label" for="signup_password">Password</label>
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<span class="uk-form-icon" uk-icon="icon: lock"></span>
+							<input id="signup_password" name="signup_password" class="uk-input" type="password" placeholder="P@ssword" required>
+						</div>
+						<div class="uk-animation-toggle uk-text-left">
+							<div class="uk-animation-shake">
+								<small id="signup_password_empty" class="error">Please Enter a Password !</small>
+								<small id="signup_password_format" class="error">Bad Format Password !</small>
+							</div>
+						</div>
+						<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid uk-margin-small-top">
+							<input id="signup_password_display" class="uk-checkbox" type="checkbox"> <label id="signup_password_display_label" class="uk-form-label" for="signup_password_display">Show Password</label>
 						</div>
 					</div>
-					<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid uk-margin-small-top">
-						<input id="signup-password-display" class="uk-checkbox" type="checkbox"> <label id="signup-password-display-label" class="uk-form-label" for="signup-password-display">Show Password</label>
-					</div>
-				</div>
-				<!-- Sign Up Repeat Password -->
-				<div class="uk-width-1-2">
-					<label class="uk-form-label" for="signup-repeat-password">Repeat Password</label>
-					<div class="uk-inline uk-margin-small-top uk-width-1-1">
-						<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-						<input id="signup-repeat-password" class="uk-input" type="password" placeholder="Repeat your P@ssword" required>
-					</div>
-					<div class="uk-animation-toggle uk-text-left">
-						<div class="uk-animation-shake">
-							<small id="signup-repeat-password-empty" class="error">Please Repeat your Password !</small>
-							<small id="signup-repeat-password-format" class="error">Password does not Match !</small>
+					<!-- Sign Up Repeat Password -->
+					<div class="uk-width-1-2">
+						<label class="uk-form-label" for="signup_repeat_password">Repeat Password</label>
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+							<input id="signup_repeat_password" name="signup_repeat_password" class="uk-input" type="password" placeholder="Repeat your P@ssword" required>
+						</div>
+						<div class="uk-animation-toggle uk-text-left">
+							<div class="uk-animation-shake">
+								<small id="signup_repeat_password_empty" class="error">Please Repeat your Password !</small>
+								<small id="signup_repeat_password_format" class="error">Password does not Match !</small>
+							</div>
 						</div>
 					</div>
-				</div>
-				<!-- Sign Up Email Address -->
-				<div class="uk-width-1-1">
-					<label class="uk-form-label" for="signup-email">Email Address</label>
-					<div class="uk-inline uk-margin-small-top uk-width-1-1">
-						<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: mail"></span>
-						<input id="signup-email" class="uk-input" type="mail" placeholder="Email Address">
-					</div>
-					<div class="uk-animation-toggle uk-text-left">
-						<div class="uk-animation-shake">
-							<small id="signup-email-format" class="error">Bad Format Email Address !</small>
+					<!-- Sign Up Email Address -->
+					<div class="uk-width-1-1">
+						<label class="uk-form-label" for="signup_email">Email Address</label>
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: mail"></span>
+							<input id="signup_email" name="signup_email" class="uk-input" type="mail" placeholder="Email Address">
+						</div>
+						<div class="uk-animation-toggle uk-text-left">
+							<div class="uk-animation-shake">
+								<small id="signup_email_format" class="error">Bad Format Email Address !</small>
+							</div>
 						</div>
 					</div>
-				</div>
-			</form>
-		</div>
-		<div class="uk-modal-footer uk-text-center">
-			<div class="uk-grid-small" uk-grid>
-				<!-- Sign Up Reset Button -->
-				<div class="uk-width-1-2">
-					<div class="uk-inline uk-margin-small-top uk-width-1-1">
-						<button id="signup-reset-btn" class="uk-button uk-modal-close" type="reset">Cancel</button>
+				</form>
+			</div>
+			<div class="uk-modal-footer uk-text-center">
+				<div class="uk-grid-small" uk-grid>
+					<!-- Sign Up Reset Button -->
+					<div class="uk-width-1-2">
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<button id="signup_reset_btn" class="uk-button uk-modal-close" type="reset">Cancel</button>
+						</div>
 					</div>
-				</div>
-				<!-- Sign Up Confirm Button -->
-				<div class="uk-width-1-2">
-					<div class="uk-inline uk-margin-small-top uk-width-1-1">
-						<button id="signup-confirm-btn" class="uk-button alexandria-btn" type="submit">Save</button>
+					<!-- Sign Up Confirm Button -->
+					<div class="uk-width-1-2">
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<button id="signup_confirm_btn" class="uk-button alexandria-btn" type="submit">Sign Up</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 	<div class="uk-margin-xlarge-top"></div>
 

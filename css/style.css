@@ -15,12 +15,12 @@ div#home div.uk-card-body div.media{padding: 20px !important; margin-top: 15px;}
 div#home div.uk-card-body div.media:first-child{width: 40%;}
 div#home div.uk-card-body div.media:last-child{width: 60%;}
 div#home div.uk-card-header nav a,
-div#home div.uk-card-header nav button#signup-nav-btn{font-family: "Raleway", sans serif !important; font-size: 17px; letter-spacing: 1px; text-transform: capitalize;}
+div#home div.uk-card-header nav button#signup_nav_btn{font-family: "Raleway", sans serif !important; font-size: 17px; letter-spacing: 1px; text-transform: capitalize;}
 div#home div.uk-card-header nav a{color: var(--Artichoke-color);}
 div#home div.uk-card-header nav a:focus,
 div#home div.uk-card-header nav a:hover,
 div#home div.uk-card-header nav a.active{color: var(--Ebony-color);}
-div#home div.uk-card-header nav a#seats-nav-btn{margin-right: 40px;}
+div#home div.uk-card-header nav a#seats_nav_btn{margin-right: 40px;}
 div#home div.uk-card-body div.media h3{color: var(--Ash-Gray-color) !important; font-size: 55px; font-weight: 600;}
 div#home div.uk-card-body div.media input,
 div#home div.uk-card-body div.media button{height: 40px !important; margin: 0; text-transform: capitalize;}
@@ -44,9 +44,9 @@ div#signup div.uk-modal-header{border-top-right-radius: 15px; border-top-left-ra
 div#signup div.uk-modal-footer{border-bottom-right-radius: 15px; border-bottom-left-radius: 15px;}
 div#signup div.uk-modal-header h2{font-size: 40px; letter-spacing: 5px; color: var(--Antique-Brass-color) !important;}
 div#signup div.uk-modal-body small.uk-article-meta{font-size: 12px;}
-div#signup input#signup-password-display{width: 15px; height: 15px; margin-left: 20px; padding: 0;}
-div#signup label#signup-password-display-label{font-size: 12px; padding-top: 3px;}
-div#signup button#signup-reset-btn,
-div#signup button#signup-confirm-btn{width: 100%;}
-div#signup button#signup-reset-btn:focus,
-div#signup button#signup-reset-btn:hover{background-color: #D3D3D3;}
+div#signup input#signup_password_display{width: 15px; height: 15px; margin-left: 20px; padding: 0;}
+div#signup label#signup_password_display_label{font-size: 12px; padding-top: 3px;}
+div#signup button#signup_reset_btn,
+div#signup button#signup_confirm_btn{width: 100%;}
+div#signup button#signup_reset_btn:focus,
+div#signup button#signup_reset_btn:hover{background-color: #D3D3D3;}
