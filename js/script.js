@@ -26,4 +26,8 @@ $(function()
 			$("div#signup label#signup-password-display-label").text("Show Password");
 		}
 	});
+	$("div#signup button#signup-reset-btn").click(function()
+	{
+		$("div#signup form#signup-form")[0].reset();
+	});
 });
