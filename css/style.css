@@ -11,7 +11,7 @@ div#home div.uk-card-header h3 span{color: var(--Desert-Sand-color) !important;}
 div#home div.uk-card-header div.uk-navbar-left:first-child{margin-right: 0;}
 div#home div.uk-card-body img{border-radius: 5px;}
 div#home div.uk-card-body div.uk-child-width-1-2{width: 100%;}
-div#home div.uk-card-body div.media{padding: 20px !important;}
+div#home div.uk-card-body div.media{padding: 20px !important; margin-top: 15px;}
 div#home div.uk-card-body div.media:first-child{width: 40%;}
 div#home div.uk-card-body div.media:last-child{width: 60%;}
 div#home div.uk-card-header nav a,
@@ -23,7 +23,7 @@ div#home div.uk-card-header nav a.active{color: var(--Ebony-color);}
 div#home div.uk-card-header nav a#seats-nav-btn{margin-right: 40px;}
 div#home div.uk-card-body div.media h3{color: var(--Ash-Gray-color) !important; font-size: 55px; font-weight: 600;}
 div#home div.uk-card-body div.media input,
-div#home div.uk-card-body div.media button{height: 40px !important; margin: 0;}
+div#home div.uk-card-body div.media button{height: 40px !important; margin: 0; text-transform: capitalize;}
 div#home div.uk-card-body div.media input{width: 500px;}
 div#home div.uk-card-body div.media button{background-color: var(--Ash-Gray-color); color: #FFFFFF;}
 div#home div.uk-card-body div.media button:hover,
@@ -36,3 +36,17 @@ div#browse div.uk-card-header h3{color: var(--Ash-Gray-color) !important; font-s
 div#browse div.uk-card-body ul.uk-slider-items{padding-right: 40px;}
 div#browse div.uk-card-body ul.uk-slider-items h5{padding-top: 20px;}
 div#browse div.uk-card-body ul.uk-slider-items span{margin-top: 10px; font-size: .875rem; line-height: 1.5; color: #666;}
+/*==================================================
+				Sign Up Section
+==================================================*/
+div#signup div.uk-modal-dialog{width: 70%; border-radius: 15px;}
+div#signup div.uk-modal-header{border-top-right-radius: 15px; border-top-left-radius: 15px;}
+div#signup div.uk-modal-footer{border-bottom-right-radius: 15px; border-bottom-left-radius: 15px;}
+div#signup div.uk-modal-header h2{font-size: 40px; letter-spacing: 5px; color: var(--Antique-Brass-color) !important;}
+div#signup div.uk-modal-body small.uk-article-meta{font-size: 12px;}
+div#signup input#signup-password-display{width: 15px; height: 15px; margin-left: 20px; padding: 0;}
+div#signup label#signup-password-display-label{font-size: 12px; padding-top: 3px;}
+div#signup button#signup-reset-btn,
+div#signup button#signup-confirm-btn{width: 100%;}
+div#signup button#signup-reset-btn:focus,
+div#signup button#signup-reset-btn:hover{background-color: #D3D3D3;}
