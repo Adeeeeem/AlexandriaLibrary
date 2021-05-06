@@ -31,5 +31,10 @@
 
 			return $this->CONNECTION;
 		}
+
+		public function closeConnection()
+		{
+			$this->CONNECTION = NULL;
+		}
 	}
 ?>

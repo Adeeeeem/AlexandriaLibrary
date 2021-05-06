@@ -33,7 +33,7 @@ div#home div.uk-card-body div.media button:focus{background-color: var(--Articho
 ==================================================*/
 div#browse{width: 95%; border-radius: 15px; margin: auto; margin-top: 2.5%; background-color: rgba(255, 255, 255, 0.95); padding: 20px; padding-top: 10px;}
 div#browse div.uk-card-header h3{color: var(--Ash-Gray-color) !important; font-size: 35px; font-weight: 600;}
-div#browse div.uk-card-body ul.uk-slider-items{padding-right: 40px;}
+div#browse div.uk-card-body ul.uk-slider-items{padding-right: 0;}
 div#browse div.uk-card-body ul.uk-slider-items h5{padding-top: 20px;}
 div#browse div.uk-card-body ul.uk-slider-items span{margin-top: 10px; font-size: .875rem; line-height: 1.5; color: #666;}
 /*==================================================

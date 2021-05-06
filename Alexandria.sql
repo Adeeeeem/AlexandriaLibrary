@@ -179,7 +179,7 @@ INSERT INTO `Categories` (`CATEGORY_ID`, `CATEGORY_NAME`) VALUES
 (9, 'History'),
 (10, 'Medicine'),
 (11, 'Religion'),
-(12, 'Mystery'),
+(12, 'Mysteries'),
 (13, 'Plays'),
 (14, 'Music'),
 (15, 'Science');
