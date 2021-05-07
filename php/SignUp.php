@@ -26,19 +26,19 @@
 	$user->USER_DIC = $data->signup_user_card;
 	$user->USER_EMAIL = $data->signup_email;
 
-	if($user->createUser())
-	{
-		http_response_code(200);
-		/* Encode to Json Format */
-		$json = json_encode(true);
-	}
+	if ($user->loginExists())
+		$json = json_encode(array("response" => "Login_Exists"));
 	else
-	{
-		http_response_code(400);
-		/* Encode to Json Format */
-		$json = json_encode(false);
-	}
-
+		if ($user->emailExists())
+			$json = json_encode(array("response" => "Email_Exists"));
+		else
+			if ($user->cardExists())
+				$json = json_encode(array("response" => "Card_Exists"));
+			else
+				if($user->createUser())
+					$json = json_encode(array("response" => true));
+				else
+					$json = json_encode(array("response" => false));
 	
 	/* Return as Json Format */
 	echo $json;

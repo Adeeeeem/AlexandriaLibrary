@@ -28,14 +28,12 @@
 			/* Preparing Statement */
 			$statement = $this->CONNECTION->prepare($request);
 			/* Avoid any XSS or SQL Injection Function */
-			$this->USER_LOGIN = strtolower(Security($this->USER_LOGIN));
+			$this->USER_LOGIN = Security($this->USER_LOGIN);
 			$this->USER_PASSWORD = password_hash(Security($this->USER_PASSWORD), PASSWORD_BCRYPT);
 			$this->USER_FNAME = ucwords(Security($this->USER_FNAME));
 			$this->USER_LNAME = ucwords(Security($this->USER_LNAME));
 			$this->USER_DIC = Security($this->USER_DIC);
 			$this->USER_EMAIL = strtolower(Security($this->USER_EMAIL));
-			/* Hash Password Before Saving to DB
-			$PASSWORD_HASH = password_hash($this->USER_PASSWORD, PASSWORD_BCRYPT); */
 			/* Binding Parameter */
 			$statement->bindParam(":LOGIN", $this->USER_LOGIN, PDO::PARAM_STR, 25);
 			$statement->bindParam(":PASSWORD", $this->USER_PASSWORD, PDO::PARAM_STR, 255);
@@ -45,9 +43,127 @@
 			$statement->bindParam(":EMAIL", $this->USER_EMAIL, PDO::PARAM_STR, 100);
 			/* Execute Query */
 			if ($statement->execute())
+			{
+				$USER = $this->getId();
+				if($USER)
+				{
+					/* Preparing Request */
+					$request = "INSERT INTO History (HISTORY_ACTION, HISTORY_USER, HISTORY_USER_TYPE, HISTORY_DATE) VALUES (9, :USER, 'U', NOW());";
+					/* Preparing Statement */
+					$statement = $this->CONNECTION->prepare($request);
+					/* Binding Parameter */
+					$statement->bindParam(":USER", $USER, PDO::PARAM_INT);
+					/* Execute Query */
+					$statement->execute();
+
+					return true;
+				}
+			}
+			
+			return false;
+		}
+
+		private function getId()
+		{
+			/* Preparing Request */
+			$request = "SELECT USER_ID FROM ".$this->TABLE_NAME." WHERE LOWER(USER_LOGIN) = LOWER(:LOGIN) LIMIT 0, 1;";
+			/* Preparing Statement */
+			$statement = $this->CONNECTION->prepare($request);
+			/* Avoid any XSS or SQL Injection Function */
+			$this->USER_LOGIN = Security($this->USER_LOGIN);
+			/* Binding Parameter */
+			$statement->bindParam(":LOGIN", $this->USER_LOGIN, PDO::PARAM_STR, 25);
+			/* Execute Query */
+			$statement->execute();
+
+			if ($statement->rowCount() > 0)
+			{
+				/* Retrieve Details */
+				$row = $statement->fetch();
+				return $row["USER_ID"];
+			}
+
+			return false;
+		}
+
+		public function getStatus()
+		{
+			/* Preparing Request */
+			$request = "SELECT USER_STATUS FROM ".$this->TABLE_NAME." WHERE LOWER(USER_LOGIN) = LOWER(:LOGIN) LIMIT 0, 1;";
+			/* Preparing Statement */
+			$statement = $this->CONNECTION->prepare($request);
+			/* Avoid any XSS or SQL Injection Function */
+			$this->USER_LOGIN = Security($this->USER_LOGIN);
+			/* Binding Parameter */
+			$statement->bindParam(":LOGIN", $this->USER_LOGIN, PDO::PARAM_STR, 25);
+			/* Execute Query */
+			$statement->execute();
+
+			if ($statement->rowCount() > 0)
+			{
+				/* Retrieve Details */
+				$row = $statement->fetch();
+				return $row["USER_STATUS"];
+			}
+
+			return false;
+		}
+
+		public function loginExists()
+		{
+			/* Preparing Request */
+			$request = "SELECT USER_LOGIN FROM ".$this->TABLE_NAME." WHERE LOWER(USER_LOGIN) = LOWER(:LOGIN) LIMIT 0, 1;";
+			/* Preparing Statement */
+			$statement = $this->CONNECTION->prepare($request);
+			/* Avoid any XSS or SQL Injection Function */
+			$this->USER_LOGIN = Security($this->USER_LOGIN);
+			/* Binding Parameter */
+			$statement->bindParam(":LOGIN", $this->USER_LOGIN, PDO::PARAM_STR, 25);
+			/* Execute Query */
+			$statement->execute();
+
+			if ($statement->rowCount() > 0)
 				return true;
-			else
-				return false;
+
+			return false;
+		}
+
+		public function cardExists()
+		{
+			/* Preparing Request */
+			$request = "SELECT USER_DIC FROM ".$this->TABLE_NAME." WHERE LOWER(USER_DIC) = LOWER(:CARD) LIMIT 0, 1;";
+			/* Preparing Statement */
+			$statement = $this->CONNECTION->prepare($request);
+			/* Avoid any XSS or SQL Injection Function */
+			$this->USER_DIC = Security($this->USER_DIC);
+			/* Binding Parameter */
+			$statement->bindParam(":CARD", $this->USER_DIC, PDO::PARAM_STR, 20);
+			/* Execute Query */
+			$statement->execute();
+
+			if ($statement->rowCount() > 0)
+				return true;
+
+			return false;
+		}
+
+		public function emailExists()
+		{
+			/* Preparing Request */
+			$request = "SELECT USER_EMAIL FROM ".$this->TABLE_NAME." WHERE USER_EMAIL = LOWER(:EMAIL) LIMIT 0, 1;";
+			/* Preparing Statement */
+			$statement = $this->CONNECTION->prepare($request);
+			/* Avoid any XSS or SQL Injection Function */
+			$this->USER_EMAIL = Security($this->USER_EMAIL);
+			/* Binding Parameter */
+			$statement->bindParam(":EMAIL", $this->USER_EMAIL, PDO::PARAM_STR, 100);
+			/* Execute Query */
+			$statement->execute();
+
+			if ($statement->rowCount() > 0)
+				return true;
+
+			return false;
 		}
 	}
 ?>

@@ -33,7 +33,7 @@ div#home div.uk-card-body div.media button:focus{background-color: var(--Articho
 ==================================================*/
 div#browse{width: 95%; border-radius: 15px; margin: auto; margin-top: 2.5%; background-color: rgba(255, 255, 255, 0.95); padding: 20px; padding-top: 10px;}
 div#browse div.uk-card-header h3{color: var(--Ash-Gray-color) !important; font-size: 35px; font-weight: 600;}
-div#browse div.uk-card-body ul.uk-slider-items{padding-right: 0;}
+div#browse div.uk-card-body ul.uk-slider-items{padding-right: 20px;}
 div#browse div.uk-card-body ul.uk-slider-items h5{padding-top: 20px;}
 div#browse div.uk-card-body ul.uk-slider-items span{margin-top: 10px; font-size: .875rem; line-height: 1.5; color: #666;}
 /*==================================================
@@ -44,8 +44,8 @@ div#signup div.uk-modal-header{border-top-right-radius: 15px; border-top-left-ra
 div#signup div.uk-modal-footer{border-bottom-right-radius: 15px; border-bottom-left-radius: 15px;}
 div#signup div.uk-modal-header h2{font-size: 40px; letter-spacing: 5px; color: var(--Antique-Brass-color) !important;}
 div#signup div.uk-modal-body small.uk-article-meta{font-size: 12px;}
-div#signup input#signup_password_display{width: 15px; height: 15px; margin-left: 20px; padding: 0;}
-div#signup label#signup_password_display_label{font-size: 12px; padding-top: 3px;}
+div#signup input#signup_password_display{width: 15px; height: 15px; margin-left: 5px; padding: 0;}
+div#signup label#signup_password_display_label{font-size: 12px; padding-top: 2.25px;}
 div#signup button#signup_reset_btn,
 div#signup button#signup_confirm_btn{width: 100%;}
 div#signup button#signup_reset_btn:focus,

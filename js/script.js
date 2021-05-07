@@ -45,11 +45,43 @@ $(function()
 		})
 		.done(function(response)
 		{
-			console.log("success "+response);
+			/* Reset Sign Up Form */
+			resetSignUpForm();
+
+			switch (response.response)
+			{
+				case "Login_Exists":
+					Notification("Failure", "Username Already Exists ! Please try another Username !");
+					$("div#signup input#signup_login").addClass("uk-form-danger");
+					$("div#signup small#signup_user_login_exists").show();
+				break;
+
+				case "Email_Exists":
+					Notification("Failure", "Email Already Exists ! Please try another Email Address !");
+					$("div#signup input#signup_email").addClass("uk-form-danger");
+					$("div#signup small#signup_user_email_exists").show();
+				break;
+
+				case "Card_Exists":
+					Notification("Failure", "Student Card / National Identity Card Already Exists !");
+					$("div#signup input#signup_user_card").addClass("uk-form-danger");
+					$("div#signup small#signup_user_card_exists").show();
+				break;
+
+				case true:
+					$("div#signup button#signup_reset_btn").click();
+					ReportNotification("Info", "Welcome Aboard Alexandrian !", "You are now a registered user. To complete your account's features, go to the Alexandria Library to get approved by the Librarian !", "I Understand !");
+					$("a#NXReportButton.notiflix-report-button").click(function(){Notification("Success", "You are now an Alexandrian Member !");});
+				break;
+
+				case false: Notification("Failure", "Oops - Something went wrong ! Please try again later !"); break;
+
+				default: Notification("Failure", "Oops - Something went wrong ! Please try again later !"); break;
+			}
 		})
-		.fail(function(response)
+		.fail(function()
 		{
-			console.log("error "+response);
+			Notification("Failure", "Oops - Something went wrong ! Please try again later !");
 		});
 	});
 	/*==================================================
@@ -79,6 +111,12 @@ function getCategories()
 		error: function (error) {console.log(error);}
 	}).responseJSON;
 }
+/* Reset Sign Up Form */
+function resetSignUpForm()
+{
+	$("div#signup form#signup_form input").removeClass("uk-form-danger");
+	$("div#signup form#signup_form small.error").hide();
+}
 /* Form Data to Json */
 $.fn.serializeObject = function()
 { 
@@ -92,10 +130,10 @@ $.fn.serializeObject = function()
 			if (!data[this.name].push)
 				data[this.name] = [data[this.name]];
 
-			data[this.name].push(this.value || '');
+			data[this.name].push(this.value.replace(/\s{2,}/g, "").trim() || "");
 		}
 		else
-			data[this.name] = this.value || '';
+			data[this.name] = this.value.replace(/\s{2,}/g, "").trim() || "";
 	});
 	
 	return data;
