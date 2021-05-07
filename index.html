@@ -59,11 +59,11 @@
 				<div class="uk-navbar-right">
 					<div class="uk-navbar-item">
 						<ul class="uk-navbar-nav">
-							<li><a id="home_nav_btn" class="active" href="./">Home</a></li>
-							<li><a id="browse_nav_btn" href="javascript:void(0);">Browse</a></li>
-							<li><a id="borrow_nav_btn" href="javascript:void(0);">Borrow</a></li>
-							<li><a id="seats_nav_btn" href="javascript:void(0);">Seats</a></li>
-							<li><a id="login_nav_btn" href="javascript:void(0);">Log In</a></li>
+							<li><a id="home_nav_btn" class="active" href="./" uk-scroll>Home</a></li>
+							<li><a id="browse_nav_btn" href="#browse" uk-scroll>Browse</a></li>
+							<li><a id="borrow_nav_btn" href="javascript:void(0);" uk-scroll>Borrow</a></li>
+							<li><a id="seats_nav_btn" href="javascript:void(0);" uk-scroll>Seats</a></li>
+							<li><a id="login_nav_btn" href="javascript:void(0);" uk-toggle="target: #signin">Log In</a></li>
 						</ul>
 						<button id="signup_nav_btn" class="alexandria-btn uk-button" uk-toggle="target: #signup">Sign Up</button>
 					</div>
@@ -153,6 +153,11 @@
 		</div>
 	</div>
 
+	<!-- Sign In Section -->
+	<div id="signin" class="uk-flex-top" uk-modal>
+
+	</div>
+
 	<!-- Sign Up Section -->
 	<div id="signup" class="uk-flex-top" uk-modal>
 		<div class="uk-modal-dialog">
@@ -184,8 +189,8 @@
 						</div>
 						<div class="uk-animation-toggle uk-text-left">
 							<div class="uk-animation-shake">
-								<small id="signup_first_name_empty" class="error">Please Enter your Last Name !</small>
-								<small id="signup_first_name_format" class="error">Bad Format Last Name !</small>
+								<small id="signup_last_name_empty" class="error">Please Enter your Last Name !</small>
+								<small id="signup_last_name_format" class="error">Bad Format Last Name !</small>
 							</div>
 						</div>
 					</div>
@@ -224,12 +229,19 @@
 						<label class="uk-form-label" for="signup_password">Password</label>
 						<div class="uk-inline uk-margin-small-top uk-width-1-1">
 							<span class="uk-form-icon" uk-icon="icon: lock"></span>
-							<input id="signup_password" name="signup_password" class="uk-input" type="password" placeholder="P@ssword" required>
+							<input id="signup_password" name="signup_password" class="uk-input" type="password" placeholder="Password" required>
 						</div>
 						<div class="uk-animation-toggle uk-text-left">
 							<div class="uk-animation-shake">
 								<small id="signup_password_empty" class="error">Please Enter a Password !</small>
-								<small id="signup_password_format" class="error">Bad Format Password !</small>
+								<small id="signup_password_format" class="error">
+									Bad Format Password !
+									<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Must Contains at least one Digit from 0-9</p>
+									<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Must Contains Lowercase Characters</p>
+									<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Must Contains Uppercase Characters</p>
+									<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Must Contains at least one Special Character</p>
+									<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Length at least 8 Characters and Maximum of 30</p>
+								</small>
 							</div>
 						</div>
 						<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid uk-margin-small-top">
@@ -241,7 +253,7 @@
 						<label class="uk-form-label" for="signup_repeat_password">Repeat Password</label>
 						<div class="uk-inline uk-margin-small-top uk-width-1-1">
 							<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-							<input id="signup_repeat_password" name="signup_repeat_password" class="uk-input" type="password" placeholder="Repeat your P@ssword" required>
+							<input id="signup_repeat_password" name="signup_repeat_password" class="uk-input" type="password" placeholder="Repeat your Password" required>
 						</div>
 						<div class="uk-animation-toggle uk-text-left">
 							<div class="uk-animation-shake">
@@ -259,6 +271,7 @@
 						</div>
 						<div class="uk-animation-toggle uk-text-left">
 							<div class="uk-animation-shake">
+								<small id="signup_email_empty" class="error">Please Enter your Email Address !</small>
 								<small id="signup_email_format" class="error">Bad Format Email Address !</small>
 								<small id="signup_user_email_exists" class="error">Email Address Already Exists !</small>
 							</div>
