@@ -7,5 +7,7 @@
  
 	/* JWT variables */
 	$key = "alexandria";
-	$iss = "http://AlexandriaLibrary.tn.com";
+	$issued_at = time();
+	$expiration_time = $issued_at + (60 * 60);
+	$issuer = "http://AlexandriaLibrary.tn.com";
 ?>

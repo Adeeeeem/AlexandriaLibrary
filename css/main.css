@@ -35,6 +35,12 @@ input.uk-input, select.uk-select{height: 35px !important; padding: auto 0; borde
 table th, table td{text-align: center !important; vertical-align: middle !important;}
 button{border-radius: 2.5px !important; height: 35px !important; line-height: 1 !important;}
 /*==================================================
+			Custom UIkit Preferences
+==================================================*/
+div.uk-modal-dialog{border-radius: 15px; padding-right: 15px;}
+div.uk-modal-header{border-top-right-radius: 15px; border-top-left-radius: 15px;}
+div.uk-modal-footer{border-bottom-right-radius: 15px; border-bottom-left-radius: 15px;}
+/*==================================================
 				Preloader
 ==================================================*/
 #preloader{background-color: #FFFFFF; position: fixed; top: 0; bottom: 0; left: 0; right: 0; z-index: 9999;}

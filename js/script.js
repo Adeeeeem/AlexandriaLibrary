@@ -11,11 +11,65 @@ $(window).on("load", function()
 $(function()
 {
 	/*==================================================
+					Sign In Section
+	==================================================*/
+	/* Sign In Display / Hide Password */
+	$("div#signin input#signin_password_display").click(function()
+	{
+		if ($(this).is(":checked"))
+		{
+			$("div#signin input#signin_password").attr("type", "text");
+			$("div#signin label#signin_password_display-label").text("Hide Password");
+		}
+		else
+		{
+			$("div#signin input#signin_password").attr("type", "password");
+			$("div#signin label#signin_password_display-label").text("Show Password");
+		}
+	});
+	/* Reset Sign In Form */
+	$("div#signin button#signin_reset_btn").click(function(){$("div#signin form#signin_form")[0].reset(); resetSignInForm();});
+	/* Confirm Sign In */
+	$("div#signin button#signin_confirm_btn").click(function()
+	{
+		/* Reset Sign In Form */
+		resetSignInForm();
+		/* Verification Variables */
+		var verification_signin_login, verification_signin_password;
+
+		/* Check Username */
+		verification_signin_login = !$("div#signin form#signin_form input#signin_login").val().isEmpty();
+		/* Check Password */
+		verification_signin_password = !$("div#signin form#signin_form input#signin_password").val().isEmpty();
+
+		/* If Everything went well */
+		if (verification_signin_login && verification_signin_password)
+		{
+			var SignIn_Form = $("div#signin form#signin_form");
+			var SignInForm_Data = JSON.stringify(SignIn_Form.serializeObject());
+
+			$.ajax
+			({
+				url: "php/signIn.php",
+				type: "POST",
+				contentType : "application/json; charset=utf-8",
+				dataType: "json",
+				data: SignInForm_Data,
+			})
+			.done(function(response)
+			{
+				console.log(response);
+			})
+			.fail(function()
+			{
+				Notification("Failure", "Oops - Something went wrong ! Please try again later !");
+			});
+		}
+	});
+	/*==================================================
 					Sign Up Section
 	==================================================*/
-	/* Confirm Sign In */
-	
-	/* Display / Hide Password */
+	/* Sign Up Display / Hide Password */
 	$("div#signup input#signup_password_display").click(function()
 	{
 		if ($(this).is(":checked"))
@@ -39,15 +93,22 @@ $(function()
 		/* Verification Variables */
 		var verification_signup_first_name, verification_signup_last_name, verification_signup_user_card, verification_signup_login, verification_signup_password, verification_signup_repeat_password, verification_signup_email;
 
-		/* Check Username */
+		/* Check First Name */
 		verification_signup_first_name = $("div#signup form#signup_form input#signup_first_name").val().checkValue($("div#signup form#signup_form input#signup_first_name"), /^[A-Za-z ]{3,50}$/, $("div#signup form#signup_form small#signup_first_name_empty"), $("div#signup form#signup_form small#signup_first_name_format"));
+		/* Check Last Name */
 		verification_signup_last_name = $("div#signup form#signup_form input#signup_last_name").val().checkValue($("div#signup form#signup_form input#signup_last_name"), /^[A-Za-z ]{3,50}$/, $("div#signup form#signup_form small#signup_last_name_empty"), $("div#signup form#signup_form small#signup_last_name_format"));
+		/* Check User Card */
 		verification_signup_user_card = $("div#signup form#signup_form input#signup_user_card").val().checkValue($("div#signup form#signup_form input#signup_user_card"), /^[0-9]{8,20}$/, $("div#signup form#signup_form small#signup_user_card_empty"), $("div#signup form#signup_form small#signup_user_card_format"));
+		/* Check Username */
 		verification_signup_login =  $("div#signup form#signup_form input#signup_login").val().checkValue($("div#signup form#signup_form input#signup_login"), /^[A-Za-z0-9_]{3,25}$/, $("div#signup form#signup_form small#signup_user_login_empty"), $("div#signup form#signup_form small#signup_user_login_format"));
+		/* Check Password */
 		verification_signup_password = $("div#signup form#signup_form input#signup_password").val().checkValue($("div#signup form#signup_form input#signup_password"), /^(?=.*\d.*)(?=.*[a-zA-Z].*)(?=.*[!#\$%@&\?].*).{8,30}$/, $("div#signup form#signup_form small#signup_password_empty"), $("div#signup form#signup_form small#signup_password_format"));
+		/* Check Repeated Password */
 		verification_signup_repeat_password = $("div#signup form#signup_form input#signup_repeat_password").val().checkPassword($("div#signup form#signup_form input#signup_repeat_password"), $("div#signup form#signup_form input#signup_password").val(), $("div#signup form#signup_form small#signup_repeat_password_empty"), $("div#signup form#signup_form small#signup_repeat_password_format"));
+		/* Check Email Address */
 		verification_signup_email = $("div#signup form#signup_form input#signup_email").val().checkValue($("div#signup form#signup_form input#signup_email"), /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, $("div#signup form#signup_form small#signup_email_empty"), $("div#signup form#signup_form small#signup_email_format"));
 		
+		/* If Everything went well */
 		if (verification_signup_first_name && verification_signup_last_name && verification_signup_user_card && verification_signup_login && verification_signup_password && verification_signup_repeat_password && verification_signup_email)
 		{
 			var SignUp_Form = $("div#signup form#signup_form");
@@ -126,6 +187,12 @@ function getCategories()
 		async: false,
 		error: function (error) {console.log(error);}
 	}).responseJSON;
+}
+/* Reset Sign Up Form */
+function resetSignInForm()
+{
+	$("div#signin form#signin_form input").removeClass("uk-form-danger");
+	$("div#signin form#signin_form small.error").hide();
 }
 /* Reset Sign Up Form */
 function resetSignUpForm()

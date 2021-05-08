@@ -155,7 +155,64 @@
 
 	<!-- Sign In Section -->
 	<div id="signin" class="uk-flex-top" uk-modal>
-
+		<div class="uk-modal-dialog">
+			<div class="uk-modal-header">
+				<h2 class="uk-modal-title uk-text-center">Log In</h2>
+			</div>
+			<div class="uk-modal-body" uk-overflow-auto>
+				<small class="uk-article-meta">Please enter your Alexandrian Username and password to access your account's features.</small>
+				<hr>
+				<form id="signin_form" class="uk-grid-small" uk-grid>
+					<!-- Sign In Login -->
+					<div class="uk-width-1-1">
+						<label class="uk-form-label" for="signin_login">Username</label>
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<span class="uk-form-icon" uk-icon="icon: user"></span>
+							<input id="signin_login" name="signin_login" class="uk-input" type="text" placeholder="Username" required>
+						</div>
+						<div class="uk-animation-toggle uk-text-left">
+							<div class="uk-animation-shake">
+								<small id="signin_user_login_empty" class="error">Please Enter your Username !</small>
+								<small id="signin_user_login_wrong" class="error">Username Does Not Exist !</small>
+							</div>
+						</div>
+					</div>
+					<!-- Sign In Password -->
+					<div class="uk-width-1-1">
+						<label class="uk-form-label" for="signin_password">Password</label>
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<span class="uk-form-icon" uk-icon="icon: lock"></span>
+							<input id="signin_password" name="signin_password" class="uk-input" type="password" placeholder="Password" required>
+						</div>
+						<div class="uk-animation-toggle uk-text-left">
+							<div class="uk-animation-shake">
+								<small id="signin_password_empty" class="error">Please Enter your Password !</small>
+								<small id="signin_password_wrong" class="error">Wrong Password !</small>
+							</div>
+						</div>
+						<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid uk-margin-small-top">
+							<input id="signin_password_display" class="uk-checkbox" type="checkbox"> <label id="signin_password_display_label" class="uk-form-label" for="signin_password_display">Show Password</label>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="uk-modal-footer uk-text-center">
+				<div class="uk-grid-small" uk-grid>
+					<!-- Sign In Reset Button -->
+					<div class="uk-width-1-2">
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<button id="signin_reset_btn" class="uk-button uk-modal-close" type="reset">Cancel</button>
+						</div>
+					</div>
+					<!-- Sign In Confirm Button -->
+					<div class="uk-width-1-2">
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<button id="signin_confirm_btn" class="uk-button alexandria-btn" type="submit">Log In</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<!-- Sign Up Section -->
