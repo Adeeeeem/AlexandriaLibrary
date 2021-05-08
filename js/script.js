@@ -3,7 +3,22 @@
 ==================================================*/
 $(window).on("load", function()
 {
+	/* If User Already Logged In */
+	var response = getSession();
 
+	/* Validate Token */
+	if (response.response == "Access Granted.")
+	{
+		$("div#home div.uk-card-header nav li#login_nav_li").hide();
+		$("div#home div.uk-card-header nav button#signup_nav_btn").hide();
+		$("div#home div.uk-card-header nav li#logout_nav_li").show();
+	}
+	else
+	{
+		$("div#home div.uk-card-header nav li#logout_nav_li").hide();
+		$("div#home div.uk-card-header nav li#login_nav_li").show();
+		$("div#home div.uk-card-header nav button#signup_nav_btn").show();
+	}
 });
 /*==================================================
 			Document Ready
@@ -58,13 +73,76 @@ $(function()
 			})
 			.done(function(response)
 			{
-				console.log(response);
+				switch (response.response)
+				{
+					case "Wrong_Username":
+						Notification("Failure", "Sorry, we couldn't find an account with that username. !");
+						$("div#signin input#signin_login").addClass("uk-form-danger");
+						$("div#signin small#signin_user_login_wrong").show();
+					break;
+
+					case "Wrong_Password":
+						Notification("Failure", "We do not recongize your password. !");
+						$("div#signin input#signin_password").addClass("uk-form-danger");
+						$("div#signin small#signin_password_wrong").show();
+					break;
+
+					case "PENDING":
+						$("div#signin button#signin_reset_btn").click();
+						ReportNotification("Info", "Hello There Alexandrian !", "You are already a registered user. To complete your account's features, go to the Alexandria Library to get approved by the Librarian !", "I Understand !");
+					break;
+
+					case "BLOCKED":
+						$("div#signin button#signin_reset_btn").click();
+						ReportNotification("Failure", "Oh no !", "Sorry, it looks like you've been blocked from our library! If you think there is a problem with this, please visit the library for more information.", "I Understand !");
+					break;
+
+					case false:
+						$("div#signin button#signin_reset_btn").click();
+						Notification("Failure", "Oops - Something went wrong ! Please try again later !");
+					break;
+
+					case true:
+						$("div#home div.uk-card-header nav li#login_nav_li").hide();
+						$("div#home div.uk-card-header nav button#signup_nav_btn").hide();
+						$("div#home div.uk-card-header nav li#logout_nav_li").show();
+
+						$("div#signin button#signin_reset_btn").click();
+						Notification("Success", "Welcome back Alexandrian !");
+					break;
+
+					default:
+						$("div#signin button#signin_reset_btn").click();
+						Notification("Failure", "Oops - Something went wrong ! Please try again later !");
+					break
+				}
 			})
 			.fail(function()
 			{
 				Notification("Failure", "Oops - Something went wrong ! Please try again later !");
 			});
 		}
+	});
+	/* Log Out Button */
+	$("div#home div.uk-card-header nav a#logout_nav_btn").click(function()
+	{
+		$.ajax
+		({
+			url: "php/signOut.php",
+			type: "POST",
+			contentType : "application/json; charset=utf-8",
+			dataType: "json"
+		})
+		.done(function(response)
+		{
+			if (response.response)
+			{
+				$("div#home div.uk-card-header nav li#logout_nav_li").hide();
+				$("div#home div.uk-card-header nav li#login_nav_li").show();
+				$("div#home div.uk-card-header nav button#signup_nav_btn").show();
+				Notification("Info", "See you soon Alexandrian !");
+			}
+		});
 	});
 	/*==================================================
 					Sign Up Section
@@ -289,4 +367,18 @@ String.prototype.checkPassword = function(Input, Value, EmptyAlert, FormatAlert)
 	}
 
 	return true;
+}
+/* Get Storage Function */
+function getSession()
+{
+	return $.ajax
+	({
+		url: "php/session.php",
+		type: "POST",
+		contentType : "application/json; charset=utf-8",
+		dataType: "json",
+		success: function (response) {},
+		async: false,
+		error: function (error) {console.log(error);}
+	}).responseJSON;
 }

@@ -44,10 +44,10 @@
 			if (!password_verify($data->signin_password, $user->getPassword()))
 				$response["response"] = "Wrong_Password";
 			else
-				if ($user->getStatus() == 'PENDING')
+				if ($user->getStatus() == "PENDING")
 					$response["response"] = "PENDING";
 				else
-					if ($user->getStatus() == 'BLOCKED')
+					if ($user->getStatus() == "BLOCKED")
 						$response["response"] = "BLOCKED";
 					else
 					{
@@ -62,7 +62,11 @@
 
 						$jwt_token = JWT::encode($token, $key);
 						$response["response"] = true;
-						$response["jwt_token"] = $jwt_token;
+						
+						/* Start Session */
+						session_start();
+						/* Set Session */
+						$_SESSION["jwt_token"] = $jwt_token;
 
 						try
 						{
