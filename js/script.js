@@ -242,12 +242,18 @@ $(function()
 	/*==================================================
 					Browse Section
 	==================================================*/
+	/* Display Categories List */
 	var Categories = getCategories();
 	$("div#browse div.uk-card-body ul.uk-slider-items").empty();
 	for (var i = 0; i < Categories.length; i++)
 	{
-		$("div#browse div.uk-card-body ul.uk-slider-items").append("<li id='"+Categories[i].ID+"'><img width='50' height='50' src='img/icons/"+Categories[i].NAME+".png'><p>"+Categories[i].NAME+"<br><span>"+Categories[i].DOCUMENTS+" Books</span></p></li>");
+		$("div#browse div.uk-card-body div#categories ul.uk-slider-items").append("<li id='"+Categories[i].ID+"'><img width='50' height='50' src='img/icons/"+Categories[i].NAME+".png'><p>"+Categories[i].NAME+"<br><span>"+Categories[i].DOCUMENTS+" Books</span></p></li>");
 	}
+	/* Browse by Categories */
+	$("div#browse div.uk-card-body ul.uk-slider-items li img, div#browse div.uk-card-body ul.uk-slider-items li p").click(function()
+	{
+		displayBrowseByCategory($(this).parent().attr("id"));
+	});
 });
 /*==================================================
 				Functions
@@ -381,4 +387,11 @@ function getSession()
 		async: false,
 		error: function (error) {console.log(error);}
 	}).responseJSON;
+}
+function displayBrowseByCategory(id)
+{
+	$("div#browse div#browse_categories").show();
+	/* Change Category Title */
+	$("div#browse div#browse_categories h3#browse_categories_title").text($("div#browse div.uk-card-body div#categories ul.uk-slider-items li#"+id+" p").contents().filter(function(){return this.nodeType == 3;}).text());
+	$("div#browse div#browse_categories small#browse_categories_title_books").text($("div#browse div.uk-card-body div#categories ul.uk-slider-items li#"+id+" p span").text());
 }

@@ -61,8 +61,8 @@
 						<ul class="uk-navbar-nav">
 							<li id="home_nav_li"><a id="home_nav_btn" class="active" href="./" uk-scroll>Home</a></li>
 							<li id="browse_nav_li"><a id="browse_nav_btn" href="#browse" uk-scroll>Browse</a></li>
-							<li id="borrow_nav_li"><a id="borrow_nav_btn" href="javascript:void(0);" uk-scroll>Borrow</a></li>
-							<li id="seats_nav_li"><a id="seats_nav_btn" href="javascript:void(0);" uk-scroll>Seats</a></li>
+							<li id="seats_nav_li"><a id="seats_nav_btn" href="#seats" uk-scroll>Seats</a></li>
+							<li id="contact_nav_li"><a id="contact_nav_btn" href="#contact" uk-scroll>Contact Us</a></li>
 							<li id="login_nav_li"><a id="login_nav_btn" href="javascript:void(0);" uk-toggle="target: #signin">Log In</a></li>
 							<li id="logout_nav_li"><a id="logout_nav_btn" href="javascript:void(0);">Log Out</a></li>
 						</ul>
@@ -142,15 +142,48 @@
 			<h3>Browse by Category</h3>
 		</div>
 		<div class="uk-card-body">
-			<div uk-slider="autoplay: true; velocity: 1; pause-on-hover: true; velocity: 0.5">
+			<div id="categories" uk-slider="autoplay: true; pause-on-hover: true; velocity: 0.5">
 				<div class="uk-position-relative" tabindex="-1">
 					<ul class="uk-slider-items uk-child-width-1-6 uk-grid uk-text-center">
 						<!-- Data Will be Loaded from JavaScript -->
 					</ul>
-					<a class="uk-position-center-left uk-position-small" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-					<a class="uk-position-center-right uk-position-small" href="#" uk-slidenav-next uk-slider-item="next"></a>
+					<a class="uk-position-center-left" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+					<a class="uk-position-center-right" href="#" uk-slidenav-next uk-slider-item="next"></a>
 				</div>
 			</div>
+			<div id="browse_categories" class="uk-margin-medium-top uk-animation-slide-top-medium">
+				<h3 id="browse_categories_title"></h3>
+				<small id="browse_categories_title_books"></small>
+				<div uk-slider="velocity: 0.5">
+					<div class="uk-position-relative" tabindex="-1">
+						<ul class="uk-slider-items uk-child-width-1-6 uk-grid uk-text-center">
+							<!-- Data Will be Loaded from JavaScript -->
+						</ul>
+						<a class="uk-position-center-left" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+						<a class="uk-position-center-right" href="#" uk-slidenav-next uk-slider-item="next"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Browse Section -->
+	<div id="seats" class="uk-card uk-box-shadow-xlarge">
+		<div class="uk-card-header">
+			<h3>Reserve a Seat</h3>
+		</div>
+		<div class="uk-card-body">
+
+		</div>
+	</div>
+
+	<!-- Contact Us Section -->
+	<div id="contact" class="uk-card uk-box-shadow-xlarge">
+		<div class="uk-card-header">
+			<h3>Contact Us</h3>
+		</div>
+		<div class="uk-card-body">
+
 		</div>
 	</div>
 
@@ -356,7 +389,7 @@
 		</div>
 	</div>
 
-	<div class="uk-margin-xlarge-top"></div>
+	<div class="uk-margin-large-top"></div>
 
 	<!-- UIkit JavaScript 3.6.20 -->
 	<script type="text/javascript" src="js/uikit/uikit.min.js"></script>
