@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Title -->
+	<title>Library</title>
+	<!-- The Author of this page -->
+	<meta name="author" content="Mohamed Adem Ben Moussa">
+	<meta name="author" content="Najla Abdelli">
+	<meta name="author" content="Ahlem Chebbi">
+	<meta name="author" content="Asma Achour">
+	<!-- Specify the character encoding of your content -->
+	<meta charset="UTF-8">
+	<!-- Tell Internet Explorer to use the latest Rendering Engine -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Setting the viewport to make your website look good on all devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Icon -->
+	<link rel="shortcut icon" type="image/png" href="../img/icon.png">
+	<!-- Reset CSS 2.0 -->
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<!-- UIkit CSS 3.6.20 -->
+	<link rel="stylesheet" type="text/css" href="../css/uikit/uikit.min.css">
+	<!-- UIkit RTL CSS 3.6.20 -->
+	<link rel="stylesheet" type="text/css" href="../css/uikit/uikit-rtl.min.css">
+	<!-- Notiflix CSS 2.7.0 -->
+	<link rel="stylesheet" type="text/css" href="../css/notiflix/notiflix-2.7.0.min.css">
+	<!-- Main CSS -->
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<!-- jQuery JavaScript 3.6.0 -->
+	<script type="text/javascript" src="../js/jquery/jquery-3.6.0.min.js"></script>
+	<!-- Preloader JavaScript -->
+	<script type="text/javascript" src="../js/preloader.js"></script>
+</head>
+<body>
+
+	<!-- Preloader -->
+	<div id="preloader">
+		<div id="status">
+			&nbsp;
+		</div>
+	</div>
+
+	<!-- Sign In Section -->
+	<div id="signin" class="uk-card uk-box-shadow-xlarge">
+		<div class="uk-card-header">
+			<h2 class="uk-modal-title uk-text-center">Administration</h2>
+		</div>
+		<div class="uk-card-body">
+			<form id="signin_form" class="uk-grid-small" uk-grid>
+					<!-- Sign In Login -->
+					<div class="uk-width-1-1">
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<span class="uk-form-icon" uk-icon="icon: user"></span>
+							<input id="signin_login" name="signin_login" class="uk-input" type="text" placeholder="Username" required>
+						</div>
+						<div class="uk-animation-toggle uk-text-left">
+							<div class="uk-animation-shake">
+								<small id="signin_user_login_empty" class="error">Please Enter your Username !</small>
+								<small id="signin_user_login_wrong" class="error">Username Does Not Exist !</small>
+							</div>
+						</div>
+					</div>
+					<!-- Sign In Password -->
+					<div class="uk-width-1-1">
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<span class="uk-form-icon" uk-icon="icon: lock"></span>
+							<input id="signin_password" name="signin_password" class="uk-input" type="password" placeholder="Password" required>
+						</div>
+						<div class="uk-animation-toggle uk-text-left">
+							<div class="uk-animation-shake">
+								<small id="signin_password_empty" class="error">Please Enter your Password !</small>
+								<small id="signin_password_wrong" class="error">Wrong Password !</small>
+							</div>
+						</div>
+						<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid uk-margin-small-top">
+							<input id="signin_password_display" class="uk-checkbox" type="checkbox"> <label id="signin_password_display_label" class="uk-form-label" for="signin_password_display">Show Password</label>
+						</div>
+					</div>
+				</form>
+		</div>
+		<div class="uk-card-footer">
+			<div class="uk-card-footer uk-text-center">
+				<!-- Sign In Confirm Button -->
+				<div class="uk-inline uk-margin-small-top uk-width-1-1">
+					<button id="signin_confirm_btn" class="uk-button uk-width-1-1 alexandria-btn" type="submit">Log In</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- UIkit JavaScript 3.6.20 -->
+	<script type="text/javascript" src="../js/uikit/uikit.min.js"></script>
+	<!-- UIkit Icons JavaScript 3.6.20 -->
+	<script type="text/javascript" src="../js/uikit/uikit-icons.min.js"></script>
+	<!-- Notiflix JavaScript 2.7.0 -->
+	<script type="text/javascript" src="../js/notiflix/notiflix-2.7.0.min.js"></script>
+	<!-- Custom JavaScript -->
+	<script type="text/javascript" src="js/login.js"></script>
+</body>
+</html>

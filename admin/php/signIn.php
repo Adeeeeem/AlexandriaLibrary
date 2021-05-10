@@ -7,22 +7,19 @@
 	header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 	include_once($_SERVER["DOCUMENT_ROOT"]."/AlexandriaLibrary/php/config/Database.php");
-	include_once($_SERVER["DOCUMENT_ROOT"]."/AlexandriaLibrary/php/classes/User.php");
-	include_once($_SERVER["DOCUMENT_ROOT"]."/AlexandriaLibrary/php/classes/History.php");
+	include_once($_SERVER["DOCUMENT_ROOT"]."/AlexandriaLibrary/php/classes/Admin.php");
  
 	/* get BD connection */
 	$database = new Database();
 	$db = $database->getConnection();
-	/* get User Class */
-	$user = new User($db);
-	/* get History Class */
-	$history = new History($db);
+	/* get Admin Class */
+	$admin = new Admin($db);
 
 	/* Retrieve DATA */
 	$data = json_decode(file_get_contents("php://input"));
  
 	/* Affect Properties */
-	$user->USER_LOGIN = $data->signin_login;
+	$admin->ADMIN_LOGIN = $data->signin_login;
 
 	/* Generate Web Json Token */
 	include_once($_SERVER["DOCUMENT_ROOT"]."/AlexandriaLibrary/php/config/core.php");
@@ -38,55 +35,32 @@
 	if ( isset($data->signin_login) && !empty($data->signin_login) && isset($data->signin_password) && !empty($data->signin_password) )
 	{
 		/* Checking if Username exists and password is correct */
-		if (!$user->loginExists())
+		if (!$admin->loginExists())
 			$response["response"] = "Wrong_Username";
 		else
-			if (!password_verify($data->signin_password, $user->getPassword()))
+			if (!password_verify($data->signin_password, $admin->getPassword()))
 				$response["response"] = "Wrong_Password";
 			else
-				if ($user->getStatus() == "PENDING")
-					$response["response"] = "PENDING";
-				else
-					if ($user->getStatus() == "BLOCKED")
-						$response["response"] = "BLOCKED";
-					else
-					{
-						$token = array(
-									"iat" => $issued_at,
-									"exp" => $expiration_time,
-									"iss" => $issuer,
-									"DATA" => array(
-												"login" => $user->USER_LOGIN,
-												"first_name" => $user->getFirstName(),
-												"last_name" => $user->getLastName(),
-												"type" => "USER"));
+			{
+				$token = array(
+							"iat" => $issued_at,
+							"exp" => $expiration_time,
+							"iss" => $issuer,
+							"DATA" => array(
+										"login" => $admin->ADMIN_LOGIN,
+										"first_name" => $admin->getFirstName(),
+										"last_name" => $admin->getLastName(),
+										"type" => "ADMIN"));
 
-						$jwt_token = JWT::encode($token, $key);
-						$response["response"] = true;
-						$response["jwt_token"] = $jwt_token;
+				$jwt_token = JWT::encode($token, $key);
+				$response["response"] = true;
+				$response["jwt_token"] = $jwt_token;
 
-						/* Start Session */
-						session_start();
-						/* Set Session */
-						$_SESSION["jwt_token"] = $jwt_token;
-
-						try
-						{
-							/* get User ID */
-							$USER_ID = $user->getId();
-							
-							if ($USER_ID)
-							{
-								/* Affect Properties */
-								$history->HISTORY_ACTION = 1; /* LOGIN */
-								$history->HISTORY_USER = $USER_ID;
-								$history->HISTORY_USER_TYPE = "U";
-								/* Add to History */
-								$history->createHistory();
-							}
-						}
-						catch (Exception $e) { /* Act Normal, don't do anything, it's true anyway */ }
-					}
+				/* Start Session */
+				session_start();
+				/* Set Session */
+				$_SESSION["jwt_token"] = $jwt_token;
+			}
 	}
 
 	/* Encode to Json Format */

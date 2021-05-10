@@ -4,10 +4,6 @@
 div#home div.uk-card-header nav li#logout_nav_li,
 div#browse div#browse_categories{display: none;}
 /*==================================================
-				Body Background
-==================================================*/
-body{background: url("../img/background.jpg") no-repeat center center fixed; background-size: cover;}
-/*==================================================
 				Home Section
 ==================================================*/
 div#home{width: 95%; height: 90%; border-radius: 15px; margin: auto; margin-top: 2.5%; background-color: rgba(255, 255, 255, 0.95); padding: 20px; padding-top: 10px;}
@@ -67,7 +63,7 @@ div#contact div.uk-card-body{padding-top: 15px;}
 div#signin div.uk-modal-dialog{width: 40%;}
 div#signin div.uk-modal-header h2{font-size: 40px; letter-spacing: 5px; color: var(--Artichoke-color) !important;}
 div#signin div.uk-modal-body small.uk-article-meta{font-size: 12px;}
-div#signin input#signin_password_display{width: 15px; height: 15px; margin-left: 5px; padding: 0;}
+div#signin input#signin_password_display{width: 15px; height: 15px; margin-left: 25px; padding: 0;}
 div#signin label#signin_password_display_label{font-size: 12px; padding-top: 2.25px;}
 div#signin button#signin_confirm_btn{background-color: var(--Artichoke-color) !important;}
 div#signin button#signin_confirm_btn:focus,
@@ -82,7 +78,7 @@ div#signin button#signin_reset_btn:hover{background-color: #D3D3D3;}
 div#signup div.uk-modal-dialog{width: 70%;}
 div#signup div.uk-modal-header h2{font-size: 40px; letter-spacing: 5px; color: var(--Antique-Brass-color) !important;}
 div#signup div.uk-modal-body small.uk-article-meta{font-size: 12px;}
-div#signup input#signup_password_display{width: 15px; height: 15px; margin-left: 5px; padding: 0;}
+div#signup input#signup_password_display{width: 15px; height: 15px; margin-left: 25px; padding: 0;}
 div#signup label#signup_password_display_label{font-size: 12px; padding-top: 2.25px;}
 div#signup button#signup_reset_btn,
 div#signup button#signup_confirm_btn{width: 100%;}

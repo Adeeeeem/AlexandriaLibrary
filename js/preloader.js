@@ -97,3 +97,113 @@ function ReportNotification(Type, Title, Message, Button)
 		case "Info": Notiflix.Report.Info(Title, Message, Button); break;
 	}
 }
+/*==================================================
+				Functions
+==================================================*/
+/* Form Data to Json */
+$.fn.serializeObject = function()
+{ 
+	var data = {};
+	var element = this.serializeArray();
+
+	$.each(element, function()
+	{
+		if (data[this.name] !== undefined)
+		{
+			if (!data[this.name].push)
+				data[this.name] = [data[this.name]];
+
+			data[this.name].push(this.value.replace(/\s{2,}/g, "").trim() || "");
+		}
+		else
+			data[this.name] = this.value.replace(/\s{2,}/g, "").trim() || "";
+	});
+	
+	return data;
+};
+/* Check if Variable is Empty */
+String.prototype.isEmpty = function()
+{
+	return (this == null || this == undefined || this == "");
+}
+/* Check Format of Input */
+String.prototype.isFormat = function(RegularExpression)
+{
+	return new RegExp(RegularExpression).test(this);
+}
+/* Check Sign In Variable */
+String.prototype.checkEmptyValue = function(Input, EmptyAlert)
+{
+	if (this.isEmpty())
+	{
+		Input.addClass("uk-form-danger");
+		EmptyAlert.show();
+		return false;
+	}
+	else
+	{
+		Input.removeClass("uk-form-danger");
+		EmptyAlert.hide();
+	}
+
+	return true;
+}
+/* Check Sign Up Variable */
+String.prototype.checkValue = function(Input, RegularExpression, EmptyAlert, FormatAlert)
+{
+	if (this.isEmpty())
+	{
+		Input.addClass("uk-form-danger");
+		EmptyAlert.show();
+		return false;
+	}
+	else
+	{
+		if (!this.isFormat(RegularExpression))
+		{
+			Input.addClass("uk-form-danger");
+			FormatAlert.show();
+			return false;
+		}
+		else
+		{
+			Input.removeClass("uk-form-danger");
+			EmptyAlert.hide();
+			FormatAlert.hide();
+		}
+	}
+
+	return true;
+}
+/* Check Password Match */
+String.prototype.matchPassword = function(Password)
+{
+	return this == Password;
+}
+/* Check Password */
+String.prototype.checkPassword = function(Input, Value, EmptyAlert, FormatAlert)
+{
+	if (this.isEmpty())
+	{
+		Input.addClass("uk-form-danger");
+		EmptyAlert.show();
+		return false;
+	}
+	else
+	{
+		if (!this.matchPassword(Value))
+		{
+			Input.addClass("uk-form-danger");
+			FormatAlert.show();
+			return false;
+		}
+		else
+		{
+			Input.removeClass("uk-form-danger");
+			EmptyAlert.hide();
+			FormatAlert.hide();
+		}
+	}
+
+	return true;
+}

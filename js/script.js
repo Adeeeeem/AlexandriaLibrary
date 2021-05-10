@@ -5,7 +5,6 @@ $(window).on("load", function()
 {
 	/* If User Already Logged In */
 	var response = getSession();
-
 	/* Validate Token */
 	if (response.response == "Access Granted.")
 	{
@@ -53,9 +52,9 @@ $(function()
 		var verification_signin_login, verification_signin_password;
 
 		/* Check Username */
-		verification_signin_login = !$("div#signin form#signin_form input#signin_login").val().isEmpty();
+		verification_signin_login = $("div#signin form#signin_form input#signin_login").val().checkEmptyValue($("div#signin form#signin_form input#signin_login"), $("div#signin form#signin_form small#signin_user_login_empty"));
 		/* Check Password */
-		verification_signin_password = !$("div#signin form#signin_form input#signin_password").val().isEmpty();
+		verification_signin_password =  $("div#signin form#signin_form input#signin_password").val().checkEmptyValue($("div#signin form#signin_form input#signin_password"), $("div#signin form#signin_form small#signin_password_empty"));
 
 		/* If Everything went well */
 		if (verification_signin_login && verification_signin_password)
@@ -79,6 +78,7 @@ $(function()
 						Notification("Failure", "Sorry, we couldn't find an account with that username. !");
 						$("div#signin input#signin_login").addClass("uk-form-danger");
 						$("div#signin small#signin_user_login_wrong").show();
+						$("div#signin input#signin_password").addClass("uk-form-danger");
 					break;
 
 					case "Wrong_Password":
@@ -133,15 +133,12 @@ $(function()
 			contentType : "application/json; charset=utf-8",
 			dataType: "json"
 		})
-		.done(function(response)
+		.done(function()
 		{
-			if (response.response)
-			{
-				$("div#home div.uk-card-header nav li#logout_nav_li").hide();
-				$("div#home div.uk-card-header nav li#login_nav_li").show();
-				$("div#home div.uk-card-header nav button#signup_nav_btn").show();
-				Notification("Info", "See you soon Alexandrian !");
-			}
+			$("div#home div.uk-card-header nav li#logout_nav_li").hide();
+			$("div#home div.uk-card-header nav li#login_nav_li").show();
+			$("div#home div.uk-card-header nav button#signup_nav_btn").show();
+			Notification("Info", "See you soon Alexandrian !");
 		});
 	});
 	/*==================================================
@@ -258,6 +255,20 @@ $(function()
 /*==================================================
 				Functions
 ==================================================*/
+/* Get Session Function */
+function getSession()
+{
+	return $.ajax
+	({
+		url: "php/session.php",
+		type: "POST",
+		contentType : "application/json; charset=utf-8",
+		dataType: "json",
+		success: function (response) {},
+		async: false,
+		error: function (error) {console.log(error);}
+	}).responseJSON;
+}
 /* Return Categories */
 function getCategories()
 {
@@ -284,110 +295,7 @@ function resetSignUpForm()
 	$("div#signup form#signup_form input").removeClass("uk-form-danger");
 	$("div#signup form#signup_form small.error").hide();
 }
-/* Form Data to Json */
-$.fn.serializeObject = function()
-{ 
-	var data = {};
-	var element = this.serializeArray();
-
-	$.each(element, function()
-	{
-		if (data[this.name] !== undefined)
-		{
-			if (!data[this.name].push)
-				data[this.name] = [data[this.name]];
-
-			data[this.name].push(this.value.replace(/\s{2,}/g, "").trim() || "");
-		}
-		else
-			data[this.name] = this.value.replace(/\s{2,}/g, "").trim() || "";
-	});
-	
-	return data;
-};
-/* Check if Variable is Empty */
-String.prototype.isEmpty = function()
-{
-	return (this == null || this == undefined || this == "");
-}
-/* Check Format of Input */
-String.prototype.isFormat = function(RegularExpression)
-{
-	return new RegExp(RegularExpression).test(this);
-}
-/* Check Variable */
-String.prototype.checkValue = function(Input, RegularExpression, EmptyAlert, FormatAlert)
-{
-	if (this.isEmpty())
-	{
-		Input.addClass("uk-form-danger");
-		EmptyAlert.show();
-		return false;
-	}
-	else
-	{
-		if (!this.isFormat(RegularExpression))
-		{
-			Input.addClass("uk-form-danger");
-			FormatAlert.show();
-			return false;
-		}
-		else
-		{
-			Input.removeClass("uk-form-danger");
-			EmptyAlert.hide();
-			FormatAlert.hide();
-		}
-	}
-
-	return true;
-}
-/* Check Password Match */
-String.prototype.matchPassword = function(Password)
-{
-	return this == Password;
-}
-/* Check Password */
-String.prototype.checkPassword = function(Input, Value, EmptyAlert, FormatAlert)
-{
-	if (this.isEmpty())
-	{
-		Input.addClass("uk-form-danger");
-		EmptyAlert.show();
-		return false;
-	}
-	else
-	{
-		if (!this.matchPassword(Value))
-		{
-			Input.addClass("uk-form-danger");
-			FormatAlert.show();
-			return false;
-		}
-		else
-		{
-			Input.removeClass("uk-form-danger");
-			EmptyAlert.hide();
-			FormatAlert.hide();
-		}
-	}
-
-	return true;
-}
-/* Get Storage Function */
-function getSession()
-{
-	return $.ajax
-	({
-		url: "php/session.php",
-		type: "POST",
-		contentType : "application/json; charset=utf-8",
-		dataType: "json",
-		success: function (response) {},
-		async: false,
-		error: function (error) {console.log(error);}
-	}).responseJSON;
-}
+/* Display Browse by Category */
 function displayBrowseByCategory(id)
 {
 	$("div#browse div#browse_categories").show();

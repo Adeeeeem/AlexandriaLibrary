@@ -108,6 +108,12 @@ CREATE TABLE IF NOT EXISTS `Admins` (
 --
 
 TRUNCATE TABLE `Admins`;
+--
+-- Dumping data for table `Admins`
+--
+
+INSERT INTO `Admins` (`ADMIN_ID`, `ADMIN_LOGIN`, `ADMIN_PASSWORD`, `ADMIN_FNAME`, `ADMIN_LNAME`, `ADMIN_EMAIL`) VALUES
+(1, 'admin', '$2y$10$bPWIla0u1r1nNmrQ6UsqEOknDIEukzTOI8sxC6Xn/zYn6Qpc3ShiC', 'Mohamed Adem', 'Ben Moussa', 'MohamedAdemBenMoussa@Gmail.com');
 -- --------------------------------------------------------
 
 --
