@@ -2,9 +2,7 @@
 				Sign In Section
 ==================================================*/
 div#signin{width: 40%; background-color: #FFF; margin: auto; margin-top: 10%; border-radius: 15px; padding: 20px; padding-top: 10px;}
-div#signin div.uk-card-body,
-div#signin div.uk-card-footer{padding: 0;}
-div#signin div.uk-card-footer{padding-top: 15px;}
+div#signin div.uk-card-body{padding: 0 15px;}
 div#signin div.uk-card-header h2{font-size: 40px; letter-spacing: 5px; color: var(--Artichoke-color) !important;}
 div#signin div.uk-card-body small.uk-article-meta{font-size: 12px;}
 div#signin input#signin_password_display{width: 15px; height: 15px; margin-left: 25px; padding: 0;}

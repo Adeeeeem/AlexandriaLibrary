@@ -198,7 +198,7 @@
 			<div class="uk-modal-body" uk-overflow-auto>
 				<small class="uk-article-meta">Please enter your Alexandrian Username and password to access your account's features.</small>
 				<hr>
-				<form id="signin_form" class="uk-grid-small" uk-grid>
+				<form method="POST" id="signin_form" class="uk-grid-small" uk-grid>
 					<!-- Sign In Login -->
 					<div class="uk-width-1-1">
 						<label class="uk-form-label" for="signin_login">Username</label>
@@ -230,10 +230,6 @@
 							<input id="signin_password_display" class="uk-checkbox" type="checkbox"> <label id="signin_password_display_label" class="uk-form-label" for="signin_password_display">Show Password</label>
 						</div>
 					</div>
-				</form>
-			</div>
-			<div class="uk-modal-footer uk-text-center">
-				<div class="uk-grid-small" uk-grid>
 					<!-- Sign In Reset Button -->
 					<div class="uk-width-1-2">
 						<div class="uk-inline uk-margin-small-top uk-width-1-1">
@@ -246,7 +242,7 @@
 							<button id="signin_confirm_btn" class="uk-button alexandria-btn" type="submit">Log In</button>
 						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -260,7 +256,7 @@
 			<div class="uk-modal-body" uk-overflow-auto>
 				<small class="uk-article-meta">Complete the form below to create a new Internet Archive account.</small>
 				<hr>
-				<form id="signup_form" class="uk-grid-small" uk-grid>
+				<form method="POST" id="signup_form" class="uk-grid-small" uk-grid>
 					<!-- Sign Up First Name -->
 					<div class="uk-width-1-2">
 						<label class="uk-form-label" for="signup_first_name">First Name</label>
@@ -370,10 +366,6 @@
 							</div>
 						</div>
 					</div>
-				</form>
-			</div>
-			<div class="uk-modal-footer uk-text-center">
-				<div class="uk-grid-small" uk-grid>
 					<!-- Sign Up Reset Button -->
 					<div class="uk-width-1-2">
 						<div class="uk-inline uk-margin-small-top uk-width-1-1">
@@ -386,7 +378,7 @@
 							<button id="signup_confirm_btn" class="uk-button alexandria-btn" type="submit">Sign Up</button>
 						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 		</div>
 	</div>
