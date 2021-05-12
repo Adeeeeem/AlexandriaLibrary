@@ -25,18 +25,22 @@ $(function()
 		{
 			$("div#signin input#signin_password").attr("type", "text");
 			$("div#signin label#signin_password_display-label").text("Hide Password");
+			$("div#signin span#signin_password_icon").attr("uk-icon", "icon: unlock");
 		}
 		else
 		{
 			$("div#signin input#signin_password").attr("type", "password");
 			$("div#signin label#signin_password_display-label").text("Show Password");
+			$("div#signin span#signin_password_icon").attr("uk-icon", "icon: lock");
 		}
 	});
 	/* Reset Sign In Form */
 	$("div#signin button#signin_reset_btn").click(function(){$("div#signin form#signin_form")[0].reset(); resetSignInForm();});
 	/* Confirm Sign In */
-	$("div#signin button#signin_confirm_btn").click(function()
+	$("div#signin button#signin_confirm_btn").click(function(e)
 	{
+		/* Prevent Submission */
+		e.preventDefault();
 		/* Reset Sign In Form */
 		resetSignInForm();
 		/* Verification Variables */

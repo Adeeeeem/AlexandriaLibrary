@@ -28,8 +28,12 @@
 		try
 		{
 			$decoded = JWT::decode($jwt_token, $key, array("HS256"));
-			$response["response"] = "Access Granted.";
-			$response["data"] = $decoded->DATA;
+			
+			if ($decoded->DATA->type == "USER")
+			{
+				$response["response"] = "Access Granted.";
+				$response["data"] = $decoded->DATA;
+			}
 		}
 		catch (Exception $e)
 		{

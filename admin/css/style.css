@@ -11,6 +11,12 @@
 #menu-logo img{width: 50px; height: 50px;}
 #menu-logo h3{color: var(--Antique-Brass-color); padding-top: 0; margin: 10px 0 5px; font-weight: 600;}
 #menu-logo h3 span{color: var(--Desert-Sand-color);}
+#menu button{background-color: transparent; font-weight: 600; color: var(--Artichoke-color); font-size: 16px; letter-spacing: 1px; text-transform: none; margin-top: 15px;}
+#menu button:hover, #menu button:focus, #menu button.active{color: var(--Ebony-color);}
+#menu button img{width: 35px; height: 35px; margin-right: 25px; margin-left: 15px; margin-top: -1px;}
+#menu button#settings-btn img,
+#menu button#logout-btn img,
+#menu button#librarians-btn img{width: 30px; height: 30px;}
 /*==================================================
 				Sections
 ==================================================*/
