@@ -127,7 +127,7 @@ $(function()
 			});
 		}
 	});
-	/* Log Out Button */
+	/* Logout Button */
 	$("div#home div.uk-card-header nav a#logout_nav_btn").click(function()
 	{
 		$.ajax
