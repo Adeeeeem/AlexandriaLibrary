@@ -21,7 +21,7 @@
  	/* Return False for Error */
 	$response = array("response" => false);
 
- 	if ( isset($data) && !empty($data) )
+ 	if ( isset($data->add_document_title) && !empty($data->add_document_title) && isset($data->add_document_placement) && !empty($data->add_document_placement) && isset($data->add_document_author) && !empty($data->add_document_author) && isset($data->add_document_type) && !empty($data->add_document_type) && isset($data->add_document_subject) && !empty($data->add_document_subject) )
  	{
  		$DOCUMENT_MAX_ID = $document->getLastId() + 1;
 
