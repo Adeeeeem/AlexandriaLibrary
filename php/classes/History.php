@@ -22,7 +22,7 @@
 
 		public function createHistory()
 		{
-			/* id Details is Set */
+			/* If Details is Set */
 			$detailsSetColumn = (isset($this->HISTORY_DETAILS) && !empty($this->HISTORY_DETAILS)) ? ", HISTORY_DETAILS" : "";
 			$detailsSetValue = (isset($this->HISTORY_DETAILS) && !empty($this->HISTORY_DETAILS)) ? ", :DETAILS" : "";
 

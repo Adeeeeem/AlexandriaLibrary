@@ -60,14 +60,14 @@ $(function()
 		$("div#add_document form#add_document_form datalist#add_document_author_list").empty();
 		for (var i = 0; i < Authors.length; i++)
 		{
-			$("div#add_document form#add_document_form datalist#add_document_author_list").append("<option data-value='"+Authors[i].ID+"' lue='"+Authors[i].NAME+"'>"+Authors[i].NAME+"</option>");
+			$("div#add_document form#add_document_form datalist#add_document_author_list").append("<option data-value='"+Authors[i].ID+"' value='"+Authors[i].NAME+"'>"+Authors[i].NAME+"</option>");
 		}
 		/* Get All Categories */
 		var Categories = getCategories();
 		$("div#add_document form#add_document_form datalist#add_document_category_list").empty();
 		for (var i = 0; i < Categories.length; i++)
 		{
-			$("div#add_document form#add_document_form datalist#add_document_category_list").append("<option data-value='"+Categories[i].ID+"' lue='"+Categories[i].NAME+"'>"+Categories[i].NAME+"</option>");
+			$("div#add_document form#add_document_form datalist#add_document_category_list").append("<option data-value='"+Categories[i].ID+"' value='"+Categories[i].NAME+"'>"+Categories[i].NAME+"</option>");
 		}
 		/* Set Document Type Value */
 		$("div#add_document form#add_document_form input#add_document_type_label").change(function()
@@ -80,9 +80,20 @@ $(function()
 			$("div#add_document form#add_document_form input#add_document_author").val($("div#add_document form#add_document_form datalist#add_document_author_list [value='"+$(this).val()+"']").data("value"));
 		});
 		/* Set Document Category Value */
-		$("div#add_document form#add_document_form input#add_document_subject_label").change(function()
+		$("div#add_document form#add_document_form input#add_document_category_label").change(function()
 		{
-			$("div#add_document form#add_document_form input#add_document_subject").val($("div#add_document form#add_document_form datalist#add_document_subject_list [value='"+$(this).val()+"']").data("value"));
+			var category = $("div#add_document form#add_document_form datalist#add_document_category_list [value='"+$(this).val()+"']").data("value");
+			$("div#add_document form#add_document_form input#add_document_category").val(category).trigger("change");
+		});
+		/* Get Subjects by Category */
+		$("div#add_document form#add_document_form input#add_document_category").change(function()
+		{
+			var Subjects = getSubjectsByCategory();
+			$("div#add_document form#add_document_form datalist#add_document_subject_list").empty();
+			for (var i = 0; i < Subjects.length; i++)
+			{
+				$("div#add_document form#add_document_form datalist#add_document_subject_list").append("<option data-value='"+Subjects[i].ID+"' value='"+Subjects[i].NAME+"'>"+Subjects[i].NAME+"</option>");
+			}
 		});
 		/* Set Document Subject Value */
 		$("div#add_document form#add_document_form input#add_document_subject_label").change(function()
@@ -92,22 +103,64 @@ $(function()
 		/* Display Document Copies or Data Depending on the Checkbox */
 		$("div#add_document div.uk-card-body form#add_document_form div#add_document_placement input").click(function()
 		{
+			$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer").empty();
 			if ($(this).val() == "L")
-			{
-				$("div#add_document div.uk-card-body form#add_document_form div#add_document_data_outer").hide();
-				$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_outer").show();
-			}
+				$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer").append("<div class='uk-margin'><label class='uk-form-label' for='add_document_copies'>Number of Copies</label><div class='uk-form-controls'><div class='uk-inline uk-width-1-1'><span class='uk-form-icon' uk-icon='icon: copy'></span><input id='add_document_copies' name='add_document_copies' class='uk-input' type='number' value='0' min='0' step='1' placeholder='Number of Copies' required></div></div><div class=' uk-animation-toggle'><div class='uk-animation-shake'><small id='add_document_copies_empty_error' class='error'>Please enter the Number of Copies !</small></div></div></div>");
 			else if ($(this).val() == "O")
-			{
-				$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_outer").hide();
-				$("div#add_document div.uk-card-body form#add_document_form div#add_document_data_outer").show();
-			}
+				$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer").append("<div class='uk-margin'><label class='uk-form-label' for='add_document_data'>File</label><div class='uk-form-controls'><div class='uk-inline uk-width-1-1' uk-form-custom='target: true'><span class='uk-form-icon' uk-icon='icon: file-pdf'></span><input type='file'><input id='add_document_data' name='add_document_data' class='uk-input' type='text' value='empty' placeholder='Document File' required></div></div><div class=' uk-animation-toggle'><div class='uk-animation-shake'><small id='add_document_data_empty_error' class='error'>Please enter the Document File !</small></div></div></div>");
 		});
 	});
 	/* Cofirm Add Document */
-	$("div#add_document div.uk-card-header form#add_document_form button#add_document_confirm_btn").click(function(e)
+	$("div#add_document form#add_document_form button#add_document_confirm_btn").click(function(e)
 	{
+		/* Prevent Submission */
 		e.preventDefault();
+		/* Reset Add Document Form */
+		resetAddDocumentForm();
+
+		var verification = true;
+
+		if (verification)
+		{
+			var AddDocumentForm = $("div#add_document form#add_document_form");
+			var AddDocumentFormData = JSON.stringify(AddDocumentForm.serializeObject());
+
+			$.ajax
+			({
+				url: "../php/addDocument.php",
+				type: "POST",
+				contentType : "application/json; charset=utf-8",
+				dataType: "json",
+				data: AddDocumentFormData,
+			})
+			.done(function(response)
+			{
+				switch (response.response)
+				{
+					case "Title_Exists":
+						Notification("Failure", "Document Exists Already !");
+					break;
+
+					case true:
+						Notification("Success", "Document Added Successfully !");
+						/* Return to Documents Section */
+						$("div#menu button#documents_btn").click();
+						/* Reset Add Document Form */
+						resetAddDocumentForm();
+						/* Clear Add Document Form Inputs */
+						$("div#add_document form#add_document_form button#add_document_reset_btn").click();
+					break;
+
+					default:
+						Notification("Failure", "Oops - Something went wrong ! Please try again later !");
+					break;
+				}
+			})
+			.fail(function()
+			{
+				Notification("Failure", "Oops - Something went wrong ! Please try again later !");
+			});
+		}
 	});
 	/* Return to Docuemnts Section */
 	$("div#add_document div.uk-card-header button#add_document_return_btn").click(function()
@@ -285,10 +338,16 @@ function getSubjectsByCategory()
 	({
 		url: "../php/getSubjectsByCategory.php",
 		type: "POST",
-		contentType : "application/json; charset=utf-8",
 		dataType: "json",
+		data: $("div#add_document form#add_document_form input#add_document_category").serializeObject(),
 		success: function (response) {},
 		async: false,
 		error: function (error) {console.log(error);}
 	}).responseJSON;
+}
+/* Reset Add Document Form */
+function resetAddDocumentForm()
+{
+	$("div#add_document form#add_document_form input").removeClass("uk-form-danger");
+	$("div#add_document form#add_document_form small.error").hide();
 }

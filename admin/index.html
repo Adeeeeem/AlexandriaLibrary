@@ -101,7 +101,7 @@
 				</div>
 			</div>
 			<div class="uk-card-body">
-				<form id="add_document_form" name="add_document_form" class="uk-grid-small" uk-grid>
+				<form id="add_document_form" name="add_document_form" enctype="multipart/form-data" class="uk-grid-small" uk-grid>
 					<!-- Document Title -->
 					<div class="uk-width-1-3 uk-text-left">
 						<div class="uk-margin">
@@ -222,7 +222,7 @@
 							<div class="uk-form-controls">
 								<div class="uk-inline uk-width-1-1" uk-form-custom="target: true">
 									<span class="uk-form-icon" uk-icon="icon: image"></span>
-									<input type="file">
+									<input id="add_document_cover_file" name="add_document_cover_file" type="file" accept="image/*">
 									<input id="add_document_cover" name="add_document_cover" class="uk-input" type="text" placeholder="Document Cover">
 								</div>
 							</div>
@@ -234,7 +234,7 @@
 							<label class="uk-form-label">Availability</label>
 							<div class="uk-form-controls">
 								<div id="add_document_placement" class="uk-inline uk-width-1-1">
-									<input id="add_document_placement_library" name="add_document_placement" class="uk-radio" type="radio" value="L" checked> <label class="uk-form-label" for="add_document_placement_library">In Library</label>
+									<input id="add_document_placement_library" name="add_document_placement" class="uk-radio" type="radio" value="L"> <label class="uk-form-label" for="add_document_placement_library">In Library</label>
 									<input id="add_document_placement_online" name="add_document_placement" class="uk-radio" type="radio" value="O"> <label class="uk-form-label" for="add_document_placement_online">Online</label>
 								</div>
 							</div>
@@ -245,38 +245,16 @@
 							</div>
 						</div>
 					</div>
-					<!-- Document Copies -->
-					<div id="add_document_copies_outer" class="uk-width-1-2 uk-text-left">
-						<div class="uk-margin">
-							<label class="uk-form-label" for="add_document_copies">Number of Copies</label>
-							<div class="uk-form-controls">
-								<div class="uk-inline uk-width-1-1">
-									<span class="uk-form-icon" uk-icon="icon: copy"></span>
-									<input id="add_document_copies" name="add_document_copies" class="uk-input" type="number" min="0" step="1" placeholder="Number of Copies" required>
-								</div>
-							</div>
-							<div class=" uk-animation-toggle">
-								<div class="uk-animation-shake">
-									<small id="add_document_copies_empty_error" class="error">Please enter the Number of Copies !</small>
-								</div>
-							</div>
-						</div>
+					<!-- Document Copies & Data -->
+					<div id="add_document_copies_data_outer" class="uk-width-1-2 uk-text-left">
+						<!-- Data will be Loaded from JavaScript -->
 					</div>
-					<!-- Document Data -->
-					<div id="add_document_data_outer" class="uk-width-1-2 uk-text-left">
+					<!-- Document Description -->
+					<div class="uk-width-1-1 uk-text-left">
 						<div class="uk-margin">
-							<label class="uk-form-label" for="add_document_data">File</label>
+							<label class="uk-form-label" for="add_document_description">Description</label>
 							<div class="uk-form-controls">
-								<div class="uk-inline uk-width-1-1" uk-form-custom="target: true">
-									<span class="uk-form-icon" uk-icon="icon: file-pdf"></span>
-									<input type="file">
-									<input id="add_document_data" name="add_document_data" class="uk-input" type="text" placeholder="Document File" required>
-								</div>
-							</div>
-							<div class=" uk-animation-toggle">
-								<div class="uk-animation-shake">
-									<small id="add_document_data_empty_error" class="error">Please enter the Document File !</small>
-								</div>
+								<textarea id="add_document_description" name="add_document_description" class="uk-textarea" rows="5" placeholder="Document Description"></textarea>
 							</div>
 						</div>
 					</div>

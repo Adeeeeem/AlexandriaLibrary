@@ -17,9 +17,6 @@
 
 	/* Retrieve DATA */
 	$data = json_decode(file_get_contents("php://input"));
- 
-	/* Affect Properties */
-	$admin->ADMIN_LOGIN = $data->signin_login;
 
 	/* Generate Web Json Token */
 	include_once($_SERVER["DOCUMENT_ROOT"]."/AlexandriaLibrary/php/config/core.php");
@@ -32,8 +29,11 @@
 	/* Return False for Error */
 	$response = array("response" => false);
 
-	if ( isset($data->signin_login) && !empty($data->signin_login) && isset($data->signin_password) && !empty($data->signin_password) )
+	if ( isset($data) && !empty($data) )
 	{
+		/* Affect Properties */
+		$admin->ADMIN_LOGIN = $data->signin_login;
+
 		/* Checking if Username exists and password is correct */
 		if (!$admin->loginExists())
 			$response["response"] = "Wrong_Username";

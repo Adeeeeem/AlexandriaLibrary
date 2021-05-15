@@ -11,6 +11,8 @@
 		private $PASSWORD = "";
 		/* Options */
 		private $OPTIONS = [PDO::ATTR_EMULATE_PREPARES => false, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC];
+		/* Upload Files Path */
+		private $UPLOAD_FILES_PATH = "C:\Users\Med-Adem\Desktop\\";
 		/* Connection */
 		public $CONNECTION;
 
@@ -35,6 +37,11 @@
 		public function closeConnection()
 		{
 			$this->CONNECTION = NULL;
+		}
+
+		public function getUploadPath()
+		{
+			return $this->UPLOAD_FILES_PATH;
 		}
 	}
 ?>

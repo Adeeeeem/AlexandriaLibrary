@@ -35,6 +35,7 @@ hr{background-image: radial-gradient(closest-side, var(--Desert-Sand-color), hsl
 div#add_document div.uk-card-body form#add_document_form{padding: 0 40px;}
 div#add_document div.uk-card-body form#add_document_form input,
 div#add_document div.uk-card-body form#add_document_form select,
+div#add_document div.uk-card-body form#add_document_form textarea,
 div#add_document div.uk-card-body form#add_document_form span.uk-form-icon{margin-top: 10px; margin-bottom: 5px;}
 div#add_document div.uk-card-body form#add_document_form div#add_document_placement{margin-top: 20px;}
 div#add_document div.uk-card-body form#add_document_form div#add_document_placement input{margin-top: 3px; margin-left: 20%; margin-right: 5px;}

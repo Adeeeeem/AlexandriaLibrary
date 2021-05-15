@@ -24,7 +24,7 @@
  	/* Return False for Error */
 	$response = array("response" => false);
 
- 	if ( isset($data->signup_login) && !empty($data->signup_login) && isset($data->signup_password) && !empty($data->signup_password) && isset($data->signup_first_name) && !empty($data->signup_first_name) && isset($data->signup_last_name) && !empty($data->signup_last_name) && isset($data->signup_user_card) && !empty($data->signup_user_card) && isset($data->signup_email) && !empty($data->signup_email) )
+ 	if ( isset($data) && !empty($data) )
  	{
  		/* Affect Properties */
 		$user->USER_LOGIN = $data->signup_login;
