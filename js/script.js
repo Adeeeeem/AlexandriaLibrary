@@ -277,7 +277,7 @@ function getSession()
 		error: function (error) {console.log(error);}
 	}).responseJSON;
 }
-/* Return Categories */
+/* Get All Categories */
 function getCategories()
 {
 	return $.ajax

@@ -102,7 +102,7 @@ function ReportNotification(Type, Title, Message, Button)
 ==================================================*/
 /* Form Data to Json */
 $.fn.serializeObject = function()
-{ 
+{
 	var data = {};
 	var element = this.serializeArray();
 

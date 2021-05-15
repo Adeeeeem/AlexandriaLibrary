@@ -44,15 +44,16 @@
 
 	<!-- Left Menu -->
 	<div id="menu">
-		<div id="menu-logo" class="uk-width-1-1 uk-text-center"><img class="uk-margin-small-top" src="../img/logo.png"><h3>Alexandria <span>Libarry</span></h3></div>
+		<div id="menu_logo" class="uk-width-1-1 uk-text-center"><img class="uk-margin-small-top" src="../img/logo.png"><h3>Alexandria <span>Libarry</span></h3></div>
 		<div class="uk-margin-medium-top uk-margin-large-bottom">
-			<button id="documents-btn" class="uk-button uk-width-1-1 uk-text-left active"><img src="../img/icons/documents.png"> Documents</button>
-			<button id="librarians-btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/icons/librarians.png"> Librarians</button>
-			<button id="users-btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/icons/users.png"> Users</button>
-			<button id="seats-btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/icons/seats.png"> Seats</button>
-			<button id="history-btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/icons/history.png"> History</button>
-			<button id="settings-btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/icons/settings.png"> Settings</button>
-			<button id="logout-btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/icons/logout.png"> Logout</button>
+			<button id="documents_btn" class="uk-button uk-width-1-1 uk-text-left active"><img src="../img/menu/documents.png"> Documents</button>
+			<button id="librarians_btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/menu/librarians.png"> Librarians</button>
+			<button id="users_btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/menu/users.png"> Users</button>
+			<button id="seats_btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/menu/seats.png"> Seats</button>
+			<button id="configuration_btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/menu/configuration.png"> Configuration</button>
+			<button id="history_btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/menu/history.png"> History</button>
+			<button id="settings_btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/menu/settings.png"> Settings</button>
+			<button id="logout_btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/menu/logout.png"> Logout</button>
 		</div>
 	</div>
 
@@ -62,6 +63,246 @@
 		<div id="documents" class="uk-card uk-box-shadow-xlarge uk-animation-slide-bottom-small">
 			<div class="uk-card-header">
 				<h3 class="uk-card-title">Documents</h3>
+				<hr>
+				<div class="uk-grid-small" uk-grid>
+					<!-- Add New Document Button -->
+					<div class="uk-width-1-2 uk-text-left">
+						<button type="button" id="add_document_btn" class="uk-button icon-btn">
+							<img class="uk-margin-small-right" src="../img/icons/plus.png" width="20" height="20">Add Document
+						</button>
+					</div>
+					<!-- Search Document Button -->
+					<div class="uk-width-1-2 uk-text-right search-marche">
+						<div class="uk-inline">
+							<span class="uk-form-icon" uk-icon="icon: search"></span>
+							<input id="docuemnt_search_list" class="uk-input" type="search" placeholder="Document Name">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="uk-card-body">
+				
+			</div>
+			<div class="uk-card-footer">
+			</div>
+		</div>
+		<!-- Add Document Section -->
+		<div id="add_document" class="uk-card uk-box-shadow-xlarge uk-animation-slide-right-small">
+			<div class="uk-card-header">
+				<h3 class="uk-card-title">Add Document</h3>
+				<hr>
+				<div class="uk-grid-small" uk-grid>
+					<!-- Return to Documents Button -->
+					<div class="uk-width-1-2 uk-text-left">
+						<button type="button" id="add_document_return_btn" class="uk-button icon-btn">
+							<img class="uk-margin-small-right" src="../img/icons/left-arrow.png" width="15" height="15">Return
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="uk-card-body">
+				<form id="add_document_form" name="add_document_form" class="uk-grid-small" uk-grid>
+					<!-- Document Title -->
+					<div class="uk-width-1-3 uk-text-left">
+						<div class="uk-margin">
+							<label class="uk-form-label" for="add_document_title">Title</label>
+							<div class="uk-form-controls">
+								<div class="uk-inline uk-width-1-1">
+									<span class="uk-form-icon" uk-icon="icon: bookmark"></span>
+									<input id="add_document_title" name="add_document_title" class="uk-input" type="text" placeholder="Document Title" required>
+								</div>
+							</div>
+							<div class=" uk-animation-toggle">
+								<div class="uk-animation-shake">
+									<small id="add_document_title_empty_error" class="error">Please enter the Document Title !</small>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Document Type -->
+					<div class="uk-width-1-3 uk-text-left">
+						<div class="uk-margin">
+							<label class="uk-form-label" for="add_document_type">Type</label>
+							<div class="uk-form-controls">
+								<div class="uk-inline uk-width-1-1">
+									<span class="uk-form-icon" uk-icon="icon: file-text"></span>
+									<input id="add_document_type_label" class="uk-input" type="text" placeholder="Document Type" list="add_document_type_list" required>
+									<input id="add_document_type" class="uk-input" name="add_document_type" type="hidden" required>
+								</div>
+							</div>
+							<div class=" uk-animation-toggle">
+								<div class="uk-animation-shake">
+									<small id="add_document_type_empty_error" class="error">Please enter the Document Type !</small>
+								</div>
+							</div>
+							<div class="uk-text-center">
+								<small><a>Add a New Type</a></small>
+							</div>
+							<datalist id="add_document_type_list">
+								<!-- Data will be loaded from JavaScript -->
+							</datalist>
+						</div>
+					</div>
+					<!-- Document Author -->
+					<div class="uk-width-1-3 uk-text-left">
+						<div class="uk-margin">
+							<label class="uk-form-label" for="add_document_author">Author</label>
+							<div class="uk-form-controls">
+								<div class="uk-inline uk-width-1-1">
+									<span class="uk-form-icon" uk-icon="icon: user"></span>
+									<input id="add_document_author_label" class="uk-input" type="text" placeholder="Document Author" list="add_document_author_list" required>
+									<input id="add_document_author" class="uk-input" name="add_document_author" type="hidden" required>
+								</div>
+							</div>
+							<div class=" uk-animation-toggle">
+								<div class="uk-animation-shake">
+									<small id="add_document_author_empty_error" class="error">Please enter the Document Author !</small>
+								</div>
+							</div>
+							<div class="uk-text-center">
+								<small><a>Add a New Author</a></small>
+							</div>
+							<datalist id="add_document_author_list">
+								<!-- Data will be loaded from JavaScript -->
+							</datalist>
+						</div>
+					</div>
+					<!-- Document Category -->
+					<div class="uk-width-1-3 uk-text-left">
+						<div class="uk-margin">
+							<label class="uk-form-label" for="add_document_category">Category</label>
+							<div class="uk-form-controls">
+								<div class="uk-inline uk-width-1-1">
+									<span class="uk-form-icon" uk-icon="icon: folder"></span>
+									<input id="add_document_category_label" class="uk-input" type="text" placeholder="Document Category" list="add_document_category_list" required>
+									<input id="add_document_category" class="uk-input" name="add_document_category" type="hidden" required>
+								</div>
+							</div>
+							<div class=" uk-animation-toggle">
+								<div class="uk-animation-shake">
+									<small id="add_document_category_empty_error" class="error">Please enter the Document Category !</small>
+								</div>
+							</div>
+							<div class="uk-text-center">
+								<small><a>Add a New Category</a></small>
+							</div>
+							<datalist id="add_document_category_list">
+								<!-- Data will be loaded from JavaScript -->
+							</datalist>
+						</div>
+					</div>
+					<!-- Document Subject -->
+					<div class="uk-width-1-3 uk-text-left">
+						<div class="uk-margin">
+							<label class="uk-form-label" for="add_document_subject">Subject</label>
+							<div class="uk-form-controls">
+								<div class="uk-inline uk-width-1-1">
+									<span class="uk-form-icon" uk-icon="icon: album"></span>
+									<input id="add_document_subject_label" class="uk-input" type="text" placeholder="Document Subject" list="add_document_subject_list" required>
+									<input id="add_document_subject" class="uk-input" name="add_document_subject" type="hidden" required>
+								</div>
+							</div>
+							<div class=" uk-animation-toggle">
+								<div class="uk-animation-shake">
+									<small id="add_document_subject_empty_error" class="error">Please enter the Document Subject !</small>
+								</div>
+							</div>
+							<div class="uk-text-center">
+								<small><a>Add a New Subject</a></small>
+							</div>
+							<datalist id="add_document_subject_list">
+								<!-- Data will be loaded from JavaScript -->
+							</datalist>
+						</div>
+					</div>
+					<!-- Document Cover -->
+					<div class="uk-width-1-3 uk-text-left">
+						<div class="uk-margin">
+							<label class="uk-form-label" for="add_document_cover">Cover</label>
+							<div class="uk-form-controls">
+								<div class="uk-inline uk-width-1-1" uk-form-custom="target: true">
+									<span class="uk-form-icon" uk-icon="icon: image"></span>
+									<input type="file">
+									<input id="add_document_cover" name="add_document_cover" class="uk-input" type="text" placeholder="Document Cover">
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Document Placement -->
+					<div class="uk-width-1-2 uk-text-left">
+						<div class="uk-margin">
+							<label class="uk-form-label">Availability</label>
+							<div class="uk-form-controls">
+								<div id="add_document_placement" class="uk-inline uk-width-1-1">
+									<input id="add_document_placement_library" name="add_document_placement" class="uk-radio" type="radio" value="L" checked> <label class="uk-form-label" for="add_document_placement_library">In Library</label>
+									<input id="add_document_placement_online" name="add_document_placement" class="uk-radio" type="radio" value="O"> <label class="uk-form-label" for="add_document_placement_online">Online</label>
+								</div>
+							</div>
+							<div class=" uk-animation-toggle">
+								<div class="uk-animation-shake">
+									<small id="add_document_title_empty_error" class="error">Please enter the Document Availability !</small>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Document Copies -->
+					<div id="add_document_copies_outer" class="uk-width-1-2 uk-text-left">
+						<div class="uk-margin">
+							<label class="uk-form-label" for="add_document_copies">Number of Copies</label>
+							<div class="uk-form-controls">
+								<div class="uk-inline uk-width-1-1">
+									<span class="uk-form-icon" uk-icon="icon: copy"></span>
+									<input id="add_document_copies" name="add_document_copies" class="uk-input" type="number" min="0" step="1" placeholder="Number of Copies" required>
+								</div>
+							</div>
+							<div class=" uk-animation-toggle">
+								<div class="uk-animation-shake">
+									<small id="add_document_copies_empty_error" class="error">Please enter the Number of Copies !</small>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Document Data -->
+					<div id="add_document_data_outer" class="uk-width-1-2 uk-text-left">
+						<div class="uk-margin">
+							<label class="uk-form-label" for="add_document_data">File</label>
+							<div class="uk-form-controls">
+								<div class="uk-inline uk-width-1-1" uk-form-custom="target: true">
+									<span class="uk-form-icon" uk-icon="icon: file-pdf"></span>
+									<input type="file">
+									<input id="add_document_data" name="add_document_data" class="uk-input" type="text" placeholder="Document File" required>
+								</div>
+							</div>
+							<div class=" uk-animation-toggle">
+								<div class="uk-animation-shake">
+									<small id="add_document_data_empty_error" class="error">Please enter the Document File !</small>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="uk-width-1-4"></div>
+					<!-- Document Reset Button -->
+					<div class="uk-width-1-4 uk-text-center">
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<button id="add_document_reset_btn" class="uk-button uk-width-1-1" type="reset">Cancel</button>
+						</div>
+					</div>
+					<!-- Document Confirm Add Button -->
+					<div class="uk-width-1-4 uk-text-center">
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<button id="add_document_confirm_btn" class="uk-button uk-width-1-1 alexandria-btn" type="submit">Confirm</button>
+						</div>
+					</div>
+					<div class="uk-width-1-4"></div>
+				</form>
+			</div>
+			<div class="uk-card-footer">
+			</div>
+		</div>
+		<!-- Edit Document Section -->
+		<div id="edit_document" class="uk-card uk-box-shadow-xlarge uk-animation-slide-right-small">
+			<div class="uk-card-header">
+				<h3 class="uk-card-title">Edit Document</h3>
 				<hr>
 			</div>
 			<div class="uk-card-body">
@@ -98,6 +339,18 @@
 		<div id="seats" class="uk-card uk-box-shadow-xlarge uk-animation-slide-bottom-small">
 			<div class="uk-card-header">
 				<h3 class="uk-card-title">Seats</h3>
+				<hr>
+			</div>
+			<div class="uk-card-body">
+
+			</div>
+			<div class="uk-card-footer">
+			</div>
+		</div>
+		<!-- Configuration Section -->
+		<div id="configuration" class="uk-card uk-box-shadow-xlarge uk-animation-slide-bottom-small">
+			<div class="uk-card-header">
+				<h3 class="uk-card-title">Configuration</h3>
 				<hr>
 			</div>
 			<div class="uk-card-body">
