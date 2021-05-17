@@ -25,10 +25,12 @@ div#home div.uk-card-header nav a:focus,
 div#home div.uk-card-header nav a:hover,
 div#home div.uk-card-header nav a.active{color: var(--Ebony-color);}
 div#home div.uk-card-header nav a#contact_nav_btn{margin-right: 40px;}
-div#home div.uk-card-body div.media h3{color: var(--Ash-Gray-color) !important; font-size: 55px; font-weight: 600;}
+div#home div.uk-card-body div.media h3{color: var(--Ash-Gray-color) !important; font-size: 50px; font-weight: 600;}
+div#home div.uk-card-body div.media div.quotes{margin-top: 10px !important;}
+div#home div.uk-card-body div.media blockquote p{font-size: 20px;}
 div#home div.uk-card-body div.media input,
 div#home div.uk-card-body div.media button{height: 40px !important; margin: 0; text-transform: capitalize;}
-div#home div.uk-card-body div.media input{width: 500px;}
+div#home div.uk-card-body div.media input{width: 400px;}
 div#home div.uk-card-body div.media button{background-color: var(--Ash-Gray-color); color: #FFFFFF;}
 div#home div.uk-card-body div.media button:hover,
 div#home div.uk-card-body div.media button:focus{background-color: var(--Artichoke-color);}
