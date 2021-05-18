@@ -40,7 +40,6 @@ div#add_document div.uk-card-body form#add_document_form span.uk-form-icon{margi
 div#add_document div.uk-card-body form#add_document_form div#add_document_placement{margin-top: 20px;}
 div#add_document div.uk-card-body form#add_document_form div#add_document_placement input{margin-top: 3px; margin-left: 20%; margin-right: 5px;}
 div#add_document div.uk-card-body form#add_document_form div#add_document_placement label{font-size: 14px !important; font-weight: 500 !important}
-div#add_document div.uk-card-body form#add_document_form div#add_document_data_outer{margin-top: 15px; display: none;}
 div#add_document div.uk-card-body form#add_document_form button#add_document_reset_btn:focus,
 div#add_document div.uk-card-body form#add_document_form button#add_document_reset_btn:hover{background-color: #D3D3D3;}
 /*==================================================

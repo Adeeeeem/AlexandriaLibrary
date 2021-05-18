@@ -103,11 +103,17 @@ $(function()
 		/* Display Document Copies or Data Depending on the Checkbox */
 		$("div#add_document div.uk-card-body form#add_document_form div#add_document_placement input").click(function()
 		{
-			$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer").empty();
+			//$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer").empty();
 			if ($(this).val() == "L")
-				$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer").append("<div class='uk-margin'><label class='uk-form-label' for='add_document_copies'>Number of Copies</label><div class='uk-form-controls'><div class='uk-inline uk-width-1-1'><span class='uk-form-icon' uk-icon='icon: copy'></span><input id='add_document_copies' name='add_document_copies' class='uk-input' type='number' value='0' min='0' step='1' placeholder='Number of Copies' required></div></div><div class=' uk-animation-toggle'><div class='uk-animation-shake'><small id='add_document_copies_empty_error' class='error'>Please enter the Number of Copies !</small></div></div></div>");
+				if ($(this).is(":checked"))
+					$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer").append("<div id='add_document_copies_outer' class='uk-margin'><label class='uk-form-label' for='add_document_copies'>Number of Copies</label><div class='uk-form-controls'><div class='uk-inline uk-width-1-1'><span class='uk-form-icon' uk-icon='icon: copy'></span><input id='add_document_copies' name='add_document_copies' class='uk-input' type='number' value='0' min='0' step='1' placeholder='Number of Copies' required></div></div><div class=' uk-animation-toggle'><div class='uk-animation-shake'><small id='add_document_copies_empty_error' class='error'>Please enter the Number of Copies !</small></div></div></div>");
+				else
+					$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer div#add_document_copies_outer").remove();
 			else if ($(this).val() == "O")
-				$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer").append("<div class='uk-margin'><label class='uk-form-label' for='add_document_data'>File</label><div class='uk-form-controls'><div class='uk-inline uk-width-1-1' uk-form-custom='target: true'><span class='uk-form-icon' uk-icon='icon: file-pdf'></span><input type='file'><input id='add_document_data' name='add_document_data' class='uk-input' type='text' value='empty' placeholder='Document File' required></div></div><div class=' uk-animation-toggle'><div class='uk-animation-shake'><small id='add_document_data_empty_error' class='error'>Please enter the Document File !</small></div></div></div>");
+				if ($(this).is(":checked"))
+					$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer").append("<div id='add_document_data_outer' class='uk-margin'><label class='uk-form-label' for='add_document_data'>File</label><div class='uk-form-controls'><div class='uk-inline uk-width-1-1' uk-form-custom='target: true'><span class='uk-form-icon' uk-icon='icon: file-pdf'></span><input type='file'><input id='add_document_data' name='add_document_data' class='uk-input' type='text' value='empty' placeholder='Document File' required></div></div><div class=' uk-animation-toggle'><div class='uk-animation-shake'><small id='add_document_data_empty_error' class='error'>Please enter the Document File !</small></div></div></div>");
+				else
+					$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer div#add_document_data_outer").remove();
 		});
 	});
 	/* Cofirm Add Document */
@@ -124,7 +130,7 @@ $(function()
 		{
 			var AddDocumentForm = $("div#add_document form#add_document_form");
 			var AddDocumentFormData = JSON.stringify(AddDocumentForm.serializeObject());
-
+			console.log(AddDocumentFormData);
 			$.ajax
 			({
 				url: "../php/addDocument.php",

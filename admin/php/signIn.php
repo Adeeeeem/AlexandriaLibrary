@@ -8,12 +8,15 @@
 
 	include_once($_SERVER["DOCUMENT_ROOT"]."/AlexandriaLibrary/php/config/Database.php");
 	include_once($_SERVER["DOCUMENT_ROOT"]."/AlexandriaLibrary/php/classes/Admin.php");
+	include_once($_SERVER["DOCUMENT_ROOT"]."/AlexandriaLibrary/php/classes/History.php");
  
 	/* get BD connection */
 	$database = new Database();
 	$db = $database->getConnection();
 	/* get Admin Class */
 	$admin = new Admin($db);
+	/* get History Class */
+	$history = new History($db);
 
 	/* Retrieve DATA */
 	$data = json_decode(file_get_contents("php://input"));
@@ -60,6 +63,23 @@
 				session_start();
 				/* Set Session */
 				$_SESSION["jwt_token"] = $jwt_token;
+
+				try
+				{
+					/* get User ID */
+					$ADMIN_ID = $admin->getId();
+							
+					if ($ADMIN_ID)
+					{
+						/* Affect Properties */
+						$history->HISTORY_ACTION = 1; /* LOGIN */
+						$history->HISTORY_USER = $ADMIN_ID;
+						$history->HISTORY_USER_TYPE = "A";
+						/* Add to History */
+						$history->createHistory();
+					}
+				}
+				catch (Exception $e) { /* Act Normal, don't do anything, it's true anyway */ }
 			}
 	}
 
