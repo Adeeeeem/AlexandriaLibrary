@@ -43,6 +43,8 @@ div.uk-modal-dialog{border-radius: 15px; padding-right: 15px;}
 div.uk-modal-header{border-top-right-radius: 15px; border-top-left-radius: 15px;}
 div.uk-modal-footer{border-bottom-right-radius: 15px; border-bottom-left-radius: 15px;}
 .uk-grid-column-small, .uk-grid-small{margin-right: -15px; margin-left: -15px;}
+input.uk-checkbox:checked:focus, input.uk-checkbox:checked{background-color: var(--Antique-Brass-color);}
+.uk-table-hover tbody tr:hover,.uk-table-hover>tr:hover{background-color: rgba(221, 190, 169, 0.4);}
 /*==================================================
 				Preloader
 ==================================================*/

@@ -42,7 +42,20 @@ $(function()
 	/*==================================================
 				Documents Section
 	==================================================*/
-	/* Add Docuemnt Section */
+	/* Load Documents */
+	$("div#menu button#documents_btn").click(function()
+	{
+		var Documents = getDocuments();
+		$("div#documents div.uk-card-body table#documents_list tbody").empty();
+		for (var i = 0; i < Documents.length; i++)
+		{
+			$("div#documents div.uk-card-body table#documents_list tbody").append("<tr id='"+Documents[i].ID+"'><td><img class='cover' src='../img/covers/"+Documents[i].COVER+"' width='50' height='100' title='"+Documents[i].TITLE+"' alt='"+Documents[i].TITLE+"'></td><td><h6>"+Documents[i].TITLE+"</h6></td><td><h6>"+Documents[i].TYPE+"</h6></td><td><h6>"+Documents[i].CATEGORY+"</h6></td><td><img class='icon view' src='../img/icons/view.png' width='25' height='25'></td><td><img class='icon edit' src='../img/icons/edit.png' width='20' height='20'></td><td><img class='icon delete' src='../img/icons/remove.png' width='20' height='20'></td></tr>");
+		}
+	});
+	/*==================================================
+				Add Docuemnt Section
+	==================================================*/
+	/* Add Docuemnt */
 	$("div#documents div.uk-card-header button#add_document_btn").click(function()
 	{
 		$("div#documents").hide();
@@ -101,9 +114,8 @@ $(function()
 			$("div#add_document form#add_document_form input#add_document_subject").val($("div#add_document form#add_document_form datalist#add_document_subject_list [value='"+$(this).val()+"']").data("value"));
 		});
 		/* Display Document Copies or Data Depending on the Checkbox */
-		$("div#add_document div.uk-card-body form#add_document_form div#add_document_placement input").click(function()
+		$("div#add_document div.uk-card-body form#add_document_form div#add_document_placement input").off().click(function()
 		{
-			//$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer").empty();
 			if ($(this).val() == "L")
 				if ($(this).is(":checked"))
 					$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer").append("<div id='add_document_copies_outer' class='uk-margin'><label class='uk-form-label' for='add_document_copies'>Number of Copies</label><div class='uk-form-controls'><div class='uk-inline uk-width-1-1'><span class='uk-form-icon' uk-icon='icon: copy'></span><input id='add_document_copies' name='add_document_copies' class='uk-input' type='number' value='0' min='0' step='1' placeholder='Number of Copies' required></div></div><div class=' uk-animation-toggle'><div class='uk-animation-shake'><small id='add_document_copies_empty_error' class='error'>Please enter the Number of Copies !</small></div></div></div>");
@@ -294,6 +306,20 @@ function HideAllSections()
 	$("div#settings").hide();
 
 	$("div#menu button").removeClass("active");
+}
+/* Get All Documents */
+function getDocuments()
+{
+	return $.ajax
+	({
+		url: "../php/getDocuments.php",
+		type: "POST",
+		contentType : "application/json; charset=utf-8",
+		dataType: "json",
+		success: function (response) {},
+		async: false,
+		error: function (error) {console.log(error);}
+	}).responseJSON;
 }
 /* Get All Document Types */
 function getTypes()

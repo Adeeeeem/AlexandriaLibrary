@@ -108,5 +108,18 @@
 
 			return false;
 		}
+
+		public function getDocuments()
+		{
+			/* Preparing Request */
+			$request = "SELECT DOCUMENT_ID AS ID, DOCUMENT_TITLE AS TITLE, DOCUMENT_COVER AS COVER, DOCUMENT_PLACEMENT AS PLACEMENT, DOCUMENT_DATA AS DATA, DOCUMENT_COPIES AS COPIES, DOCUMENT_AUTHOR AS AUTHOR, TYPE_NAME AS TYPE, CATEGORY_NAME AS CATEGORY FROM ".$this->TABLE_NAME." INNER JOIN Types ON DOCUMENT_TYPE = TYPE_ID INNER JOIN Subjects ON DOCUMENT_SUBJECT = SUBJECT_ID INNER JOIN Categories ON SUBJECT_CATEGORY = CATEGORY_ID ORDER BY DOCUMENT_ID DESC LIMIT 100;";
+			/* Preparing Statement */
+			$statement = $this->CONNECTION->prepare($request);
+			/* Execute Query */
+			if ($statement->execute())
+				return $statement->fetchAll();
+			else
+				return [];
+		}
 	}
 ?>
