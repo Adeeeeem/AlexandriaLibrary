@@ -7,15 +7,15 @@
 	header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 	include_once($_SERVER["DOCUMENT_ROOT"]."/AlexandriaLibrary/php/config/Database.php");
-	include_once($_SERVER["DOCUMENT_ROOT"]."/AlexandriaLibrary/php/classes/Document.php");
+	include_once($_SERVER["DOCUMENT_ROOT"]."/AlexandriaLibrary/php/classes/Librarian.php");
 
 	/* get BD connection */
 	$database = new Database();
 	$db = $database->getConnection();
-	/* get Document Class */
-	$document = new Document($db);
+	/* get Librarian Class */
+	$document = new Librarian($db);
 	/* Encode to Json Format */
-	$json = json_encode($document->getDocuments());
+	$json = json_encode($document->getLibrarians());
 	/* Return as Json Format */
 	echo $json;
 	/* Close Connection */

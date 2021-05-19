@@ -1,7 +1,7 @@
 /*==================================================
 				Hidden Elements
 ==================================================*/
-div#add_document, div#edit_document, div#librarians, div#users, div#seats, div#configuration, div#history, div#settings{display: none;}
+div#add_document, div#edit_document, div#librarians, div#add_librarian, div#users, div#seats, div#configuration, div#history, div#settings{display: none;}
 /*==================================================
 				Menu
 ==================================================*/
@@ -22,37 +22,51 @@ div#menu button#logout_btn img
 /*==================================================
 				Sections
 ==================================================*/
-#sections{margin-left: 300px;}
+div#sections{margin-left: 300px;}
 hr{background-image: radial-gradient(closest-side, var(--Desert-Sand-color), hsla(26.3, 100%, 92%, 0.5) 100%); border: none; box-sizing: border-box; height: 2px;}
-#sections div.uk-card{width: 95%; height: 96vh; background-color: rgba(255, 255, 255, 0.95); border-radius: 15px; margin: auto;}
-#sections div.uk-card div.uk-card-header h3.uk-card-title{color: var(--Artichoke-color); text-transform: none; font-weight: 500; letter-spacing: 2px; font-size: 25px;}
-#sections div.uk-card div.uk-card-body{padding: 20px; overflow-y: auto; max-height: 65vh;}
-#sections div.uk-card div.uk-card-header button.icon-btn{background-color: transparent; letter-spacing: 1px; text-transform: none; font-size: 15px !important; font-weight: 600;}
-#sections div.uk-card div.uk-card-header button.icon-btn img{margin-top: -3px; margin-right: 4px !important; margin-left: 4px !important;}
+div#sections div.uk-card{width: 95%; height: 96vh; background-color: rgba(255, 255, 255, 0.95); border-radius: 15px; margin: auto;}
+div#sections div.uk-card div.uk-card-header h3.uk-card-title{color: var(--Artichoke-color); text-transform: none; font-weight: 500; letter-spacing: 2px; font-size: 25px;}
+div#sections div.uk-card div.uk-card-body{padding: 20px; overflow-y: auto; max-height: 65vh;}
+div#sections div.uk-card div.uk-card-header button.icon-btn{background-color: transparent; letter-spacing: 1px; text-transform: none; font-size: 15px !important; font-weight: 600;}
+div#sections div.uk-card div.uk-card-header button.icon-btn img{margin-top: -3px; margin-right: 4px !important; margin-left: 4px !important;}
+/*==================================================
+			Display Section
+==================================================*/
+div#sections div.uk-card-body table{overflow: hidden;}
+div#sections div.uk-card-body table th{padding: 10px 8px; color: var(--Ash-Gray-color); font-weight: 600;}
+div#sections div.uk-card-body table td{border-top: 1px solid var(--Artichoke-color); border-bottom: 1px solid var(--Artichoke-color); font-size: 0.75rem; padding: 10px 0;}
+div#sections div.uk-card-body table td img.icon{cursor: pointer;}
+/*==================================================
+				Add Section
+==================================================*/
+div[id^=add_] div.uk-card-body form[id^=add_]{padding: 0 40px;}
+div[id^=add_] div.uk-card-body form[id^=add_] input,
+div[id^=add_] div.uk-card-body form[id^=add_] select,
+div[id^=add_] div.uk-card-body form[id^=add_] textarea,
+div[id^=add_] div.uk-card-body form[id^=add_] span.uk-form-icon{margin-top: 10px; margin-bottom: 5px;}
+div[id^=add_] div.uk-card-body form[id^=add_] button[id$=reset_btn]:focus,
+div[id^=add_] div.uk-card-body form[id^=add_] button[id$=reset_btn]:hover{background-color: #D3D3D3;}
 /*==================================================
 			Documents Section
 ==================================================*/
-div#documents div.uk-card-body table#documents_list{overflow: hidden;}
-div#documents div.uk-card-body table#documents_list th{padding: 10px 8px; color: var(--Ash-Gray-color); font-weight: 600;}
-div#documents div.uk-card-body table#documents_list td{border-top: 1px solid var(--Artichoke-color); border-bottom: 1px solid var(--Artichoke-color); font-size: 0.75rem; padding: 10px 0;}
-div#documents div.uk-card-body table#documents_list td img.icon{cursor: pointer;}
+div div.uk-card-body form#add_document_form div#add_document_placement{margin-top: 20px;}
+div div.uk-card-body form#add_document_form div#add_document_placement input{margin-top: 3px; margin-left: 20%; margin-right: 5px;}
+div div.uk-card-body form#add_document_form div#add_document_placement label{font-size: 14px !important; font-weight: 500 !important}
 /*==================================================
 			Add Document Section
 ==================================================*/
-div#add_document div.uk-card-body form#add_document_form{padding: 0 40px;}
-div#add_document div.uk-card-body form#add_document_form input,
-div#add_document div.uk-card-body form#add_document_form select,
-div#add_document div.uk-card-body form#add_document_form textarea,
-div#add_document div.uk-card-body form#add_document_form span.uk-form-icon{margin-top: 10px; margin-bottom: 5px;}
-div#add_document div.uk-card-body form#add_document_form div#add_document_placement{margin-top: 20px;}
-div#add_document div.uk-card-body form#add_document_form div#add_document_placement input{margin-top: 3px; margin-left: 20%; margin-right: 5px;}
-div#add_document div.uk-card-body form#add_document_form div#add_document_placement label{font-size: 14px !important; font-weight: 500 !important}
-div#add_document div.uk-card-body form#add_document_form button#add_document_reset_btn:focus,
-div#add_document div.uk-card-body form#add_document_form button#add_document_reset_btn:hover{background-color: #D3D3D3;}
+
 /*==================================================
 			Librarians Section
 ==================================================*/
 
+/*==================================================
+			Add Librarian Section
+==================================================*/
+div#add_librarian form#add_librarian_form div[id$=outer]{margin-top: 30px;}
+div#add_librarian form#add_librarian_form div#add_librarian_email_outer{margin-top: 15px;}
+div#add_librarian input#add_librarian_password_display{width: 15px; height: 15px; margin-left: 25px; padding: 0;}
+div#add_librarian label#add_librarian_password_display_label{font-size: 12px; padding-top: 12.25px;}
 /*==================================================
 			Users Section
 ==================================================*/

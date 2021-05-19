@@ -72,10 +72,10 @@
 						</button>
 					</div>
 					<!-- Search Document Button -->
-					<div class="uk-width-1-2 uk-text-right search-marche">
+					<div class="uk-width-1-2 uk-text-right">
 						<div class="uk-inline">
 							<span class="uk-form-icon" uk-icon="icon: search"></span>
-							<input id="docuemnt_search_list" class="uk-input" type="search" placeholder="Document Name">
+							<input id="docuemnt_search_list" class="uk-input" type="search" placeholder="Document Title">
 						</div>
 					</div>
 				</div>
@@ -309,9 +309,169 @@
 			<div class="uk-card-header">
 				<h3 class="uk-card-title">Librarians</h3>
 				<hr>
+				<div class="uk-grid-small" uk-grid>
+					<!-- Add New Librarian Button -->
+					<div class="uk-width-1-2 uk-text-left">
+						<button type="button" id="add_librarian_btn" class="uk-button icon-btn">
+							<img class="uk-margin-small-right" src="../img/icons/plus.png" width="20" height="20">Add Librarian
+						</button>
+					</div>
+					<!-- Search Librarian Button -->
+					<div class="uk-width-1-2 uk-text-right">
+						<div class="uk-inline">
+							<span class="uk-form-icon" uk-icon="icon: search"></span>
+							<input id="librarian_search_list" class="uk-input" type="search" placeholder="Librarian Name">
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="uk-card-body">
-
+				<table id="librarians_list" class="uk-table uk-table-hover uk-margin-small-top">
+					<thead>
+						<tr class="uk-animation-scale-down uk-text-center">
+							<th>Login</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+							<th width="5%">Edit</th>
+							<th width="5%">Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- Data Will be Loaded from JavaScript -->
+					</tbody>
+				</table>
+			</div>
+			<div class="uk-card-footer">
+			</div>
+		</div>
+		<!-- Add Librarian Section -->
+		<div id="add_librarian" class="uk-card uk-box-shadow-xlarge uk-animation-slide-right-small">
+			<div class="uk-card-header">
+				<h3 class="uk-card-title">Add Librarian</h3>
+				<hr>
+				<div class="uk-grid-small" uk-grid>
+					<!-- Return to Librarian Button -->
+					<div class="uk-width-1-2 uk-text-left">
+						<button type="button" id="add_librarian_return_btn" class="uk-button icon-btn">
+							<img class="uk-margin-small-right" src="../img/icons/left-arrow.png" width="15" height="15">Return
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="uk-card-body">
+				<form id="add_librarian_form" name="add_librarian_form" enctype="multipart/form-data" class="uk-grid-small" uk-grid>
+					<!-- Librarian First Name -->
+					<div id="add_librarian_fname_outer" class="uk-width-1-2 uk-text-left">
+						<div class="uk-margin">
+							<label class="uk-form-label" for="add_librarian_fname">First Name</label>
+							<div class="uk-form-controls">
+								<div class="uk-inline uk-width-1-1">
+									<input id="add_librarian_fname" name="add_librarian_fname" class="uk-input" type="text" placeholder="Librarian First Name" required>
+								</div>
+							</div>
+							<div class=" uk-animation-toggle">
+								<div class="uk-animation-shake">
+									<small id="add_librarian_fname_empty_error" class="error">Please enter the Librarian First Name !</small>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Librarian Last Name -->
+					<div id="add_librarian_lname_outer" class="uk-width-1-2 uk-text-left">
+						<div class="uk-margin">
+							<label class="uk-form-label" for="add_librarian_lname">Last Name</label>
+							<div class="uk-form-controls">
+								<div class="uk-inline uk-width-1-1">
+									<input id="add_librarian_lname" name="add_librarian_lname" class="uk-input" type="text" placeholder="Librarian Last Name" required>
+								</div>
+							</div>
+							<div class=" uk-animation-toggle">
+								<div class="uk-animation-shake">
+									<small id="add_librarian_lname_empty_error" class="error">Please enter the Librarian Last Name !</small>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Librarian Password -->
+					<div id="add_librarian_password_outer" class="uk-width-1-2 uk-text-left">
+						<div class="uk-margin">
+							<label class="uk-form-label" for="add_librarian_password">Password</label>
+							<div class="uk-form-controls">
+								<div class="uk-inline uk-width-1-1">
+									<span id="add_librarian_password_icon" class="uk-form-icon" uk-icon="icon: lock"></span>
+									<input id="add_librarian_password" name="add_librarian_password" class="uk-input" type="password" placeholder="Password" required>
+								</div>
+							</div>
+							<div class=" uk-animation-toggle">
+								<div class="uk-animation-shake">
+									<small id="add_librarian_password_empty" class="error">Please Enter a Password !</small>
+									<small id="add_librarian_password_format" class="error">
+										Bad Format Password !
+										<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Must Contains at least one Digit from 0-9</p>
+										<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Must Contains Lowercase Characters</p>
+										<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Must Contains Uppercase Characters</p>
+										<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Must Contains at least one Special Character</p>
+										<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Length at least 8 Characters and Maximum of 30</p>
+									</small>
+								</div>
+							</div>
+							<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid uk-margin-small-top">
+								<input id="add_librarian_password_display" class="uk-checkbox" type="checkbox"> <label id="add_librarian_password_display_label" class="uk-form-label" for="add_librarian_password_display">Show Password</label>
+							</div>
+						</div>
+					</div>
+					<!-- Librarian Repeat Password -->
+					<div id="add_librarian_repeat_password_outer" class="uk-width-1-2 uk-text-left">
+						<div class="uk-margin">
+							<label class="uk-form-label" for="add_librarian_repeat_password">Repeat Password</label>
+							<div class="uk-form-controls">
+								<div class="uk-inline uk-width-1-1">
+									<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+									<input id="add_librarian_repeat_password" name="add_librarian_repeat_password" class="uk-input" type="password" placeholder="Repeat the Password" required>
+								</div>
+							</div>
+							<div class=" uk-animation-toggle">
+								<div class="uk-animation-shake">
+									<small id="add_librarian_repeat_password_empty" class="error">Please Repeat the Password !</small>
+									<small id="add_librarian_repeat_password_format" class="error">Password does not Match !</small>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Librarian Email Address -->
+					<div id="add_librarian_email_outer" class="uk-width-1-1 uk-text-left">
+						<div class="uk-margin">
+							<label class="uk-form-label" for="add_librarian_email">Email Address</label>
+							<div class="uk-form-controls">
+								<div class="uk-inline uk-width-1-1">
+									<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: mail"></span>
+									<input id="add_librarian_email" name="add_librarian_email" class="uk-input" type="mail" placeholder="Email Address">
+								</div>
+							</div>
+							<div class=" uk-animation-toggle">
+								<div class="uk-animation-shake">
+									<small id="add_librarian_email_format" class="error">Bad Format Email Address !</small>
+									<small id="add_librarian_user_email_exists" class="error">Email Address Already Exists !</small>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="uk-width-1-4"></div>
+					<!-- Librarian Reset Button -->
+					<div class="uk-width-1-4 uk-text-center">
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<button id="add_librarian_reset_btn" class="uk-button uk-width-1-1" type="reset">Cancel</button>
+						</div>
+					</div>
+					<!-- Librarian Confirm Add Button -->
+					<div class="uk-width-1-4 uk-text-center">
+						<div class="uk-inline uk-margin-small-top uk-width-1-1">
+							<button id="add_librarian_confirm_btn" class="uk-button uk-width-1-1 alexandria-btn" type="submit">Confirm</button>
+						</div>
+					</div>
+					<div class="uk-width-1-4"></div>
+				</form>
 			</div>
 			<div class="uk-card-footer">
 			</div>

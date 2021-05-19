@@ -47,10 +47,9 @@ $(function()
 	{
 		var Documents = getDocuments();
 		$("div#documents div.uk-card-body table#documents_list tbody").empty();
-		for (var i = 0; i < Documents.length; i++)
-		{
-			$("div#documents div.uk-card-body table#documents_list tbody").append("<tr id='"+Documents[i].ID+"'><td><img class='cover' src='../img/covers/"+Documents[i].COVER+"' width='50' height='100' title='"+Documents[i].TITLE+"' alt='"+Documents[i].TITLE+"'></td><td><h6>"+Documents[i].TITLE+"</h6></td><td><h6>"+Documents[i].TYPE+"</h6></td><td><h6>"+Documents[i].CATEGORY+"</h6></td><td><img class='icon view' src='../img/icons/view.png' width='25' height='25'></td><td><img class='icon edit' src='../img/icons/edit.png' width='20' height='20'></td><td><img class='icon delete' src='../img/icons/remove.png' width='20' height='20'></td></tr>");
-		}
+		if (Documents != undefined)
+			for (var i = 0; i < Documents.length; i++)
+				$("div#documents div.uk-card-body table#documents_list tbody").append("<tr id='"+Documents[i].ID+"'><td><img class='cover' src='../img/covers/"+Documents[i].COVER+"' width='50' height='100' title='"+Documents[i].TITLE+"' alt='"+Documents[i].TITLE+"'></td><td><h6>"+Documents[i].TITLE+"</h6></td><td><h6>"+Documents[i].TYPE+"</h6></td><td><h6>"+Documents[i].CATEGORY+"</h6></td><td><img class='icon view' src='../img/icons/view.png' width='25' height='25'></td><td><img class='icon edit' src='../img/icons/edit.png' width='20' height='20'></td><td><img class='icon delete' src='../img/icons/remove.png' width='20' height='20'></td></tr>");
 	});
 	/*==================================================
 				Add Docuemnt Section
@@ -65,23 +64,17 @@ $(function()
 		var Types = getTypes();
 		$("div#add_document form#add_document_form datalist#add_document_type_list").empty();
 		for (var i = 0; i < Types.length; i++)
-		{
 			$("div#add_document form#add_document_form datalist#add_document_type_list").append("<option data-value='"+Types[i].ID+"' value='"+Types[i].NAME+"'>"+Types[i].NAME+"</option>");
-		}
 		/* Get All Authors */
 		var Authors = getAuthors();
 		$("div#add_document form#add_document_form datalist#add_document_author_list").empty();
 		for (var i = 0; i < Authors.length; i++)
-		{
 			$("div#add_document form#add_document_form datalist#add_document_author_list").append("<option data-value='"+Authors[i].ID+"' value='"+Authors[i].NAME+"'>"+Authors[i].NAME+"</option>");
-		}
 		/* Get All Categories */
 		var Categories = getCategories();
 		$("div#add_document form#add_document_form datalist#add_document_category_list").empty();
 		for (var i = 0; i < Categories.length; i++)
-		{
 			$("div#add_document form#add_document_form datalist#add_document_category_list").append("<option data-value='"+Categories[i].ID+"' value='"+Categories[i].NAME+"'>"+Categories[i].NAME+"</option>");
-		}
 		/* Set Document Type Value */
 		$("div#add_document form#add_document_form input#add_document_type_label").change(function()
 		{
@@ -104,9 +97,7 @@ $(function()
 			var Subjects = getSubjectsByCategory();
 			$("div#add_document form#add_document_form datalist#add_document_subject_list").empty();
 			for (var i = 0; i < Subjects.length; i++)
-			{
 				$("div#add_document form#add_document_form datalist#add_document_subject_list").append("<option data-value='"+Subjects[i].ID+"' value='"+Subjects[i].NAME+"'>"+Subjects[i].NAME+"</option>");
-			}
 		});
 		/* Set Document Subject Value */
 		$("div#add_document form#add_document_form input#add_document_subject_label").change(function()
@@ -185,6 +176,97 @@ $(function()
 	{
 		$("div#add_document").hide();
 		$("div#documents").show();
+	});
+	/*==================================================
+				View Docuemnt Section
+	==================================================*/
+	
+	/*==================================================
+				Edit Docuemnt Section
+	==================================================*/
+	
+	/*==================================================
+				Delete Docuemnt Section
+	==================================================*/
+
+	/*==================================================
+				Librarians Section
+	==================================================*/
+	/* Load Librarians */
+	$("div#menu button#librarians_btn").click(function()
+	{
+		var Librarians = getLibrarians();
+		$("div#librarians div.uk-card-body table#librarians_list tbody").empty();
+		if (Librarians != undefined)
+			for (var i = 0; i < Librarians.length; i++)
+				$("div#librarians div.uk-card-body table#librarians_list tbody").append("<tr id='"+Librarians[i].ID+"'><td><h6>"+Documents[i].LOGIN+"</h6></td><td><h6>"+Documents[i].FNAME+"</h6></td><td><h6>"+Documents[i].LNAME+"</h6></td><td><h6>"+Documents[i].EMAIL+"</h6></td><td><img class='icon edit' src='../img/icons/edit.png' width='20' height='20'></td><td><img class='icon delete' src='../img/icons/remove.png' width='20' height='20'></td></tr>");
+	});
+	/*==================================================
+				Add Librarian Section
+	==================================================*/
+	/* Add Librarian */
+	$("div#librarians div.uk-card-header button#add_librarian_btn").click(function()
+	{
+		$("div#librarians").hide();
+		$("div#add_librarian").show();
+	});
+	/* Cofirm Add Document */
+	$("div#add_librarian form#add_librarian_form button#add_librarian_confirm_btn").click(function(e)
+	{
+		/* Prevent Submission */
+		e.preventDefault();
+		/* Reset Add Document Form */
+		resetAddDocumentForm();
+
+		var verification = true;
+
+		if (verification)
+		{
+			var AddLibrarianForm = $("div#add_librarian form#add_librarian_form");
+			var AddLibrarianFormData = JSON.stringify(AddLibrarianForm.serializeObject());
+			console.log(AddLibrarianFormData);
+			$.ajax
+			({
+				url: "../php/addLibrarian.php",
+				type: "POST",
+				contentType : "application/json; charset=utf-8",
+				dataType: "json",
+				data: AddLibrarianFormData,
+			})
+			.done(function(response)
+			{
+				switch (response.response)
+				{
+					case "Title_Exists":
+						Notification("Failure", "Document Exists Already !");
+					break;
+
+					case true:
+						Notification("Success", "Document Added Successfully !");
+						/* Return to Documents Section */
+						$("div#menu button#documents_btn").click();
+						/* Reset Add Document Form */
+						resetAddDocumentForm();
+						/* Clear Add Document Form Inputs */
+						$("div#add_document form#add_document_form button#add_document_reset_btn").click();
+					break;
+
+					default:
+						Notification("Failure", "Oops - Something went wrong ! Please try again later !");
+					break;
+				}
+			})
+			.fail(function()
+			{
+				Notification("Failure", "Oops - Something went wrong ! Please try again later !");
+			});
+		}
+	});
+	/* Return to Librarians Section */
+	$("div#add_librarian div.uk-card-header button#add_librarian_return_btn").click(function()
+	{
+		$("div#add_librarian").hide();
+		$("div#librarians").show();
 	});
 });
 /*==================================================
@@ -299,6 +381,7 @@ function HideAllSections()
 	$("div#add_document").hide();
 	$("div#edit_document").hide();
 	$("div#librarians").hide();
+	$("div#add_librarian").hide();
 	$("div#users").hide();
 	$("div#seats").hide();
 	$("div#configuration").hide();
@@ -313,6 +396,20 @@ function getDocuments()
 	return $.ajax
 	({
 		url: "../php/getDocuments.php",
+		type: "POST",
+		contentType : "application/json; charset=utf-8",
+		dataType: "json",
+		success: function (response) {},
+		async: false,
+		error: function (error) {console.log(error);}
+	}).responseJSON;
+}
+/* Get All Librarians */
+function getLibrarians()
+{
+	return $.ajax
+	({
+		url: "../php/getLibrarians.php",
 		type: "POST",
 		contentType : "application/json; charset=utf-8",
 		dataType: "json",
