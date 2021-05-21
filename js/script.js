@@ -33,13 +33,13 @@ $(function()
 		if ($(this).is(":checked"))
 		{
 			$("div#signin input#signin_password").attr("type", "text");
-			$("div#signin label#signin_password_display-label").text("Hide Password");
+			$("div#signin label#signin_password_display_label").text("Hide Password");
 			$("div#signin span#signin_password_icon").attr("uk-icon", "icon: unlock");
 		}
 		else
 		{
 			$("div#signin input#signin_password").attr("type", "password");
-			$("div#signin label#signin_password_display-label").text("Show Password");
+			$("div#signin label#signin_password_display_label").text("Show Password");
 			$("div#signin span#signin_password_icon").attr("uk-icon", "icon: lock");
 		}
 	});
@@ -154,13 +154,13 @@ $(function()
 		if ($(this).is(":checked"))
 		{
 			$("div#signup input#signup_password").attr("type", "text");
-			$("div#signup label#signup_password_display-label").text("Hide Password");
+			$("div#signup label#signup_password_display_label").text("Hide Password");
 			$("div#signup span#signup_password_icon").attr("uk-icon", "icon: unlock");
 		}
 		else
 		{
 			$("div#signup input#signup_password").attr("type", "password");
-			$("div#signup label#signup_password_display-label").text("Show Password");
+			$("div#signup label#signup_password_display_label").text("Show Password");
 			$("div#signup span#signup_password_icon").attr("uk-icon", "icon: lock");
 		}
 	});

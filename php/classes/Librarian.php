@@ -164,10 +164,29 @@
 			return false;
 		}
 
+		public function emailExists()
+		{
+			/* Preparing Request */
+			$request = "SELECT LIBRARIAN_EMAIL FROM ".$this->TABLE_NAME." WHERE LOWER(LIBRARIAN_EMAIL) = LOWER(:EMAIL) LIMIT 0, 1;";
+			/* Preparing Statement */
+			$statement = $this->CONNECTION->prepare($request);
+			/* Avoid any XSS or SQL Injection Function */
+			$this->LIBRARIAN_EMAIL = Security($this->LIBRARIAN_EMAIL);
+			/* Binding Parameter */
+			$statement->bindParam(":EMAIL", $this->LIBRARIAN_EMAIL, PDO::PARAM_STR, 100);
+			/* Execute Query */
+			$statement->execute();
+
+			if ($statement->rowCount() > 0)
+				return true;
+
+			return false;
+		}
+
 		public function getLibrarians()
 		{
 			/* Preparing Request */
-			$request = "SELECT LIBRARIAN_ID AS ID, LIBRARIAN_LOGIN AS LOGIN, LIBRARIAN_PASSWORD AS PASSWORD, LIBRARIAN_FNAME AS FNAME, LIBRARIAN_LNAME AS LNAME, LIBRARIAN_EMAIL AS EMAIL FROM ".$this->TABLE_NAME.";";
+			$request = "SELECT LIBRARIAN_ID AS ID, LIBRARIAN_LOGIN AS LOGIN, LIBRARIAN_PASSWORD AS PASSWORD, LIBRARIAN_FNAME AS FNAME, LIBRARIAN_LNAME AS LNAME, LIBRARIAN_EMAIL AS EMAIL FROM ".$this->TABLE_NAME." ORDER BY LIBRARIAN_FNAME, LIBRARIAN_LNAME;";
 			/* Preparing Statement */
 			$statement = $this->CONNECTION->prepare($request);
 			/* Execute Query */

@@ -241,6 +241,11 @@
 									<input id="add_document_cover" name="add_document_cover" class="uk-input" type="text" placeholder="Document Cover">
 								</div>
 							</div>
+							<div class=" uk-animation-toggle">
+								<div class="uk-animation-shake">
+									<small id="add_document_cover_empty_error" class="error">Please enter the Document Cover !</small>
+								</div>
+							</div>
 						</div>
 					</div>
 					<!-- Document Placement -->
@@ -255,7 +260,7 @@
 							</div>
 							<div class=" uk-animation-toggle">
 								<div class="uk-animation-shake">
-									<small id="add_document_title_empty_error" class="error">Please enter the Document Availability !</small>
+									<small id="add_document_placement_empty_error" class="error">Please enter the Document Availability !</small>
 								</div>
 							</div>
 						</div>
@@ -361,6 +366,23 @@
 			</div>
 			<div class="uk-card-body">
 				<form id="add_librarian_form" name="add_librarian_form" enctype="multipart/form-data" class="uk-grid-small" uk-grid>
+					<!-- Librarian Username -->
+					<div id="add_librarian_login_outer" class="uk-width-1-1 uk-text-left">
+						<div class="uk-margin">
+							<label class="uk-form-label" for="add_librarian_login">Username</label>
+							<div class="uk-form-controls">
+								<div class="uk-inline uk-width-1-1">
+									<input id="add_librarian_login" name="add_librarian_login" class="uk-input" type="text" placeholder="Librarian Usernamee" required>
+								</div>
+							</div>
+							<div class=" uk-animation-toggle">
+								<div class="uk-animation-shake">
+									<small id="add_librarian_login_empty_error" class="error">Please enter the Librarian Username !</small>
+									<small id="add_librarian_login_exists" class="error">Username Already Exists !</small>
+								</div>
+							</div>
+						</div>
+					</div>
 					<!-- Librarian First Name -->
 					<div id="add_librarian_fname_outer" class="uk-width-1-2 uk-text-left">
 						<div class="uk-margin">
@@ -406,14 +428,6 @@
 							<div class=" uk-animation-toggle">
 								<div class="uk-animation-shake">
 									<small id="add_librarian_password_empty" class="error">Please Enter a Password !</small>
-									<small id="add_librarian_password_format" class="error">
-										Bad Format Password !
-										<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Must Contains at least one Digit from 0-9</p>
-										<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Must Contains Lowercase Characters</p>
-										<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Must Contains Uppercase Characters</p>
-										<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Must Contains at least one Special Character</p>
-										<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Length at least 8 Characters and Maximum of 30</p>
-									</small>
 								</div>
 							</div>
 							<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid uk-margin-small-top">
@@ -452,7 +466,7 @@
 							<div class=" uk-animation-toggle">
 								<div class="uk-animation-shake">
 									<small id="add_librarian_email_format" class="error">Bad Format Email Address !</small>
-									<small id="add_librarian_user_email_exists" class="error">Email Address Already Exists !</small>
+									<small id="add_librarian_email_exists" class="error">Email Address Already Exists !</small>
 								</div>
 							</div>
 						</div>
