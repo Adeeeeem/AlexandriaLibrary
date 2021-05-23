@@ -53,6 +53,23 @@
 			return false;
 		}
 
+		function deleteLibrarian()
+		{
+			/* Preparing Request */
+			$request = "DELETE FROM ".$this->TABLE_NAME." WHERE LIBRARIAN_ID = :ID;";
+			/* Preparing Statement */
+			$statement = $this->CONNECTION->prepare($request);
+			/* Avoid any XSS or SQL Injection Function */
+			$this->LIBRARIAN_ID = Security($this->LIBRARIAN_ID);
+			/* Binding Parameter */
+			$statement->bindParam(":ID", $this->LIBRARIAN_ID, PDO::PARAM_INT);
+			/* Execute Query */
+			if ($statement->execute())
+				return true;
+			
+			return false;
+		}
+
 		public function getId()
 		{
 			/* Preparing Request */
@@ -71,6 +88,29 @@
 				/* Retrieve Details */
 				$row = $statement->fetch();
 				return $row["LIBRARIAN_ID"];
+			}
+
+			return false;
+		}
+
+		public function getLogin()
+		{
+			/* Preparing Request */
+			$request = "SELECT LIBRARIAN_LOGIN FROM ".$this->TABLE_NAME." WHERE LOWER(LIBRARIAN_ID) = LOWER(:ID) LIMIT 0, 1;";
+			/* Preparing Statement */
+			$statement = $this->CONNECTION->prepare($request);
+			/* Avoid any XSS or SQL Injection Function */
+			$this->LIBRARIAN_ID = Security($this->LIBRARIAN_ID);
+			/* Binding Parameter */
+			$statement->bindParam(":ID", $this->LIBRARIAN_ID, PDO::PARAM_INT);
+			/* Execute Query */
+			$statement->execute();
+
+			if ($statement->rowCount() > 0)
+			{
+				/* Retrieve Details */
+				$row = $statement->fetch();
+				return $row["LIBRARIAN_LOGIN"];
 			}
 
 			return false;

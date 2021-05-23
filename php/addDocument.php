@@ -79,37 +79,34 @@
 			{
 				/* Copy Cover Image */
 				if(copy($database->getUploadPath().$data->add_document_cover, "../img/covers/".$DOCUMENT_COVER))
-					$response["response"] = true;
-
-				/* Copy File */
-				if ( isset($data->add_document_data) && !empty($data->add_document_data) )
-					if(copy($database->getUploadPath().$data->add_document_data, "../img/files/".$DOCUMENT_DATA))
-					{
-						$response["response"] = true;
-
-						$decoded = JWT::decode($jwt_token, $key, array("HS256"));
-						/* Affect Properties */
-						$admin->ADMIN_LOGIN = $decoded->DATA->login;
-
-						try
+					if ( isset($data->add_document_data) && !empty($data->add_document_data) )
+						if(copy($database->getUploadPath().$data->add_document_data, "../img/files/".$DOCUMENT_DATA))
 						{
-							/* get Admin ID */
-							$ADMIN_ID = $admin->getId();
-													
-							if ($ADMIN_ID)
-							{
-								/* Affect Properties */
-								$history->HISTORY_ACTION = 6; /* Add Document */
-								$history->HISTORY_USER = $ADMIN_ID;
-								$history->HISTORY_USER_TYPE = "A";
-								/* Add to History */
-								$history->createHistory();
-							}
+							$response["response"] = true;
+							//echo "aqhgqa";
+
+							//try
+							//{
+							//	/* get Admin ID */
+							//	$decoded = JWT::decode($jwt_token, $key, array("HS256"));
+							//	/* Affect Properties */
+							//	$ADMIN_ID = $decoded->DATA->id;
+														
+							//	if ($ADMIN_ID)
+							//	{
+							//		/* Affect Properties */
+							//		$history->HISTORY_ACTION = 6; /* Add Document */
+							//		$history->HISTORY_USER = $ADMIN_ID;
+							//		$history->HISTORY_USER_TYPE = "A";
+							//		$history->HISTORY_DETAILS = $document->DOCUMENT_TITLE;
+							//		/* Add to History */
+							//		$history->createHistory();
+							//	}
+							//}
+							//catch (Exception $e) { /* Act Normal, don't do anything, it's true anyway */ }
 						}
-						catch (Exception $e) { /* Act Normal, don't do anything, it's true anyway */ }
-					}
 					else
-						$response["response"] = false;
+						$response["response"] = true;
 			}
 		}
 		else

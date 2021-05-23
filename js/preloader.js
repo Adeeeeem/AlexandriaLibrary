@@ -19,7 +19,7 @@ function Notification(Type, Message)
 		position: "right-top",
 		distance: "10px",
 		opacity: 1,
-		borderRadius: "15px",
+		borderRadius: "2.5px",
 		rtl: false,
 		timeout: 5000,
 		messageMaxLength: 110,
@@ -65,7 +65,7 @@ function ReportNotification(Type, Title, Message, Button)
 		className: "notiflix-report",
 		width: "420px",
 		backgroundColor: "#f8f8f8",
-		borderRadius: "15px",
+		borderRadius: "2.5px",
 		rtl: false,
 		zindex: 4002,
 		backOverlay: true,
@@ -76,17 +76,17 @@ function ReportNotification(Type, Title, Message, Button)
 		plainText: true,
 		titleFontSize: "20px",
 		titleMaxLength: 34,
-		messageFontSize: "15px",
+		messageFontSize: "13px",
 		messageMaxLength: 400,
 		buttonFontSize: "14px",
 		buttonMaxLength: 34,
 		cssAnimation: true,
 		cssAnimationDuration: 360,
 		cssAnimationStyle: "fade",
-		success: {svgColor: "#32c682", titleColor: "#1e1e1e", messageColor: "#242424", buttonBackground: "#32c682", buttonColor: "#fff", backOverlayColor: "rgba(50, 198, 130, 0.3)"},
-		failure: {svgColor: "#ff5549", titleColor: "#1e1e1e", messageColor: "#242424", buttonBackground: "#ff5549", buttonColor: "#fff", backOverlayColor: "rgba(255, 85, 73, 0.3)"},
-		warning: {svgColor: "#eebf31", titleColor: "#1e1e1e", messageColor: "#242424", buttonBackground: "#eebf31", buttonColor: "#fff", backOverlayColor: "rgba(238, 191, 49, 0.3)"},
-		info: {svgColor: "#26c0d3", titleColor: "#1e1e1e", messageColor: "#242424", buttonBackground: "#26c0d3", buttonColor: "#fff", backOverlayColor: "rgba(38, 192, 211, 0.3)"}
+		success: {svgColor: "#32c682", titleColor: "#32c682", messageColor: "#242424", buttonBackground: "#32c682", buttonColor: "#fff", backOverlayColor: "rgba(50, 198, 130, 0.3)"},
+		failure: {svgColor: "#ff5549", titleColor: "#ff5549", messageColor: "#242424", buttonBackground: "#ff5549", buttonColor: "#fff", backOverlayColor: "rgba(255, 85, 73, 0.3)"},
+		warning: {svgColor: "#eebf31", titleColor: "#eebf31", messageColor: "#242424", buttonBackground: "#eebf31", buttonColor: "#fff", backOverlayColor: "rgba(238, 191, 49, 0.3)"},
+		info: {svgColor: "#26c0d3", titleColor: "#26c0d3", messageColor: "#242424", buttonBackground: "#26c0d3", buttonColor: "#fff", backOverlayColor: "rgba(38, 192, 211, 0.3)"}
 	});
 
 	switch (Type)
@@ -96,6 +96,53 @@ function ReportNotification(Type, Title, Message, Button)
 		case "Warning": Notiflix.Report.Warning(Title, Message, Button); break;
 		case "Info": Notiflix.Report.Info(Title, Message, Button); break;
 	}
+}
+/* Confirm Notification */
+function ConfirmNotification(Type, Title, Message, YesButton, NoButton, YesFunction, NoFunction)
+{
+	var backOverlayColor = "rgba(0,0,0,0.5)", titleColor = "#242424";
+
+	switch (Type)
+	{
+		case "Success": backOverlayColor = "rgba(50, 198, 130, 0.3)"; titleColor = "#32c682"; okButtonBackground = "#32c682"; break;
+		case "Failure": backOverlayColor = "rgba(255, 85, 73, 0.3)"; titleColor = "#ff5549"; okButtonBackground = "#ff5549";  break;
+		case "Warning": backOverlayColor = "rgba(238, 191, 49, 0.3)"; titleColor = "#eebf31"; okButtonBackground = "#eebf31"; break;
+		case "Info": backOverlayColor = "rgba(38, 192, 211, 0.3)"; titleColor = "#26c0d3"; okButtonBackground = "#26c0d3"; break;
+	}
+
+	Notiflix.Confirm.Init
+	({
+		className: "notiflix-confirm",
+		width: "500px",
+		zindex: 4003,
+		position: "center",
+		distance: "10px",
+		backgroundColor: "#f8f8f8",
+		borderRadius: "2.5px",
+		backOverlay: true,
+		backOverlayColor: backOverlayColor,
+		rtl: false,
+		useGoogleFont: false,
+		fontFamily: "Raleway",
+		cssAnimation: true,
+		cssAnimationStyle: "fade",
+		cssAnimationDuration: 300,
+		plainText: true,
+		titleColor: titleColor,
+		titleFontSize: "30px",
+		titleMaxLength: 34,
+		messageColor: "#1e1e1e",
+		messageFontSize: "17px",
+		messageMaxLength: 110,
+		buttonsFontSize: "15px",
+		buttonsMaxLength: 34,
+		okButtonColor: "#f8f8f8",
+		okButtonBackground: okButtonBackground,
+		cancelButtonColor: "#1e1e1e",
+		cancelButtonBackground: "#efefef"
+		});
+
+	Notiflix.Confirm.Show(Title, Message, YesButton, NoButton, YesFunction, NoFunction);
 }
 /*==================================================
 				Functions
@@ -205,5 +252,22 @@ String.prototype.checkPassword = function(Input, Value, EmptyAlert, FormatAlert)
 		}
 	}
 
+	return true;
+}
+/* Check Format */
+String.prototype.checkFormat = function(Input, RegularExpression, FormatAlert)
+{
+	if (!this.isFormat(RegularExpression))
+	{
+		Input.addClass("uk-form-danger");
+		FormatAlert.show();
+		return false;
+	}
+	else
+	{
+		Input.removeClass("uk-form-danger");
+		EmptyAlert.hide();
+		FormatAlert.hide();
+	}
 	return true;
 }

@@ -49,6 +49,7 @@
 		$librarian->LIBRARIAN_FNAME = $data->add_librarian_fname;
 		$librarian->LIBRARIAN_LNAME = $data->add_librarian_lname;
 		$librarian->LIBRARIAN_EMAIL = ( isset($data->add_librarian_email) && !empty($data->add_librarian_email) ) ? $data->add_librarian_email : "";
+		$librarianName = $data->add_librarian_fname." ".$data->add_librarian_lname;
 
 		if ($librarian->loginExists())
 			$response["response"] = "Login_Exists";
@@ -60,14 +61,12 @@
 				{
 					$response["response"] = true;
 
-					$decoded = JWT::decode($jwt_token, $key, array("HS256"));
-					/* Affect Properties */
-					$admin->ADMIN_LOGIN = $decoded->DATA->login;
-
 					try
 					{
 						/* get Admin ID */
-						$ADMIN_ID = $admin->getId();
+						$decoded = JWT::decode($jwt_token, $key, array("HS256"));
+						/* Affect Properties */
+						$ADMIN_ID = $decoded->DATA->id;
 
 						if ($ADMIN_ID)
 						{
@@ -75,6 +74,7 @@
 							$history->HISTORY_ACTION = 3; /* Add Librarian */
 							$history->HISTORY_USER = $ADMIN_ID;
 							$history->HISTORY_USER_TYPE = "A";
+							$history->HISTORY_DETAILS = $librarianName;
 							/* Add to History */
 							$history->createHistory();
 						}

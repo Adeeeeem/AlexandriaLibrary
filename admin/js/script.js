@@ -137,14 +137,22 @@ $(function()
 		verification_add_document_subject = $("div#add_document form#add_document_form input#add_document_subject").val().checkEmptyValue($("div#add_document form#add_document_form input#add_document_subject_label"), $("div#add_document form#add_document_form small#add_document_subject_empty_error"));
 		verification_add_document_cover = $("div#add_document form#add_document_form input#add_document_cover").val().checkEmptyValue($("div#add_document form#add_document_form input#add_document_cover"), $("div#add_document form#add_document_form small#add_document_cover_empty_error"));
 		verification_add_document_placement = ( $("div#add_document form#add_document_form div#add_document_placement input#add_document_placement_library").is(":not(:checked)") && $("div#add_document form#add_document_form div#add_document_placement input#add_document_placement_online").is(":not(:checked)") ) ? $("div#add_document form#add_document_form small#add_document_placement_empty_error").show() : true;
-		verification_add_document_copies = ( $("div#add_document form#add_document_form div#add_document_placement input#add_document_placement_library").is(":checked") ) ? ( ( $("div#add_document form#add_document_form input#add_document_copies").val() == 0 ) ? $("div#add_document form#add_document_form input#add_document_copies").addClass("uk-form-danger") && $("div#add_document form#add_document_form small#add_document_copies_empty_error").show() : true ) : true;
-		verification_add_document_data = ( $("div#add_document form#add_document_form div#add_document_placement input#add_document_placement_online").is(":checked") ) ? ( $("div#add_document form#add_document_form input#add_document_data").val().checkEmptyValue($("div#add_document form#add_document_form input#add_document_data"), $("div#add_document form#add_document_form small#add_document_data_empty_error")) ) : true;
+		verification_add_document_copies = true;
+		if ($("div#add_document form#add_document_form div#add_document_placement input#add_document_placement_library").is(":checked"))
+			if ($("div#add_document form#add_document_form input#add_document_copies").val() == 0)
+			{
+				verification_add_document_copies = false;
+				$("div#add_document form#add_document_form input#add_document_copies").addClass("uk-form-danger");
+				$("div#add_document form#add_document_form small#add_document_copies_empty_error").show();
+			}
+		verification_add_document_data = true;
+		if ($("div#add_document form#add_document_form div#add_document_placement input#add_document_placement_online").is(":checked"))
+			verification_add_document_data = $("div#add_document form#add_document_form input#add_document_data").val().checkEmptyValue($("div#add_document form#add_document_form input#add_document_data"), $("div#add_document form#add_document_form small#add_document_data_empty_error"));
 
-		if (verification_add_document_title && verification_add_document_type && verification_add_document_author && verification_add_document_category && verification_add_document_subject && verification_add_document_placement)
+		if (verification_add_document_title && verification_add_document_type && verification_add_document_author && verification_add_document_category && verification_add_document_subject && verification_add_document_placement && verification_add_document_copies && verification_add_document_data)
 		{
 			var AddDocumentForm = $("div#add_document form#add_document_form");
 			var AddDocumentFormData = JSON.stringify(AddDocumentForm.serializeObject());
-			console.log(AddDocumentFormData);
 			$.ajax
 			({
 				url: "../php/addDocument.php",
@@ -169,6 +177,9 @@ $(function()
 						resetAddDocumentForm();
 						/* Clear Add Document Form Inputs */
 						$("div#add_document form#add_document_form button#add_document_reset_btn").click();
+						/* Remove Copies & Data Doucments */
+						$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer div#add_document_copies_outer").remove();
+						$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer div#add_document_data_outer").remove();
 					break;
 
 					default:
@@ -199,7 +210,38 @@ $(function()
 	/*==================================================
 				Delete Docuemnt Section
 	==================================================*/
-
+	$("div#documents table#documents_list tbody").on("click", "tr td img.delete", function()
+	{
+		var DocumentID = $(this).parent().parent().attr("id");
+		var DocumentTitle = $("div#documents table#documents_list tbody tr#"+DocumentID+" td:nth-child(2)").text();
+		var DocumentType = $("div#documents table#documents_list tbody tr#"+DocumentID+" td:nth-child(3)").text();
+		var Message = "Are you sure you want to delete the "+DocumentType+" \" "+DocumentTitle+" \"";
+		ConfirmNotification("Failure", "Delete Document", Message, "Yes, Delete it !", "Cancel", function()
+		{
+			$.ajax
+			({
+				url: "../php/deleteDocument.php",
+				type: "POST",
+				dataType: "json",
+				data: {DocumentID: DocumentID},
+			})
+			.done(function(response)
+			{
+				if (response.response)
+				{
+					Notification("Success", "Document Deleted Successfully !");
+					/* Return to Documents Section */
+					$("div#menu button#documents_btn").click();
+				}
+				else
+					Notification("Failure", "Oops - Something went wrong ! Please try again later !");
+			})
+			.fail(function()
+			{
+				Notification("Failure", "Oops - Something went wrong ! Please try again later !");
+			});
+		});
+	});
 	/*==================================================
 				Librarians Section
 	==================================================*/
@@ -241,21 +283,30 @@ $(function()
 		/* Reset Add Librarian Form */
 		$("div#add_librarian button#add_librarian_reset_btn").click(function(){$("div#add_librarian form#add_librarian_form")[0].reset(); resetAddLibrarianForm();});
 	});
-	/* Cofirm Add Document */
+	/* Cofirm Add Librarian */
 	$("div#add_librarian form#add_librarian_form button#add_librarian_confirm_btn").click(function(e)
 	{
 		/* Prevent Submission */
 		e.preventDefault();
-		/* Reset Add Document Form */
+		/* Reset Add Librarian Form */
 		resetAddLibrarianForm();
+		/* Verification Variables */
+		var verification_add_librarian_login, verification_add_librarian_fname, verification_add_librarian_lname, verification_add_librarian_password, verification_add_librarian_repeat_password, verification_add_librarian_email;
+		verification_add_librarian_login = $("div#add_librarian form#add_librarian_form input#add_librarian_login").val().checkEmptyValue($("div#add_librarian form#add_librarian_form input#add_librarian_login"), $("div#add_librarian form#add_librarian_form small#add_librarian_login_empty_error"));
+		verification_add_librarian_fname = $("div#add_librarian form#add_librarian_form input#add_librarian_fname").val().checkEmptyValue($("div#add_librarian form#add_librarian_form input#add_librarian_fname"), $("div#add_librarian form#add_librarian_form small#add_librarian_fname_empty_error"));
+		verification_add_librarian_lname = $("div#add_librarian form#add_librarian_form input#add_librarian_lname").val().checkEmptyValue($("div#add_librarian form#add_librarian_form input#add_librarian_lname"), $("div#add_librarian form#add_librarian_form small#add_librarian_lname_empty_error"));
+		verification_add_librarian_password = $("div#add_librarian form#add_librarian_form input#add_librarian_password").val().checkEmptyValue($("div#add_librarian form#add_librarian_form input#add_librarian_password"), $("div#add_librarian form#add_librarian_form small#add_librarian_password_empty"));
+		verification_add_librarian_repeat_password = $("div#add_librarian form#add_librarian_form input#add_librarian_repeat_password").val().checkPassword($("div#add_librarian form#add_librarian_form input#add_librarian_repeat_password"), $("div#add_librarian form#add_librarian_form input#add_librarian_password").val(), $("div#add_librarian form#add_librarian_form small#add_librarian_repeat_password_empty"), $("div#add_librarian form#add_librarian_form small#add_librarian_repeat_password_format"));
+		if (!$("div#add_librarian form#add_librarian_form input#add_librarian_email").val().isEmpty())
+			verification_add_librarian_email = $("div#add_librarian form#add_librarian_form input#add_librarian_email").val().checkFormat($("div#add_librarian form#add_librarian_form input#add_librarian_email"), /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, $("div#add_librarian form#add_librarian_form small#add_librarian_email_format"));
+		else
+			verification_add_librarian_email = true;
 
-		var verification = true;
-
-		if (verification)
+		if (verification_add_librarian_login && verification_add_librarian_fname && verification_add_librarian_lname && verification_add_librarian_password && verification_add_librarian_repeat_password && verification_add_librarian_email)
 		{
 			var AddLibrarianForm = $("div#add_librarian form#add_librarian_form");
 			var AddLibrarianFormData = JSON.stringify(AddLibrarianForm.serializeObject());
-			console.log(AddLibrarianFormData);
+
 			$.ajax
 			({
 				url: "../php/addLibrarian.php",
@@ -306,6 +357,44 @@ $(function()
 	{
 		$("div#add_librarian").hide();
 		$("div#librarians").show();
+	});
+	/*==================================================
+				Edit Librarian Section
+	==================================================*/
+	
+	/*==================================================
+				Delete Librarian Section
+	==================================================*/
+	$("div#librarians table#librarians_list tbody").on("click", "tr td img.delete", function()
+	{
+		var LibrarianID = $(this).parent().parent().attr("id");
+		var LibrarianName = $("div#librarians table#librarians_list tbody tr#"+LibrarianID+" td:nth-child(2)").text() + " " + $("div#librarians table#librarians_list tbody tr#"+LibrarianID+" td:nth-child(3)").text();
+		var Message = "Are you sure you want to delete the Librarian \" "+LibrarianName+" \"";
+		ConfirmNotification("Failure", "Delete Librarian", Message, "Yes, Delete it !", "Cancel", function()
+		{
+			$.ajax
+			({
+				url: "../php/deleteLibrarian.php",
+				type: "POST",
+				dataType: "json",
+				data: {LibrarianID: LibrarianID},
+			})
+			.done(function(response)
+			{
+				if (response.response)
+				{
+					Notification("Success", "Librarian Deleted Successfully !");
+					/* Return to Documents Section */
+					$("div#menu button#librarians_btn").click();
+				}
+				else
+					Notification("Failure", "Oops - Something went wrong ! Please try again later !");
+			})
+			.fail(function()
+			{
+				Notification("Failure", "Oops - Something went wrong ! Please try again later !");
+			});
+		});
 	});
 });
 /*==================================================

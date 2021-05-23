@@ -64,9 +64,35 @@
 			$statement->bindParam(":SUBJECT", $this->DOCUMENT_SUBJECT, PDO::PARAM_INT);
 			if (isset($this->DOCUMENT_DESCRIPTION) && !empty($this->DOCUMENT_DESCRIPTION))
 				$statement->bindParam(":DESCRIPTION", $this->DOCUMENT_DESCRIPTION, PDO::PARAM_STR);
+
 			/* Execute Query */
 			if ($statement->execute())
 				return true;
+			
+			return false;
+		}
+
+		function deleteDocument()
+		{
+			$COVER = $this->getCover();
+			$DATA = $this->getData();
+
+			/* Preparing Request */
+			$request = "DELETE FROM ".$this->TABLE_NAME." WHERE DOCUMENT_ID = :ID;";
+			/* Preparing Statement */
+			$statement = $this->CONNECTION->prepare($request);
+			/* Avoid any XSS or SQL Injection Function */
+			$this->DOCUMENT_ID = Security($this->DOCUMENT_ID);
+			/* Binding Parameter */
+			$statement->bindParam(":ID", $this->DOCUMENT_ID, PDO::PARAM_INT);
+			/* Execute Query */
+			if ($statement->execute())
+				if (unlink($_SERVER["DOCUMENT_ROOT"]."/AlexandriaLibrary/img/covers/".$COVER))
+					//if ($DATA != false)
+						//if (unlink($_SERVER["DOCUMENT_ROOT"]."/AlexandriaLibrary/img/files/".$DATA))
+							//return true;
+					//else
+						return true;
 			
 			return false;
 		}
@@ -105,6 +131,75 @@
 
 			if ($statement->rowCount() > 0)
 				return true;
+
+			return false;
+		}
+
+		public function getTitle()
+		{
+			/* Preparing Request */
+			$request = "SELECT DOCUMENT_TITLE AS TITLE FROM ".$this->TABLE_NAME." WHERE DOCUMENT_ID = :ID;";
+			/* Preparing Statement */
+			$statement = $this->CONNECTION->prepare($request);
+			/* Avoid any XSS or SQL Injection Function */
+			$this->DOCUMENT_ID = Security($this->DOCUMENT_ID);
+			/* Binding Parameter */
+			$statement->bindParam(":ID", $this->DOCUMENT_ID, PDO::PARAM_INT);
+			/* Execute Query */
+			$statement->execute();
+
+			if ($statement->rowCount() > 0)
+			{
+				/* Retrieve Details */
+				$row = $statement->fetch();
+				return $row["TITLE"];
+			}
+
+			return 0;
+		}
+
+		public function getCover()
+		{
+			/* Preparing Request */
+			$request = "SELECT DOCUMENT_COVER AS COVER FROM ".$this->TABLE_NAME." WHERE DOCUMENT_ID = :ID;";
+			/* Preparing Statement */
+			$statement = $this->CONNECTION->prepare($request);
+			/* Avoid any XSS or SQL Injection Function */
+			$this->DOCUMENT_ID = Security($this->DOCUMENT_ID);
+			/* Binding Parameter */
+			$statement->bindParam(":ID", $this->DOCUMENT_ID, PDO::PARAM_INT);
+			/* Execute Query */
+			$statement->execute();
+
+			if ($statement->rowCount() > 0)
+			{
+				/* Retrieve Details */
+				$row = $statement->fetch();
+				return $row["COVER"];
+			}
+
+			return 0;
+		}
+
+		public function getData()
+		{
+			/* Preparing Request */
+			$request = "SELECT DOCUMENT_DATA AS DATA FROM ".$this->TABLE_NAME." WHERE DOCUMENT_ID = :ID;";
+			/* Preparing Statement */
+			$statement = $this->CONNECTION->prepare($request);
+			/* Avoid any XSS or SQL Injection Function */
+			$this->DOCUMENT_ID = Security($this->DOCUMENT_ID);
+			/* Binding Parameter */
+			$statement->bindParam(":ID", $this->DOCUMENT_ID, PDO::PARAM_INT);
+			/* Execute Query */
+			$statement->execute();
+
+			if ($statement->rowCount() > 0)
+			{
+				/* Retrieve Details */
+				$row = $statement->fetch();
+				return $row["DATA"];
+			}
 
 			return false;
 		}
