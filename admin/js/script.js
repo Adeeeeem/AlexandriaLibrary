@@ -368,7 +368,7 @@ $(function()
 	$("div#librarians table#librarians_list tbody").on("click", "tr td img.delete", function()
 	{
 		var LibrarianID = $(this).parent().parent().attr("id");
-		var LibrarianName = $("div#librarians table#librarians_list tbody tr#"+LibrarianID+" td:nth-child(2)").text() + " " + $("div#librarians table#librarians_list tbody tr#"+LibrarianID+" td:nth-child(3)").text();
+		var LibrarianName = $("div#librarians table#librarians_list tbody tr#"+LibrarianID+" td:first-child").text() + " " + $("div#librarians table#librarians_list tbody tr#"+LibrarianID+" td:nth-child(2)").text();
 		var Message = "Are you sure you want to delete the Librarian \" "+LibrarianName+" \"";
 		ConfirmNotification("Failure", "Delete Librarian", Message, "Yes, Delete it !", "Cancel", function()
 		{
