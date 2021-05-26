@@ -213,8 +213,8 @@ $(function()
 	$("div#documents table#documents_list tbody").on("click", "tr td img.delete", function()
 	{
 		var DocumentID = $(this).parent().parent().attr("id");
-		var DocumentTitle = $("div#documents table#documents_list tbody tr#"+DocumentID+" td:nth-child(1)").text();
-		var DocumentType = $("div#documents table#documents_list tbody tr#"+DocumentID+" td:nth-child(2)").text();
+		var DocumentTitle = $("div#documents table#documents_list tbody tr#"+DocumentID+" td:nth-child(2)").text();
+		var DocumentType = $("div#documents table#documents_list tbody tr#"+DocumentID+" td:nth-child(3)").text();
 		var Message = "Are you sure you want to delete the "+DocumentType+" \" "+DocumentTitle+" \"";
 		ConfirmNotification("Failure", "Delete Document", Message, "Yes, Delete it !", "Cancel", function()
 		{

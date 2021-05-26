@@ -663,13 +663,13 @@ TRUNCATE TABLE `Types`;
 --
 
 INSERT INTO `Types` (`TYPE_ID`, `TYPE_NAME`) VALUES
-(1, 'Dictionaries & Encyclopedias'),
-(2, 'Books'),
-(3, 'Journals And Journal Articles'),
-(4, 'Technical Reports'),
-(5, 'Patents'),
-(6, 'Standards'),
-(7, 'Dissertations And Theses');
+(1, 'Dictionarie & Encyclopedia'),
+(2, 'Book'),
+(3, 'Journal And Journal Article'),
+(4, 'Technical Report'),
+(5, 'Patent'),
+(6, 'Standard'),
+(7, 'Dissertation And These');
 
 -- --------------------------------------------------------
 
