@@ -263,11 +263,5 @@ String.prototype.checkFormat = function(Input, RegularExpression, FormatAlert)
 		FormatAlert.show();
 		return false;
 	}
-	else
-	{
-		Input.removeClass("uk-form-danger");
-		EmptyAlert.hide();
-		FormatAlert.hide();
-	}
 	return true;
 }

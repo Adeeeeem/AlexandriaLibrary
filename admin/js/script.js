@@ -49,7 +49,7 @@ $(function()
 		$("div#documents div.uk-card-body table#documents_list tbody").empty();
 		if (Documents != undefined)
 			for (var i = 0; i < Documents.length; i++)
-				$("div#documents div.uk-card-body table#documents_list tbody").append("<tr id='"+Documents[i].ID+"'><td><img class='cover' src='../img/covers/"+Documents[i].COVER+"' width='50' height='100' title='"+Documents[i].TITLE+"' alt='"+Documents[i].TITLE+"'></td><td><h6>"+Documents[i].TITLE+"</h6></td><td><h6>"+Documents[i].TYPE+"</h6></td><td><h6>"+Documents[i].CATEGORY+"</h6></td><td><img class='icon view' src='../img/icons/view.png' width='25' height='25'></td><td><img class='icon edit' src='../img/icons/edit.png' width='20' height='20'></td><td><img class='icon delete' src='../img/icons/remove.png' width='20' height='20'></td></tr>");
+				$("div#documents div.uk-card-body table#documents_list tbody").append("<tr id='"+Documents[i].ID+"'><td><img class='cover' src='../img/covers/"+Documents[i].COVER+"' width='50' height='100' title='"+Documents[i].TITLE+"' alt='"+Documents[i].TITLE+"'></td><td><h6>"+Documents[i].TITLE+"</h6></td><td><h6>"+Documents[i].TYPE+"</h6></td><td><h6>"+Documents[i].SUBJECT+"</h6></td><td><h6>"+Documents[i].CATEGORY+"</h6></td><td><img class='icon view' src='../img/icons/view.png' width='25' height='25'></td><td><img class='icon edit' src='../img/icons/edit.png' width='20' height='20'></td><td><img class='icon delete' src='../img/icons/remove.png' width='20' height='20'></td></tr>");
 	});
 	/*==================================================
 				Add Docuemnt Section
@@ -213,8 +213,8 @@ $(function()
 	$("div#documents table#documents_list tbody").on("click", "tr td img.delete", function()
 	{
 		var DocumentID = $(this).parent().parent().attr("id");
-		var DocumentTitle = $("div#documents table#documents_list tbody tr#"+DocumentID+" td:nth-child(2)").text();
-		var DocumentType = $("div#documents table#documents_list tbody tr#"+DocumentID+" td:nth-child(3)").text();
+		var DocumentTitle = $("div#documents table#documents_list tbody tr#"+DocumentID+" td:nth-child(1)").text();
+		var DocumentType = $("div#documents table#documents_list tbody tr#"+DocumentID+" td:nth-child(2)").text();
 		var Message = "Are you sure you want to delete the "+DocumentType+" \" "+DocumentTitle+" \"";
 		ConfirmNotification("Failure", "Delete Document", Message, "Yes, Delete it !", "Cancel", function()
 		{
@@ -252,7 +252,7 @@ $(function()
 		$("div#librarians div.uk-card-body table#librarians_list tbody").empty();
 		if (Librarians != undefined)
 			for (var i = 0; i < Librarians.length; i++)
-				$("div#librarians div.uk-card-body table#librarians_list tbody").append("<tr id='"+Librarians[i].ID+"'><td><h6>"+Librarians[i].LOGIN+"</h6></td><td><h6>"+Librarians[i].FNAME+"</h6></td><td><h6>"+Librarians[i].LNAME+"</h6></td><td><h6>"+((Librarians[i].EMAIL != null) ? Librarians[i].EMAIL : '')+"</h6></td><td><img class='icon edit' src='../img/icons/edit.png' width='20' height='20'></td><td><img class='icon delete' src='../img/icons/remove.png' width='20' height='20'></td></tr>");
+				$("div#librarians div.uk-card-body table#librarians_list tbody").append("<tr id='"+Librarians[i].ID+"'><td><h6>"+Librarians[i].FNAME+"</h6></td><td><h6>"+Librarians[i].LNAME+"</h6></td><td><h6>"+Librarians[i].LOGIN+"</h6></td><td><h6>"+((Librarians[i].EMAIL != null) ? Librarians[i].EMAIL : '')+"</h6></td><td><img class='icon edit' src='../img/icons/edit.png' width='20' height='20'></td><td><img class='icon delete' src='../img/icons/remove.png' width='20' height='20'></td></tr>");
 	});
 	/*==================================================
 				Add Librarian Section
@@ -264,24 +264,24 @@ $(function()
 		$("div#add_librarian").show();
 
 		/* Add Librarian Display / Hide Password */
-		$("div#add_librarian input#add_librarian_password_display").click(function()
+		$("div#add_librarian form#add_librarian_form input#add_librarian_password_display").click(function()
 		{
 			if ($(this).is(":checked"))
 			{
-				$("div#add_librarian input#add_librarian_password").attr("type", "text");
-				$("div#add_librarian label#add_librarian_password_display_label").text("Hide Password");
-				$("div#add_librarian span#add_librarian_password_icon").attr("uk-icon", "icon: unlock");
+				$("div#add_librarian form#add_librarian_form input#add_librarian_password").attr("type", "text");
+				$("div#add_librarian form#add_librarian_form label#add_librarian_password_display_label").text("Hide Password");
+				$("div#add_librarian form#add_librarian_form span#add_librarian_password_icon").attr("uk-icon", "icon: unlock");
 			}
 			else
 			{
-				$("div#add_librarian input#add_librarian_password").attr("type", "password");
-				$("div#add_librarian label#add_librarian_password_display_label").text("Show Password");
-				$("div#add_librarian span#add_librarian_password_icon").attr("uk-icon", "icon: lock");
+				$("div#add_librarian form#add_librarian_form input#add_librarian_password").attr("type", "password");
+				$("div#add_librarian form#add_librarian_form label#add_librarian_password_display_label").text("Show Password");
+				$("div#add_librarian form#add_librarian_form span#add_librarian_password_icon").attr("uk-icon", "icon: lock");
 			}
 		});
 
 		/* Reset Add Librarian Form */
-		$("div#add_librarian button#add_librarian_reset_btn").click(function(){$("div#add_librarian form#add_librarian_form")[0].reset(); resetAddLibrarianForm();});
+		$("div#add_librarian form#add_librarian_form button#add_librarian_reset_btn").click(function(){$("div#add_librarian form#add_librarian_form")[0].reset(); resetAddLibrarianForm();});
 	});
 	/* Cofirm Add Librarian */
 	$("div#add_librarian form#add_librarian_form button#add_librarian_confirm_btn").click(function(e)
@@ -613,4 +613,8 @@ function resetAddLibrarianForm()
 {
 	$("div#add_librarian form#add_librarian_form input").removeClass("uk-form-danger");
 	$("div#add_librarian form#add_librarian_form small.error").hide();
+	/* Reset Show Password Button */
+	$("div#add_librarian form#add_librarian_form input#add_librarian_password").attr("type", "password");
+	$("div#add_librarian form#add_librarian_form label#add_librarian_password_display_label").text("Show Password");
+	$("div#add_librarian form#add_librarian_form span#add_librarian_password_icon").attr("uk-icon", "icon: lock");
 }

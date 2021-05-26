@@ -296,12 +296,21 @@ function resetSignInForm()
 {
 	$("div#signin form#signin_form input").removeClass("uk-form-danger");
 	$("div#signin form#signin_form small.error").hide();
+	/* Reset Show Password Button */
+	$("div#signin form#signin_form input#signin_password").attr("type", "password");
+	$("div#signin form#signin_form label#signin_password_display_label").text("Show Password");
+	$("div#signin form#signin_form span#signin_password_icon").attr("uk-icon", "icon: lock");
 }
 /* Reset Sign Up Form */
 function resetSignUpForm()
 {
 	$("div#signup form#signup_form input").removeClass("uk-form-danger");
 	$("div#signup form#signup_form small.error").hide();
+	$("div#signup form#signup_form input#signup_password_display").prop("checked", false);
+	/* Reset Show Password Button */
+	$("div#signup form#signup_form input#signup_password").attr("type", "password");
+	$("div#signup form#signup_form label#signup_password_display_label").text("Show Password");
+	$("div#signup form#signup_form span#signup_password_icon").attr("uk-icon", "icon: lock");
 }
 /* Display Browse by Category */
 function displayBrowseByCategory(id)
