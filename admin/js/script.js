@@ -177,9 +177,8 @@ $(function()
 						resetAddDocumentForm();
 						/* Clear Add Document Form Inputs */
 						$("div#add_document form#add_document_form button#add_document_reset_btn").click();
-						/* Remove Copies & Data Doucments */
-						$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer div#add_document_copies_outer").remove();
-						$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer div#add_document_data_outer").remove();
+						/* Clear Subjects */
+						$("div#add_document form#add_document_form datalist#add_document_subject_list").empty();
 					break;
 
 					default:
@@ -396,6 +395,106 @@ $(function()
 			});
 		});
 	});
+	/*==================================================
+				Users Section
+	==================================================*/
+	/* Load Users */
+	$("div#menu button#users_btn").click(function()
+	{
+		var Users = getUsers();
+		$("div#users div.uk-card-body table#users_list tbody").empty();
+		if (Users != undefined)
+			for (var i = 0; i < Users.length; i++)
+			{
+				$("div#users div.uk-card-body table#users_list tbody").append("<tr id='"+Users[i].ID+"'><td><h6>"+Users[i].FNAME+"</h6></td><td><h6>"+Users[i].LNAME+"</h6></td><td><h6>"+Users[i].LOGIN+"</h6></td><td><h6>"+Users[i].DIC+"</h6></td><td><h6>"+((Users[i].EMAIL != null) ? Users[i].EMAIL : '')+"</h6></td><td><div class='uk-margin'><select class='uk-input uk-select users_list_status'><option value='USER' style='background-color: #32C682;'>USER</option><option value='PENDING' style='background-color: #EEBF31;'>PENDING</option><option value='BLOCKED' style='background-color: #FF5549;'>BLOCKED</option></select></div></td></tr>");
+				var bgColor = (Users[i].STATUS == "USER") ? "#32C682" : ((Users[i].STATUS == "PENDING") ? "#EEBF31" : "#FF5549");
+				$("div#users div.uk-card-body table#users_list tbody tr#"+Users[i].ID+" select.users_list_status").css("background", bgColor);
+				$("div#users div.uk-card-body table#users_list tbody tr#"+Users[i].ID+" select.users_list_status option[value='"+Users[i].STATUS+"']").prop("selected", true);
+			}
+	});
+	/* Filter Users */
+	$("div#users div.uk-card-header button").click(function()
+	{
+		var Users = getUsers();
+		$("div#users div.uk-card-body table#users_list tbody").empty();
+
+		$("div#users div.uk-card-header button").removeClass("active");
+		$(this).addClass("active");
+
+		var id = $(this).attr("id");
+		var type = "ALL";
+
+		if (id == "accepted_users_btn")
+			type = "USER";
+		else if (id == "pending_users_btn")
+			type = "PENDING";
+		else if (id == "blocked_users_btn")
+			type = "BLOCKED";
+
+		if (type == "ALL")
+			$("div#menu button#users_btn").click();
+		else
+			if (Users != undefined)
+				for (var i = 0; i < Users.length; i++)
+					if (Users[i].STATUS == type)
+					{
+						$("div#users div.uk-card-body table#users_list tbody").append("<tr id='"+Users[i].ID+"'><td><h6>"+Users[i].FNAME+"</h6></td><td><h6>"+Users[i].LNAME+"</h6></td><td><h6>"+Users[i].LOGIN+"</h6></td><td><h6>"+Users[i].DIC+"</h6></td><td><h6>"+((Users[i].EMAIL != null) ? Users[i].EMAIL : '')+"</h6></td><td><div class='uk-margin'><select class='uk-input uk-select users_list_status'><option value='USER' style='background-color: #32C682;'>USER</option><option value='PENDING' style='background-color: #EEBF31;'>PENDING</option><option value='BLOCKED' style='background-color: #FF5549;'>BLOCKED</option></select></div></td></tr>");
+						var bgColor = (Users[i].STATUS == "USER") ? "#32C682" : ((Users[i].STATUS == "PENDING") ? "#EEBF31" : "#FF5549");
+						$("div#users div.uk-card-body table#users_list tbody tr#"+Users[i].ID+" select.users_list_status").css("background", bgColor);
+						$("div#users div.uk-card-body table#users_list tbody tr#"+Users[i].ID+" select.users_list_status option[value='"+Users[i].STATUS+"']").prop("selected", true);
+					}
+
+	});
+	/* Change User Status */
+	$("div#users div.uk-card-body table#users_list").on("click", " tbody tr select.users_list_status", function()
+	{
+		var select = $(this);
+		var UserID = select.parent().parent().parent().attr("id");
+		var oldValue = select.val();
+		var name = $("div#users table#users_list tbody tr#"+UserID+" td:first-child").text() + " " + $("div#users table#users_list tbody tr#"+UserID+" td:nth-child(2)").text();
+		var UserLogin = $("div#users table#users_list tbody tr#"+UserID+" td:nth-child(3)").text();
+
+		select.change(function()
+		{
+			var newValue = select.val();
+			var Message = "Change "+name+"'s Status from "+oldValue+" to "+newValue+" ?";
+			var bgColor = (newValue == "USER") ? "#32C682" : ((newValue == "PENDING") ? "#EEBF31" : "#FF5549");
+			ConfirmNotification("Info", "Change User Status", Message, "Yes", "No",
+				function()
+				{
+					$.ajax
+					({
+						url: "../php/changeStatus.php",
+						type: "POST",
+						dataType: "json",
+						data: {UserID: UserID, UserLogin: UserLogin, oldValue: oldValue, newValue: newValue},
+					})
+					.done(function(response)
+					{
+						if (response.response)
+						{
+							Notification("Success", "User Status Updated Successfully !");
+							$("div#menu button#users_btn").click();
+						}
+						else
+						{
+							Notification("Failure", "Oops - Something went wrong ! Please try again later !");
+							select.val(oldValue);
+						}
+					})
+					.fail(function()
+					{
+						Notification("Failure", "Oops - Something went wrong ! Please try again later !");
+						select.val(oldValue);
+					});
+				},
+				function()
+				{
+					select.val(oldValue);
+				}
+			);
+		});
+	});
 });
 /*==================================================
 				Functions
@@ -574,6 +673,20 @@ function getAuthors()
 		error: function (error) {console.log(error);}
 	}).responseJSON;
 }
+/* Get All Users */
+function getUsers()
+{
+	return $.ajax
+	({
+		url: "../php/getUsers.php",
+		type: "POST",
+		contentType : "application/json; charset=utf-8",
+		dataType: "json",
+		success: function (response) {},
+		async: false,
+		error: function (error) {console.log(error);}
+	}).responseJSON;
+}
 /* Get All Categories */
 function getCategories()
 {
@@ -607,6 +720,9 @@ function resetAddDocumentForm()
 {
 	$("div#add_document form#add_document_form input").removeClass("uk-form-danger");
 	$("div#add_document form#add_document_form small.error").hide();
+	/* Remove Copies & Data Doucments */
+	$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer div#add_document_copies_outer").remove();
+	$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer div#add_document_data_outer").remove();
 }
 /* Reset Add Document Form */
 function resetAddLibrarianForm()

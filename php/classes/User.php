@@ -94,6 +94,24 @@
 			return false;
 		}
 
+		public function setStatus()
+		{
+			/* Preparing Request */
+			$request = "UPDATE ".$this->TABLE_NAME." SET USER_STATUS = :STATUS WHERE USER_ID = :ID;";
+			/* Preparing Statement */
+			$statement = $this->CONNECTION->prepare($request);
+			/* Avoid any XSS or SQL Injection Function */
+			$this->USER_LOGIN = Security($this->USER_LOGIN);
+			/* Binding Parameter */
+			$statement->bindParam(":STATUS", $this->USER_STATUS, PDO::PARAM_STR);
+			$statement->bindParam(":ID", $this->USER_ID, PDO::PARAM_INT);
+			/* Execute Query */
+			if ($statement->execute())
+				return true;
+
+			return false;
+		}
+
 		public function getFirstName()
 		{
 			/* Preparing Request */
@@ -218,6 +236,19 @@
 				return true;
 
 			return false;
+		}
+
+		public function getusers()
+		{
+			/* Preparing Request */
+			$request = "SELECT USER_ID AS ID, USER_STATUS AS STATUS, USER_LOGIN AS LOGIN, USER_FNAME AS FNAME, USER_LNAME AS LNAME, USER_DIC AS DIC, USER_EMAIL AS EMAIL FROM ".$this->TABLE_NAME." ORDER BY USER_FNAME ASC, USER_LNAME ASC, USER_LOGIN ASC, USER_EMAIL ASC, USER_DIC ASC;";
+			/* Preparing Statement */
+			$statement = $this->CONNECTION->prepare($request);
+			/* Execute Query */
+			if ($statement->execute())
+				return $statement->fetchAll();
+			else
+				return [];
 		}
 	}
 ?>

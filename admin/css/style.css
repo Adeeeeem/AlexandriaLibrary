@@ -26,15 +26,16 @@ div#sections{margin-left: 300px;}
 hr{background-image: radial-gradient(closest-side, var(--Desert-Sand-color), hsla(26.3, 100%, 92%, 0.5) 100%); border: none; box-sizing: border-box; height: 2px;}
 div#sections div.uk-card{width: 95%; height: 96vh; background-color: rgba(255, 255, 255, 0.95); border-radius: 15px; margin: auto;}
 div#sections div.uk-card div.uk-card-header h3.uk-card-title{color: var(--Artichoke-color); text-transform: none; font-weight: 500; letter-spacing: 2px; font-size: 25px;}
-div#sections div.uk-card div.uk-card-body{padding: 20px; overflow-y: auto; max-height: 65vh;}
+div#sections div.uk-card div.uk-card-body{padding: 20px; overflow-y: auto; max-height: 60vh;}
 div#sections div.uk-card div.uk-card-header button.icon-btn{background-color: transparent; letter-spacing: 1px; text-transform: none; font-size: 15px !important; font-weight: 600;}
 div#sections div.uk-card div.uk-card-header button.icon-btn img{margin-top: -3px; margin-right: 4px !important; margin-left: 4px !important;}
 /*==================================================
 			Display Section
 ==================================================*/
 div#sections div.uk-card-body table{overflow: hidden;}
+div#sections div.uk-card-body table tbody tr{border-top: 1px solid var(--Artichoke-color); border-bottom: 1px solid var(--Artichoke-color);}
 div#sections div.uk-card-body table th{padding: 10px 8px; color: var(--Ash-Gray-color); font-weight: 600;}
-div#sections div.uk-card-body table td{border-top: 1px solid var(--Artichoke-color); border-bottom: 1px solid var(--Artichoke-color); font-size: 0.75rem; padding: 10px 0;}
+div#sections div.uk-card-body table td{font-size: 0.75rem; padding: 10px 0;}
 div#sections div.uk-card-body table td img.icon{cursor: pointer;}
 /*==================================================
 				Add Section
@@ -49,13 +50,13 @@ div[id^=add_] div.uk-card-body form[id^=add_] button[id$=reset_btn]:hover{backgr
 /*==================================================
 			Documents Section
 ==================================================*/
-div div.uk-card-body form#add_document_form div#add_document_placement{margin-top: 20px;}
-div div.uk-card-body form#add_document_form div#add_document_placement input{margin-top: 3px; margin-left: 20%; margin-right: 5px;}
-div div.uk-card-body form#add_document_form div#add_document_placement label{font-size: 14px !important; font-weight: 500 !important}
+
 /*==================================================
 			Add Document Section
 ==================================================*/
-
+div#add_document form#add_document_form div#add_document_placement{margin-top: 20px;}
+div#add_document form#add_document_form div#add_document_placement input{margin-top: 3px; margin-left: 20%; margin-right: 5px;}
+div#add_document form#add_document_form div#add_document_placement label{font-size: 14px !important; font-weight: 500 !important}
 /*==================================================
 			Librarians Section
 ==================================================*/
@@ -70,7 +71,9 @@ div#add_librarian label#add_librarian_password_display_label{font-size: 12px; pa
 /*==================================================
 			Users Section
 ==================================================*/
-
+div#users div.uk-card-header button.active,
+div#users div.uk-card-header button:focus,
+div#users div.uk-card-header button:hover{color: var(--Antique-Brass-color);}
 /*==================================================
 			Seats Section
 ==================================================*/

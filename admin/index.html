@@ -18,8 +18,8 @@
 	<link rel="stylesheet" type="text/css" href="../css/reset.css">
 	<!-- UIkit CSS 3.6.20 -->
 	<link rel="stylesheet" type="text/css" href="../css/uikit/uikit.min.css">
-	<!-- UIkit RTL CSS 3.6.20 -->
-	<link rel="stylesheet" type="text/css" href="../css/uikit/uikit-rtl.min.css">
+	<!-- UIkit RTL CSS 3.6.20
+	<link rel="stylesheet" type="text/css" href="../css/uikit/uikit-rtl.min.css"> -->
 	<!-- Notiflix CSS 2.7.0 -->
 	<link rel="stylesheet" type="text/css" href="../css/notiflix/notiflix-2.7.0.min.css">
 	<!-- Main CSS -->
@@ -494,9 +494,51 @@
 			<div class="uk-card-header">
 				<h3 class="uk-card-title">Users</h3>
 				<hr>
+				<div class="uk-grid-small" uk-grid>
+					<div class="uk-width-1-2 uk-text-left"></div>
+					<!-- Search User Button -->
+					<div class="uk-width-1-2 uk-text-right">
+						<div class="uk-inline">
+							<span class="uk-form-icon" uk-icon="icon: search"></span>
+							<input id="users_search_list" class="uk-input" type="search" placeholder="User Name">
+						</div>
+					</div>
+				</div>
+				<div class="uk-grid-small" uk-grid>
+					<!-- Show All Users -->
+					<div class="uk-width-1-4 uk-text-center">
+						<button type="button" id="all_users_btn" class="uk-button icon-btn active">All Users</button>
+					</div>
+					<!-- Show Accepted Users -->
+					<div class="uk-width-1-4 uk-text-center">
+						<button type="button" id="accepted_users_btn" class="uk-button icon-btn">Accepted Users</button>
+					</div>
+					<!-- Show Pending Users -->
+					<div class="uk-width-1-4 uk-text-center">
+						<button type="button" id="pending_users_btn" class="uk-button icon-btn">Pending Users</button>
+					</div>
+					<!-- Show Blocked Users -->
+					<div class="uk-width-1-4 uk-text-center">
+						<button type="button" id="blocked_users_btn" class="uk-button icon-btn">Blocked Users</button>
+					</div>
+				</div>
 			</div>
 			<div class="uk-card-body">
-
+				<table id="users_list" class="uk-table uk-table-hover uk-margin-small-top">
+					<thead>
+						<tr class="uk-animation-scale-down uk-text-center">
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Login</th>
+							<th>Student Card / NID</th>
+							<th>Email</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- Data Will be Loaded from JavaScript -->
+					</tbody>
+				</table>
 			</div>
 			<div class="uk-card-footer">
 			</div>

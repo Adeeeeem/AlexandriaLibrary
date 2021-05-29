@@ -88,10 +88,12 @@
 			/* Execute Query */
 			if ($statement->execute())
 				if (unlink($_SERVER["DOCUMENT_ROOT"]."/AlexandriaLibrary/img/covers/".$COVER))
-					//if ($DATA != false)
-						//if (unlink($_SERVER["DOCUMENT_ROOT"]."/AlexandriaLibrary/img/files/".$DATA))
-							//return true;
-					//else
+					if ($DATA != false)
+					{
+						if (unlink($_SERVER["DOCUMENT_ROOT"]."/AlexandriaLibrary/img/files/".$DATA))
+							return true;
+					}
+					else
 						return true;
 			
 			return false;

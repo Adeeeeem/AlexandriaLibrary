@@ -79,12 +79,15 @@
 			{
 				/* Copy Cover Image */
 				if(copy($database->getUploadPath().$data->add_document_cover, "../img/covers/".$DOCUMENT_COVER))
+				{
 					if ( isset($data->add_document_data) && !empty($data->add_document_data) )
+					{
 						if(copy($database->getUploadPath().$data->add_document_data, "../img/files/".$DOCUMENT_DATA))
 							$response["response"] = true;
-
+					}
 					else
 						$response["response"] = true;
+			}
 
 				if ($response["response"] == true)
 					try
