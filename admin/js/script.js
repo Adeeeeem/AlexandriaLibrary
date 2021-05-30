@@ -5,10 +5,14 @@ $(window).on("load", function()
 {
 	/* If User Already Logged In */
 	var response = getSession();
-	if (response.response == "Access Denied.")
+	if (response.response == "Access Denied")
 		window.location.href = "../";
-	else if (response.response == "Access Pending.")
+	else if (response.response == "Access Pending")
 		window.location.href = "./login.html";
+	else if (response.response == "User Granted")
+		window.location.href = "../home/";
+	else if (response.response == "Librarian Granted")
+		window.location.href = "../librarian/";
 	/* Save Last Open Section and Open it when Refreshing */
 	if (localStorage.getItem("Alexandria_ADMIN_SECTION") == null){localStorage.setItem("Alexandria_ADMIN_SECTION", "documents");}
 	/* Load Last Section */

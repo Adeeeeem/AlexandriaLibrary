@@ -5,19 +5,12 @@ $(window).on("load", function()
 {
 	/* If User Already Logged In */
 	var response = getSession();
-	/* Validate Token */
-	if (response.response == "Access Granted.")
-	{
-		$("div#home div.uk-card-header nav li#login_nav_li").hide();
-		$("div#home div.uk-card-header nav button#signup_nav_btn").hide();
-		$("div#home div.uk-card-header nav li#logout_nav_li").show();
-	}
-	else
-	{
-		$("div#home div.uk-card-header nav li#logout_nav_li").hide();
-		$("div#home div.uk-card-header nav li#login_nav_li").show();
-		$("div#home div.uk-card-header nav button#signup_nav_btn").show();
-	}
+	if (response.response == "User Granted")
+		window.location.href = "./home/";
+	else if (response.response == "Librarian Granted")
+		window.location.href = "./librarian/";
+	else if (response.response == "Admin Granted")
+		window.location.href = "./admin/";
 });
 /*==================================================
 			Document Ready
@@ -107,12 +100,8 @@ $(function()
 					break;
 
 					case true:
-						$("div#home div.uk-card-header nav li#login_nav_li").hide();
-						$("div#home div.uk-card-header nav button#signup_nav_btn").hide();
-						$("div#home div.uk-card-header nav li#logout_nav_li").show();
-
-						$("div#signin button#signin_reset_btn").click();
 						Notification("Success", "Welcome back Alexandrian !");
+						window.location.href = "./home/";
 					break;
 
 					default:
@@ -126,24 +115,6 @@ $(function()
 				Notification("Failure", "Oops - Something went wrong ! Please try again later !");
 			});
 		}
-	});
-	/* Logout Button */
-	$("div#home div.uk-card-header nav a#logout_nav_btn").click(function()
-	{
-		$.ajax
-		({
-			url: "php/signOut.php",
-			type: "POST",
-			contentType : "application/json; charset=utf-8",
-			dataType: "json"
-		})
-		.done(function()
-		{
-			$("div#home div.uk-card-header nav li#logout_nav_li").hide();
-			$("div#home div.uk-card-header nav li#login_nav_li").show();
-			$("div#home div.uk-card-header nav button#signup_nav_btn").show();
-			Notification("Info", "See you soon Alexandrian !");
-		});
 	});
 	/*==================================================
 					Sign Up Section

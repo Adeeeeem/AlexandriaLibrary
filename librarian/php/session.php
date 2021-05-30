@@ -21,20 +21,22 @@
 	$jwt_token = ( isset($_SESSION["jwt_token"]) && !empty($_SESSION["jwt_token"]) ) ? $_SESSION["jwt_token"] : "";
 
 	/* Return False for Error */
-	$response = array("response" => "Access Denied");
+	$response = array("response" => "Access Pending");
 
 	if ($jwt_token)
 	{
 		try
 		{
 			$decoded = JWT::decode($jwt_token, $key, array("HS256"));
-			
-			if ($decoded->DATA->type == "USER")
-				$response["response"] = "User Granted";
-			elseif ($decoded->DATA->type == "LIBRARIAN")
+
+			if ($decoded->DATA->type == "LIBRARIAN")
 				$response["response"] = "Librarian Granted";
+			elseif ($decoded->DATA->type == "USER")
+				$response["response"] = "User Granted";
 			elseif ($decoded->DATA->type == "ADMIN")
 				$response["response"] = "Admin Granted";
+			else
+				$response["response"] = "Access Denied";
 			$response["data"] = $decoded->DATA;
 		}
 		catch (Exception $e)

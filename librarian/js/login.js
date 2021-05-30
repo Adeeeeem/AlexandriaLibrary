@@ -7,13 +7,11 @@ $(window).on("load", function()
 	var response = getSession();
 	if (response.response == "Access Denied")
 		window.location.href = "../";
-	else if (response.response == "Access Pending")
-		window.location.href = "./login.html";
 	else if (response.response == "User Granted")
 		window.location.href = "../home/";
-	else if (response.response == "Librarian Granted")
-		window.location.href = "../librarian/";
 	else if (response.response == "Admin Granted")
+		window.location.href = "../admin/";
+	else if (response.response == "Librarian Granted")
 		window.location.href = "./";
 });
 /*==================================================
