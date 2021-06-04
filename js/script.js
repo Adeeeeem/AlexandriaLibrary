@@ -222,9 +222,7 @@ $(function()
 	var Categories = getCategories();
 	$("div#browse div.uk-card-body ul.uk-slider-items").empty();
 	for (var i = 0; i < Categories.length; i++)
-	{
 		$("div#browse div.uk-card-body div#categories ul.uk-slider-items").append("<li id='"+Categories[i].ID+"'><img width='50' height='50' src='img/categories/"+Categories[i].NAME+".png'><p>"+Categories[i].NAME+"<br><span>"+Categories[i].DOCUMENTS+" Books</span></p></li>");
-	}
 	/* Browse by Categories */
 	$("div#browse div.uk-card-body ul.uk-slider-items li img, div#browse div.uk-card-body ul.uk-slider-items li p").click(function()
 	{

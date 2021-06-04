@@ -7,8 +7,6 @@ $(window).on("load", function()
 	var response = getSession();
 	if (response.response == "Access Denied")
 		window.location.href = "../";
-	else if (response.response == "Access Pending")
-		window.location.href = "./login.html";
 	else if (response.response == "User Granted")
 		window.location.href = "../home/";
 	else if (response.response == "Librarian Granted")

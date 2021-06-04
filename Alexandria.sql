@@ -147,7 +147,9 @@ INSERT INTO `Authors` (`AUTHOR_ID`, `AUTHOR_NAME`) VALUES
 (5, 'Tobias Smollett'),
 (6, 'Robert Louis Stevenson'),
 (7, 'Sir Walter Scott'),
-(8, 'William Paley');
+(8, 'William Paley'),
+(9, 'Stephen Austin'),
+(10, 'E. Dentu');
 -- --------------------------------------------------------
 
 --
@@ -243,6 +245,8 @@ INSERT INTO `Documents` (`DOCUMENT_ID`, `DOCUMENT_TITLE`, `DOCUMENT_COVER`, `DOC
 (2, 'Paul Klee.', '2.jpg', 'L', NULL, 1, 2, 2, 4, NULL),
 (3, 'The Time Machine', '3.jpg', 'LO', '3.pdf', 1, 3, 2, 22, 'The Time Traveller, a dreamer obsessed with traveling through time, builds himself a time machine and, much to his surprise, travels over 800,000 years into the future. He lands in the year 802701: the world has been transformed by a society living in apparent harmony and bliss, but as the Traveler stays in the future he discovers a hidden barbaric and depraved subterranean class. Wells&apos;s transparent commentary on the capitalist society was an instant bestseller and launched the time-travel genre.'),
 (4, 'On Cooking', '4.jpg', 'L', NULL, 1, 4, 2, 51, NULL);
+(5, 'Śakuntalá, Or, Śakuntalá Recognized By The Ring', '5.jpg', 'L', NULL, 0, 9, 2, 142, NULL),
+(6, 'Aventures Prodigieuses De Tartarin De Tarascon', '6.jpg', 'L', NULL, 0, 10, 2, 138, NULL);
 
 -- --------------------------------------------------------
 
@@ -315,9 +319,8 @@ TRUNCATE TABLE `Librarians`;
 INSERT INTO `Librarians` (`LIBRARIAN_ID`, `LIBRARIAN_LOGIN`, `LIBRARIAN_PASSWORD`, `LIBRARIAN_FNAME`, `LIBRARIAN_LNAME`, `LIBRARIAN_EMAIL`) VALUES
 (1, 'Mariem', '$2y$10$/nQSVodl.3z2rifkXcZoXOwkUuSNtDFR6UsJExHAvbqSCR6kyk3UO', 'Mariem', 'Bouchaala', 'mariem.bouchaala@sesame.com.tn'),
 (2, 'Insaf', '$2y$10$UrS7BiCw4k9xJXJ1Z1Ssl.kampSPFlH89GOp/ERhiGynMa5i1Xa9G', 'Insaf', 'Khemiri', 'insaf.khemiri@sesame.com.tn'),
-(3, 'Kamel', '$2y$10$J1y5GIFj0CUvXIOUAPIkq.KbmbnmKov4ssRKhDf4kuii8A9B4Qyyq', 'Kamel', 'Ben Rhouma', 'kamel.benrhouma@sesame.com.tn'),
-(4, 'Azza', '$2y$10$zAWIt/FjXMvmgfbHw1ChWuDg/LhoyXcovNZbSX2NqcCrKbY2SmZjy', 'Azza', 'Karoui', 'azza.karoui@sesame.com.tn'),
-(5, 'Sonda', '$2y$10$Heo24WdWoeY0vHUlsZKaJOMM5wBKnJKrPc3qSIzsU5u0KUWHhpWb2', 'Sonda', 'Bousnina', 'sonda.bousnina@sesame.com.tn');
+(3, 'Azza', '$2y$10$zAWIt/FjXMvmgfbHw1ChWuDg/LhoyXcovNZbSX2NqcCrKbY2SmZjy', 'Azza', 'Karoui', 'azza.karoui@sesame.com.tn'),
+(4, 'Sonda', '$2y$10$Heo24WdWoeY0vHUlsZKaJOMM5wBKnJKrPc3qSIzsU5u0KUWHhpWb2', 'Sonda', 'Bousnina', 'sonda.bousnina@sesame.com.tn');
 
 -- --------------------------------------------------------
 

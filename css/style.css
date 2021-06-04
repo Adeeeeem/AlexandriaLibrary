@@ -1,7 +1,6 @@
 /*==================================================
 				Hidden Elements
 ==================================================*/
-div#home div.uk-card-header nav li#logout_nav_li,
 div#browse div#browse_categories{display: none;}
 /*==================================================
 				Home Section

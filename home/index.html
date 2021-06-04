@@ -40,18 +40,44 @@
 		</div>
 	</div>
 
-	<!-- Left Menu -->
-	<div id="menu">
-		<div id="menu_logo" class="uk-width-1-1 uk-text-center"><img class="uk-margin-small-top" src="../img/logo.png"><h3>Alexandria <span>Libarry</span></h3></div>
-		<div class="uk-margin-medium-top uk-margin-large-bottom">
-			<!-- <button id="documents_btn" class="uk-button uk-width-1-1 uk-text-left active"><img src="../img/menu/documents.png"> Documents</button>
-			<button id="librarians_btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/menu/librarians.png"> Librarians</button>
-			<button id="users_btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/menu/users.png"> Users</button>
-			<button id="seats_btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/menu/seats.png"> Seats</button>
-			<button id="configuration_btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/menu/configuration.png"> Configuration</button>
-			<button id="history_btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/menu/history.png"> History</button>
-			<button id="settings_btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/menu/settings.png"> Settings</button> -->
-			<button id="logout_btn" class="uk-button uk-width-1-1 uk-text-left"><img src="../img/menu/logout.png"> Logout</button>
+	<nav id="menu" class="uk-navbar-container uk-margin" uk-navbar>
+		<div class="uk-navbar-left">
+			<a class="uk-navbar-item uk-logo" href="./">
+				<div class="uk-grid-small uk-flex-middle" uk-grid>
+					<div class="uk-width-auto">
+						<img class="uk-border-circle" width="60" height="60" src="../img/logo.png">
+					</div>
+					<div class="uk-width-expand">
+						<h3 class="uk-card-title uk-margin-remove-bottom">Alexandria <span>Library</span></h3>
+					</div>
+				</div>
+			</a>
+		</div>
+		<div class="uk-navbar-right">
+			<div class="uk-navbar-item">
+				<ul class="uk-navbar-nav">
+					<li id="documents_btn_li"><a id="documents_btn" class="active" href="javascript:void(0);" uk-scroll>Documents</a></li>
+					<li id="seats_btn_li"><a id="seats_btn" href="javascript:void(0);" uk-scroll>Seats</a></li>
+					<li id="history_btn_li"><a id="history_btn" href="javascript:void(0);" uk-scroll>History</a></li>
+					<li id="settings_btn_li"><a id="settings_btn" href="javascript:void(0);" uk-scroll>Settings</a></li>
+					<li id="logout_btn_li"><a id="logout_btn" href="javascript:void(0);">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="sections">
+		<div id="documents" class="uk-card uk-box-shadow-xlarge">
+
+		</div>
+		<div id="seats" class="uk-card uk-box-shadow-xlarge">
+
+		</div>
+		<div id="history" class="uk-card uk-box-shadow-xlarge">
+
+		</div>
+		<div id="settings" class="uk-card uk-box-shadow-xlarge">
+
 		</div>
 	</div>
 
