@@ -17,3 +17,18 @@ nav#menu li a#contact_nav_btn{margin-right: 40px;}
 				Sections
 ==================================================*/
 div#sections{width: 100%; height: calc(100% - 100px);}
+div#sections div.uk-card{width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.95); border-radius: 15px; margin: auto;}
+div#sections div.uk-card div.uk-card-header h3{color: var(--Artichoke-color); text-transform: none; font-weight: 500; letter-spacing: 2px; font-size: 25px;}
+/*==================================================
+				Documents
+==================================================*/
+div#sections div#documents div.uk-card-body div#categories ul.uk-slider-items p{font-size: 15px;}
+div#sections div#documents div.uk-card-body div#categories ul.uk-slider-items img,
+div#sections div#documents div.uk-card-body div#categories ul.uk-slider-items p{cursor: pointer;}
+div#sections div#documents div.uk-card-body div#categories ul.uk-slider-items span{margin-top: 10px; font-size: .875rem; line-height: 1.5; color: #666;}
+div#sections div#documents div.uk-card-body div#browse_categories h3,
+div#sections div#documents div.uk-card-body div#browse_latest h3{padding-top: 20px; margin-bottom: 10px !important; font-size: 20px;}
+div#sections div#documents div.uk-card-body div#browse_categories small{margin-left: 10px;}
+div#sections div#documents div.uk-card-body div#browse_categories ul.uk-slider-items img{cursor: pointer;}
+div#sections div#documents div.uk-card-body div#browse_categories ul.uk-slider-items p{font-size: 15px; font-weight: 500;}
+div#sections div#documents div.uk-card-body div#browse_categories ul.uk-slider-items p span{font-size: 12px; color: var(--Antique-Brass-color);}

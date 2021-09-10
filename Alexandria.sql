@@ -149,7 +149,8 @@ INSERT INTO `Authors` (`AUTHOR_ID`, `AUTHOR_NAME`) VALUES
 (7, 'Sir Walter Scott'),
 (8, 'William Paley'),
 (9, 'Stephen Austin'),
-(10, 'E. Dentu');
+(10, 'E. Dentu'),
+(11, 'Charles Darwin');
 -- --------------------------------------------------------
 
 --
@@ -244,7 +245,7 @@ INSERT INTO `Documents` (`DOCUMENT_ID`, `DOCUMENT_TITLE`, `DOCUMENT_COVER`, `DOC
 (1, 'Brave New World', '1.jpg', 'L', NULL, 1, 1, 2, 26, 'Originally published in 1932, this outstanding work of literature is more crucial and relevant today than ever before. Cloning, feel-good drugs, antiaging programs, and total social control through politics, programming, and media -- has Aldous Huxley accurately predicted our future? With a storyteller&apos;s genius, he weaves these ethical controversies in a compelling narrative that dawns in the year 632 AF (After Ford, the deity). When Lenina and Bernard visit a savage reservation, we experience how Utopia can destroy humanity. A powerful work of speculative fiction that has enthralled and terrified readers for generations, Brave New World is both a warning to be heeded and thought-provoking yet satisfying entertainment.'),
 (2, 'Paul Klee.', '2.jpg', 'L', NULL, 1, 2, 2, 4, NULL),
 (3, 'The Time Machine', '3.jpg', 'LO', '3.pdf', 1, 3, 2, 22, 'The Time Traveller, a dreamer obsessed with traveling through time, builds himself a time machine and, much to his surprise, travels over 800,000 years into the future. He lands in the year 802701: the world has been transformed by a society living in apparent harmony and bliss, but as the Traveler stays in the future he discovers a hidden barbaric and depraved subterranean class. Wells&apos;s transparent commentary on the capitalist society was an instant bestseller and launched the time-travel genre.'),
-(4, 'On Cooking', '4.jpg', 'L', NULL, 1, 4, 2, 51, NULL);
+(4, 'On Cooking', '4.jpg', 'L', NULL, 1, 4, 2, 51, NULL),
 (5, 'Śakuntalá, Or, Śakuntalá Recognized By The Ring', '5.jpg', 'L', NULL, 0, 9, 2, 142, NULL),
 (6, 'Aventures Prodigieuses De Tartarin De Tarascon', '6.jpg', 'L', NULL, 0, 10, 2, 138, NULL);
 

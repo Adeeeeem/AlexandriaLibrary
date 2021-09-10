@@ -183,6 +183,9 @@ $(function()
 						$("div#add_document form#add_document_form button#add_document_reset_btn").click();
 						/* Clear Subjects */
 						$("div#add_document form#add_document_form datalist#add_document_subject_list").empty();
+						/* Remove Copies & Data Doucments */
+						$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer div#add_document_copies_outer").remove();
+						$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer div#add_document_data_outer").remove();
 					break;
 
 					default:
@@ -724,9 +727,6 @@ function resetAddDocumentForm()
 {
 	$("div#add_document form#add_document_form input").removeClass("uk-form-danger");
 	$("div#add_document form#add_document_form small.error").hide();
-	/* Remove Copies & Data Doucments */
-	$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer div#add_document_copies_outer").remove();
-	$("div#add_document div.uk-card-body form#add_document_form div#add_document_copies_data_outer div#add_document_data_outer").remove();
 }
 /* Reset Add Document Form */
 function resetAddLibrarianForm()

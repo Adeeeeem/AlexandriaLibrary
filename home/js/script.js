@@ -38,6 +38,19 @@ $(function()
 			window.location.href = "../";
 		});
 	});
+	/* Display Categories List */
+	var Categories = getCategories();
+	$("div#sections div#documents div.uk-card-body ul.uk-slider-items").empty();
+	for (var i = 0; i < Categories.length; i++)
+		$("div#sections div#documents div.uk-card-body div#categories ul.uk-slider-items").append("<li id='"+Categories[i].ID+"'><img width='35' height='35' src='../img/categories/"+Categories[i].NAME+".png'><p>"+Categories[i].NAME+"<br><span>"+Categories[i].DOCUMENTS+" Books</span></p></li>");
+	/* Browse by Categories */
+	$("div#sections div#documents div.uk-card-body ul.uk-slider-items li img, div#sections div#documents div.uk-card-body ul.uk-slider-items li p").click(function()
+	{
+		displayBrowseByCategory($(this).parent().attr("id"));
+		var DocumentsByCategory = getDocumentsByCategory($(this).parent().attr("id"));
+		for (var i = 0; i < DocumentsByCategory.length; i++)
+			$("div#sections div#documents div.uk-card-body div#browse_categories ul.uk-slider-items").append("<li id='"+DocumentsByCategory[i].ID+"'><img class='book_cover' width='75' height='150' src='../img/covers/"+DocumentsByCategory[i].COVER+"'><p>"+DocumentsByCategory[i].TITLE+"<br><span>"+DocumentsByCategory[i].TYPE+"</span></p></li>");
+	});
 });
 /*==================================================
 				Functions
@@ -117,4 +130,41 @@ function HideAllSections()
 	$("div#sections div#settings").hide();
 
 	$("nav#menu div.uk-navbar-right a").removeClass("active");
+}
+/* Get All Categories */
+function getCategories()
+{
+	return $.ajax
+	({
+		url: "../php/getCategories.php",
+		type: "POST",
+		contentType : "application/json; charset=utf-8",
+		dataType: "json",
+		success: function (response) {},
+		async: false,
+		error: function (error) {console.log(error);}
+	}).responseJSON;
+}
+/* Display Browse by Category */
+function displayBrowseByCategory(id)
+{
+	$("div#sections div#documents div#browse_categories ul.uk-slider-items").empty();
+	$("div#sections div#documents div#browse_categories").show();
+	/* Change Category Title */
+	$("div#sections div#documents div#browse_categories h3#browse_categories_title").text($("div#sections div#documents div.uk-card-body div#categories ul.uk-slider-items li#"+id+" p").contents().filter(function(){return this.nodeType == 3;}).text());
+	$("div#sections div#documents div#browse_categories small#browse_categories_title_books").text($("div#sections div#documents div.uk-card-body div#categories ul.uk-slider-items li#"+id+" p span").text());
+}
+/* Display Documents by Category */
+function getDocumentsByCategory(id)
+{
+	return $.ajax
+	({
+		url: "../php/getDocumentsByCategory.php",
+		type: "POST",
+		dataType: "json",
+		data: {category_id: id},
+		success: function (response) {},
+		async: false,
+		error: function (error) {console.log(error);}
+	}).responseJSON;
 }

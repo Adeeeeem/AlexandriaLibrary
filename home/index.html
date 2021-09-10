@@ -68,7 +68,46 @@
 
 	<div id="sections">
 		<div id="documents" class="uk-card uk-box-shadow-xlarge">
-
+			<div class="uk-card-header uk-text-center">
+				<h3 class="uk-card-title">Documents</h3>
+				<hr>
+			</div>
+			<div class="uk-card-body">
+				<div id="categories" uk-slider="autoplay: true; pause-on-hover: true; velocity: 0.5">
+					<div class="uk-position-relative" tabindex="-1">
+						<ul class="uk-slider-items uk-child-width-1-6 uk-grid uk-text-center">
+							<!-- Data Will be Loaded from JavaScript -->
+						</ul>
+						<a class="uk-position-center-left" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+						<a class="uk-position-center-right" href="#" uk-slidenav-next uk-slider-item="next"></a>
+					</div>
+				</div>
+				<div id="browse_categories" class="uk-margin-small-top uk-animation-slide-top-medium">
+					<h3 id="browse_categories_title"></h3>
+					<small id="browse_categories_title_books"></small>
+					<div class="uk-margin-medium-top" uk-slider="velocity: 0.5">
+						<div class="uk-position-relative" tabindex="-1">
+							<ul class="uk-slider-items uk-child-width-1-6 uk-grid uk-text-center">
+								<!-- Data Will be Loaded from JavaScript -->
+							</ul>
+							<a class="uk-position-center-left" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+							<a class="uk-position-center-right" href="#" uk-slidenav-next uk-slider-item="next"></a>
+						</div>
+					</div>
+				</div>
+				<div id="browse_latest" class="uk-margin-small-top uk-animation-slide-top-medium">
+					<h3 id="browse_latest_title">Latest Books</h3>
+					<div class="uk-margin-medium-top" uk-slider="velocity: 0.5">
+						<div class="uk-position-relative" tabindex="-1">
+							<ul class="uk-slider-items uk-child-width-1-6 uk-grid uk-text-center">
+								<!-- Data Will be Loaded from JavaScript -->
+							</ul>
+							<a class="uk-position-center-left" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+							<a class="uk-position-center-right" href="#" uk-slidenav-next uk-slider-item="next"></a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div id="seats" class="uk-card uk-box-shadow-xlarge">
 
